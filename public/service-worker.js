@@ -1,6 +1,5 @@
-const CACHE_NAME = 'tkb-dtc-v1';
+const CACHE_NAME = 'tkb-dtc-v2';
 const ASSETS_TO_CACHE = [
-  './',
   './index.html',
   './logo.png',
   './apple-touch-icon.png',
@@ -12,7 +11,18 @@ const ASSETS_TO_CACHE = [
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS_TO_CACHE);
+      // Use cache: 'reload' to ensure 200 OK responses and avoid 304 Not Modified rejection
+      return Promise.allSettled(
+        ASSETS_TO_CACHE.map((url) => {
+          return fetch(new Request(url, { cache: 'reload' })).then((response) => {
+            if (response && (response.status === 200 || response.type === 'opaque')) {
+              return cache.put(url, response);
+            }
+          }).catch((err) => {
+            console.warn('Could not cache asset:', url, err);
+          });
+        })
+      );
     }).then(() => self.skipWaiting())
   );
 });
@@ -30,6 +40,9 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const request = event.request;
   if (request.method !== 'GET') return;
+
+  // Always bypass Service Worker for service-worker.js itself
+  if (request.url.includes('service-worker.js')) return;
 
   // For API calls, try network first, fallback to cached data if offline
   if (request.url.includes('/api/')) {

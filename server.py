@@ -390,7 +390,23 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
         parsed = urllib.parse.urlparse(self.path)
         path = parsed.path
         qs = urllib.parse.parse_qs(parsed.query)
-        
+
+        # Service Worker must always return 200 OK without 304 conditional cache
+        if path == "/service-worker.js":
+            sw_path = os.path.join(public_dir, "service-worker.js")
+            if os.path.exists(sw_path):
+                with open(sw_path, "rb") as f:
+                    content = f.read()
+                self.send_response(200)
+                self.send_header("Content-Type", "application/javascript; charset=utf-8")
+                self.send_header("Content-Length", str(len(content)))
+                self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
+                self.send_header("Pragma", "no-cache")
+                self.send_header("Expires", "0")
+                self.end_headers()
+                self.wfile.write(content)
+                return
+
         if path == "/api/init":
             try:
                 data = get_initial()
