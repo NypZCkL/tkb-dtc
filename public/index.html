@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Thời Khóa Biểu DTC</title>
+  <meta name="theme-color" content="#0284c7">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="manifest" href="manifest.json">
+  <!-- iOS PWA Support -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="TKB DTC">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100 antialiased min-h-screen pb-12 flex justify-center transition-colors duration-200">
+
+  <div class="w-full max-w-md bg-white dark:bg-slate-900 min-h-screen shadow-xl flex flex-col relative dark:border-x dark:border-slate-800 transition-colors duration-200">
+
+    <!-- Top Bar -->
+    <header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-30 px-4 py-3 transition-colors duration-200">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-white border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-center p-0.5">
+            <img src="logo.png" alt="Logo DTC" class="w-full h-full object-contain">
+          </div>
+          <div>
+            <h1 class="text-base font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">Thời Khóa Biểu</h1>
+            <p id="headerSub" class="text-xs text-slate-500 dark:text-slate-400 font-medium truncate max-w-[170px]">Đang tải dữ liệu...</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-1">
+          <!-- Theme Dark/Light Toggle -->
+          <button id="btnThemeToggle" class="p-2 text-slate-500 hover:text-sky-600 dark:text-slate-400 dark:hover:text-sky-400 active:scale-95 transition rounded-full hover:bg-slate-100 dark:hover:bg-slate-800" title="Chế độ sáng/tối">
+            <svg id="iconThemeLight" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+            <svg id="iconThemeDark" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+          </button>
+          <!-- Refresh -->
+          <button id="btnRefresh" class="p-2 text-slate-500 hover:text-sky-600 dark:text-slate-400 dark:hover:text-sky-400 active:scale-95 transition rounded-full hover:bg-slate-100 dark:hover:bg-slate-800" title="Làm mới">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+          </button>
+          <!-- Change Class -->
+          <button id="btnChangeClass" class="flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-full bg-sky-50 dark:bg-sky-950 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 hover:bg-sky-100 dark:hover:bg-sky-900 active:scale-95 transition">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+            Đổi lớp
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Week Navigation Header -->
+    <div class="bg-gradient-to-b from-sky-50/50 to-white dark:from-slate-800/40 dark:to-slate-900 px-3 py-2.5 border-b border-slate-100 dark:border-slate-800 transition-colors duration-200">
+      <div class="flex items-center justify-between gap-1.5">
+        <button id="btnPrevWeek" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-800 hover:shadow-sm active:scale-90 transition disabled:opacity-30 disabled:pointer-events-none">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+
+        <button id="btnWeekDropdown" class="flex-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm rounded-xl py-2 px-3 flex items-center justify-center gap-1.5 active:scale-98 transition">
+          <span id="weekLabel" class="text-xs font-bold text-slate-800 dark:text-slate-100">Đang tải tuần...</span>
+          <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+
+        <button id="btnNextWeek" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-800 hover:shadow-sm active:scale-90 transition disabled:opacity-30 disabled:pointer-events-none">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+      </div>
+
+      <!-- Jump to Current Week pill -->
+      <div id="jumpCurrentWeekWrap" class="hidden text-center mt-2">
+        <button id="btnJumpCurrentWeek" class="inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-950/70 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800 hover:bg-amber-200 dark:hover:bg-amber-900 active:scale-95 transition">
+          <span>Quay về tuần hiện tại</span>
+          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- View Mode Switcher: Từng ngày vs Cả tuần -->
+    <div class="px-4 py-2 bg-white dark:bg-slate-900 flex items-center justify-between border-b border-slate-100 dark:border-slate-800 transition-colors duration-200">
+      <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Chế độ xem</span>
+      <div class="inline-flex p-0.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+        <button id="btnModeDaily" class="px-3 py-1 rounded-lg text-xs font-bold transition shadow-sm bg-white dark:bg-slate-700 text-sky-700 dark:text-sky-300">
+          🗓️ Từng ngày
+        </button>
+        <button id="btnModeWeekly" class="px-3 py-1 rounded-lg text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition">
+          📋 Cả tuần
+        </button>
+      </div>
+    </div>
+
+    <!-- Day Tabs (Only shown in Daily view) -->
+    <div id="dayTabsWrap" class="px-3 py-2 bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800 transition-colors duration-200">
+      <div id="dayTabsContainer" class="flex gap-1.5 overflow-x-auto hide-scrollbar justify-between">
+        <!-- Generated by JS -->
+      </div>
+    </div>
+
+    <!-- Main Schedule Content -->
+    <main class="flex-1 p-4 overflow-y-auto bg-slate-50/50 dark:bg-slate-900/50 transition-colors duration-200">
+      <div id="loadingState" class="py-16 text-center">
+        <div class="inline-block w-8 h-8 border-4 border-sky-600 border-t-transparent rounded-full animate-spin"></div>
+        <p class="mt-3 text-xs font-semibold text-slate-500 dark:text-slate-400">Đang tải lịch học...</p>
+      </div>
+
+      <div id="emptyState" class="hidden py-16 text-center px-4">
+        <div class="w-16 h-16 mx-auto bg-sky-50 dark:bg-slate-800 rounded-full flex items-center justify-center text-sky-600 dark:text-sky-400 mb-3 shadow-inner">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+        </div>
+        <h3 id="emptyDayTitle" class="text-sm font-bold text-slate-800 dark:text-slate-100">Hôm nay không có tiết học</h3>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Bạn có thể tự do ôn bài hoặc nghỉ ngơi!</p>
+      </div>
+
+      <div id="lessonsList" class="space-y-3">
+        <!-- Lesson Cards injected by JS -->
+      </div>
+    </main>
+
+    <!-- Modal: Select Week -->
+    <div id="weekModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+      <div class="bg-white dark:bg-slate-900 rounded-2xl max-w-sm w-full p-4 shadow-2xl max-h-[80vh] flex flex-col border border-slate-100 dark:border-slate-800">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+          <h3 class="text-sm font-bold text-slate-900 dark:text-white">Chọn tuần học</h3>
+          <button id="btnCloseWeekModal" class="p-1 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+        </div>
+        <div id="weeksList" class="overflow-y-auto flex-1 divide-y divide-slate-100 dark:divide-slate-800 mt-2">
+          <!-- Weeks list -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal: Select Faculty, Course, and Class -->
+    <div id="classModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 hidden">
+      <div class="bg-white dark:bg-slate-900 rounded-t-3xl sm:rounded-2xl max-w-md w-full p-5 shadow-2xl max-h-[90vh] flex flex-col border border-slate-100 dark:border-slate-800">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+          <div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Chọn Khoa • Khóa • Lớp</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Thông tin sẽ được tự động lưu lại</p>
+          </div>
+          <button id="btnCloseClassModal" class="p-1.5 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+        </div>
+
+        <div class="mt-3 space-y-3 flex-1 overflow-hidden flex flex-col">
+          <!-- Step 1: Khoa -->
+          <div>
+            <label class="block text-xs font-bold text-sky-700 dark:text-sky-400 uppercase tracking-wider mb-1">1. Chọn Khoa</label>
+            <select id="facultySelect" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs font-semibold text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-sky-500">
+              <option value="">-- Đang tải danh sách khoa --</option>
+            </select>
+          </div>
+
+          <!-- Step 2: Khóa -->
+          <div>
+            <label class="block text-xs font-bold text-sky-700 dark:text-sky-400 uppercase tracking-wider mb-1">2. Chọn Khóa</label>
+            <div id="coursesWrap" class="flex gap-1.5 overflow-x-auto hide-scrollbar py-1">
+              <span class="text-xs text-slate-400 italic">Vui lòng chọn Khoa trước</span>
+            </div>
+          </div>
+
+          <!-- Step 3: Search and Select Class -->
+          <div class="flex-1 flex flex-col min-h-0">
+            <label class="block text-xs font-bold text-sky-700 dark:text-sky-400 uppercase tracking-wider mb-1">3. Tìm & Chọn Lớp</label>
+            <input id="classSearchInput" type="text" placeholder="Nhập tên lớp..." class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs font-medium text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-sky-500 mb-2">
+            
+            <div id="classesListWrap" class="flex-1 overflow-y-auto border border-slate-200 dark:border-slate-700 rounded-xl divide-y divide-slate-100 dark:divide-slate-800 bg-slate-50 dark:bg-slate-800/50">
+              <p id="classesPlaceholder" class="p-4 text-xs text-center text-slate-400">Vui lòng chọn Khoa và Khóa</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal: About App (Easter Egg) -->
+    <div id="aboutModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+      <div class="bg-white dark:bg-slate-900 rounded-2xl max-w-sm w-full p-6 shadow-2xl flex flex-col items-center text-center border border-slate-100 dark:border-slate-800 space-y-4">
+        <div class="w-16 h-16 rounded-2xl bg-white border border-slate-200 dark:border-slate-700 p-1 flex items-center justify-center shadow-lg shadow-sky-600/10">
+          <img src="logo.png" alt="Logo DTC" class="w-full h-full object-contain">
+        </div>
+        <div>
+          <h3 class="text-lg font-extrabold text-slate-900 dark:text-white">Thời Khóa Biểu DTC</h3>
+          <p class="text-xs font-semibold text-sky-600 dark:text-sky-400">Phiên bản 1.0 • Trường CĐ Đồng Tháp</p>
+        </div>
+        <div class="w-full bg-slate-50 dark:bg-slate-800/60 rounded-xl p-3 text-left space-y-1 border border-slate-100 dark:border-slate-800">
+          <p class="text-[11px] font-medium text-slate-400">Phát triển bởi:</p>
+          <p class="text-sm font-bold text-sky-600 dark:text-sky-400">Phan Nguyễn Hữu Nghĩa</p>
+          <p class="text-xs font-semibold text-slate-700 dark:text-slate-200">Lớp: CĐ DVTY K26B</p>
+        </div>
+        <div class="w-full bg-sky-50/60 dark:bg-sky-950/30 border border-sky-200 dark:border-sky-800/50 rounded-xl p-3 text-xs text-slate-600 dark:text-slate-300 leading-relaxed text-left">
+          Ứng dụng được lưu hành miễn phí, giúp các bạn sinh viên DTC có thể xem thời khóa biểu một cách dễ dàng, nhanh chóng và tiện lợi mọi lúc mọi nơi (hỗ trợ xem ngoại tuyến).
+        </div>
+        <p class="text-[11px] font-medium text-slate-400">Chúc các bạn học tập thật tốt và đạt kết quả cao! ✨</p>
+        <button id="btnCloseAboutModal" class="w-full py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs transition shadow-md shadow-sky-600/20 active:scale-98">
+          Đóng
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const DAY_NAMES = ['Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7', 'Chủ nhật'];
+    const DAY_SHORT = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'];
+
+    let isDarkMode = localStorage.getItem('dtcc_dark_mode') === 'true';
+
+    function updateThemeUI() {
+      if (isDarkMode) {
+        document.documentElement.classList.add('dark');
+        document.getElementById('iconThemeLight').classList.remove('hidden');
+        document.getElementById('iconThemeDark').classList.add('hidden');
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.getElementById('iconThemeLight').classList.add('hidden');
+        document.getElementById('iconThemeDark').classList.remove('hidden');
+      }
+    }
+
+    function toggleDarkMode() {
+      isDarkMode = !isDarkMode;
+      localStorage.setItem('dtcc_dark_mode', isDarkMode);
+      updateThemeUI();
+    }
+
+    let appState = {
+      faculties: [],
+      courses: [],
+      weeks: [],
+      classes: [],
+      currentWeekIndex: 0,
+      defaultWeekIndex: 0,
+      selectedFaculty: null,
+      selectedCourse: null,
+      selectedClass: null,
+      selectedDayIndex: (new Date().getDay() + 6) % 7,
+      daySchedules: [],
+      viewMode: localStorage.getItem('dtcc_view_mode') || 'daily' // 'daily' or 'weekly'
+    };
+
+    function loadSavedPrefs() {
+      try {
+        const f = localStorage.getItem('dtcc_saved_faculty');
+        const k = localStorage.getItem('dtcc_saved_course');
+        const c = localStorage.getItem('dtcc_saved_class');
+        if (f) appState.selectedFaculty = JSON.parse(f);
+        if (k) appState.selectedCourse = JSON.parse(k);
+        if (c) appState.selectedClass = JSON.parse(c);
+      } catch (e) {}
+    }
+
+    function savePrefs(faculty, course, classItem) {
+      try {
+        if (faculty) localStorage.setItem('dtcc_saved_faculty', JSON.stringify(faculty));
+        else localStorage.removeItem('dtcc_saved_faculty');
+        if (course) localStorage.setItem('dtcc_saved_course', JSON.stringify(course));
+        else localStorage.removeItem('dtcc_saved_course');
+        localStorage.setItem('dtcc_saved_class', JSON.stringify(classItem));
+      } catch (e) {}
+    }
+
+    async function initApp() {
+      updateThemeUI();
+      loadSavedPrefs();
+      updateViewModeUI();
+
+      try {
+        const res = await fetch('/api/init');
+        const data = await res.json();
+        appState.faculties = data.faculties || [];
+        appState.weeks = data.weeks || [];
+        appState.courses = data.initialCourses || [];
+        appState.classes = data.initialClasses || [];
+        appState.initialCourses = data.initialCourses || [];
+        appState.initialClasses = data.initialClasses || [];
+        appState.currentWeekIndex = data.defaultWeekIndex || 0;
+        appState.defaultWeekIndex = data.defaultWeekIndex || 0;
+
+        populateFacultySelect();
+        renderCoursesChips();
+        renderClassOptions();
+        updateWeekDisplay();
+
+        if (appState.selectedClass) {
+          updateHeaderDisplay();
+          loadSchedule();
+        } else {
+          openClassModal();
+        }
+      } catch (err) {
+        alert('Lỗi khởi tạo: ' + err.message);
+      }
+    }
+
+    function updateHeaderDisplay() {
+      const el = document.getElementById('headerSub');
+      if (appState.selectedClass) {
+        const name = appState.selectedClass.name;
+        el.textContent = name.toLowerCase().startsWith('lớp') ? name : `Lớp: ${name}`;
+      } else {
+        el.textContent = 'Chưa chọn lớp';
+      }
+    }
+
+    function isCurrentWeek() {
+      return appState.currentWeekIndex === appState.defaultWeekIndex;
+    }
+
+    function updateWeekDisplay() {
+      const w = appState.weeks[appState.currentWeekIndex];
+      const lbl = document.getElementById('weekLabel');
+      if (w) {
+        lbl.textContent = `Tuần ${w.weekNumber} (${w.startDate} - ${w.endDate})`;
+      } else {
+        lbl.textContent = 'Tuần --';
+      }
+
+      document.getElementById('btnPrevWeek').disabled = appState.currentWeekIndex <= 0;
+      document.getElementById('btnNextWeek').disabled = appState.currentWeekIndex >= appState.weeks.length - 1;
+
+      const jumpWrap = document.getElementById('jumpCurrentWeekWrap');
+      if (!isCurrentWeek()) {
+        jumpWrap.classList.remove('hidden');
+      } else {
+        jumpWrap.classList.add('hidden');
+      }
+    }
+
+    function updateViewModeUI() {
+      const btnDaily = document.getElementById('btnModeDaily');
+      const btnWeekly = document.getElementById('btnModeWeekly');
+      const dayTabsWrap = document.getElementById('dayTabsWrap');
+
+      if (appState.viewMode === 'daily') {
+        btnDaily.className = 'px-3 py-1 rounded-lg text-xs font-bold transition shadow-sm bg-white dark:bg-slate-700 text-sky-700 dark:text-sky-300';
+        btnWeekly.className = 'px-3 py-1 rounded-lg text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition';
+        dayTabsWrap.classList.remove('hidden');
+      } else {
+        btnWeekly.className = 'px-3 py-1 rounded-lg text-xs font-bold transition shadow-sm bg-white dark:bg-slate-700 text-sky-700 dark:text-sky-300';
+        btnDaily.className = 'px-3 py-1 rounded-lg text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition';
+        dayTabsWrap.classList.add('hidden');
+      }
+    }
+
+    function renderDayTabs() {
+      const container = document.getElementById('dayTabsContainer');
+      container.innerHTML = '';
+
+      const actualTodayIdx = (new Date().getDay() + 6) % 7;
+      const isActualWeek = isCurrentWeek();
+
+      for (let i = 0; i < 7; i++) {
+        const isSelected = i === appState.selectedDayIndex;
+        const isToday = isActualWeek && (i === actualTodayIdx);
+        const sched = appState.daySchedules.find(d => d.dayIndex === i);
+        const lessonCount = sched ? sched.lessons.length : 0;
+
+        let bgClass = 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300';
+        if (isSelected) {
+          bgClass = 'bg-sky-600 border-sky-600 text-white shadow-md shadow-sky-600/20';
+        } else if (isToday) {
+          bgClass = 'bg-sky-100 dark:bg-sky-950/80 border-sky-300 dark:border-sky-800 text-sky-900 dark:text-sky-300';
+        }
+
+        const btn = document.createElement('button');
+        btn.className = `flex-1 py-2 px-1 rounded-xl border flex flex-col items-center justify-center transition active:scale-95 ${bgClass}`;
+        btn.onclick = () => {
+          appState.selectedDayIndex = i;
+          renderDayTabs();
+          renderLessons();
+        };
+
+        btn.innerHTML = `
+          <span class="text-[11px] font-extrabold">${DAY_SHORT[i]}</span>
+          <div class="mt-1 h-4 flex items-center justify-center">
+            ${lessonCount > 0 ? `
+              <span class="text-[9px] font-bold px-1.5 py-0.2 rounded-full ${
+                isSelected ? 'bg-white text-sky-700' : 'bg-sky-600 text-white dark:bg-sky-500'
+              }">${lessonCount}</span>
+            ` : `
+              <span class="w-1 h-1 rounded-full ${isSelected ? 'bg-white/60' : 'bg-transparent'}"></span>
+            `}
+          </div>
+          ${isToday ? `
+            <span class="text-[8px] font-extrabold uppercase mt-0.5 tracking-tight ${
+              isSelected ? 'text-white' : 'text-sky-600 dark:text-sky-400'
+            }">Nay</span>
+          ` : '<span class="h-2.5"></span>'}
+        `;
+        container.appendChild(btn);
+      }
+    }
+
+    async function loadSchedule() {
+      if (!appState.selectedClass) return;
+
+      const loading = document.getElementById('loadingState');
+      const empty = document.getElementById('emptyState');
+      const list = document.getElementById('lessonsList');
+
+      loading.classList.remove('hidden');
+      empty.classList.add('hidden');
+      list.innerHTML = '';
+
+      const weekObj = appState.weeks[appState.currentWeekIndex];
+      const weekId = weekObj ? weekObj.id : '1';
+      const curParam = isCurrentWeek() ? 'true' : 'false';
+      const facultyParam = appState.selectedFaculty ? encodeURIComponent(appState.selectedFaculty.id) : '';
+      const courseParam = appState.selectedCourse ? encodeURIComponent(appState.selectedCourse.id) : '';
+
+      try {
+        const url = `/api/schedule?faculty=${facultyParam}&course=${courseParam}&class=${encodeURIComponent(appState.selectedClass.id)}&week=${weekId}&isCurrent=${curParam}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        appState.daySchedules = data || [];
+        renderDayTabs();
+        renderLessons();
+      } catch (e) {
+        alert('Không thể tải lịch học: ' + e.message);
+      } finally {
+        loading.classList.add('hidden');
+      }
+    }
+
+    function createLessonCardHtml(l) {
+      const isMorning = l.startPeriod <= 6;
+      const periodLabel = l.periodCount > 1 
+        ? `Tiết ${l.startPeriod} - ${l.endPeriod}` 
+        : `Tiết ${l.startPeriod}`;
+
+      const badgeBg = isMorning 
+        ? 'bg-sky-50 dark:bg-sky-900/80 text-sky-700 dark:text-sky-200 border-sky-100 dark:border-sky-700' 
+        : 'bg-amber-50 dark:bg-amber-900/80 text-amber-700 dark:text-amber-200 border-amber-100 dark:border-amber-700';
+
+      return `
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-md transition">
+          <div class="flex items-start justify-between gap-2">
+            <h4 class="text-sm font-bold text-sky-950 dark:text-sky-300 leading-snug flex-1">${l.subject}</h4>
+            <span class="text-[11px] font-bold px-2 py-0.5 rounded-lg border ${badgeBg} shrink-0">${periodLabel}</span>
+          </div>
+
+          <!-- Khung Giờ Học: Màu sắc sáng rõ, siêu nét ở giao diện tối -->
+          <div class="mt-2.5 flex items-center justify-between text-xs font-semibold bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-sky-500/40 rounded-xl px-3 py-2">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <span class="text-slate-900 dark:text-white font-bold text-xs">${l.startTime} - ${l.endTime}</span>
+            </div>
+            <span class="text-[11px] text-sky-700 dark:text-sky-300 font-bold px-2 py-0.5 rounded-md bg-sky-50 dark:bg-sky-900/50">${l.periodCount * 45} phút</span>
+          </div>
+
+          <div class="mt-2.5 grid grid-cols-2 gap-2 text-xs text-slate-600 dark:text-slate-300">
+            ${l.room ? `
+              <div class="flex items-center gap-1.5 truncate text-sky-700 dark:text-sky-300">
+                <!-- Location / Room Icon -->
+                <svg class="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                <span class="truncate font-semibold">${l.room}</span>
+              </div>
+            ` : '<div></div>'}
+            ${l.teacher ? `
+              <div class="flex items-center gap-1.5 truncate text-teal-700 dark:text-teal-300">
+                <!-- Teacher / Person Icon -->
+                <svg class="w-4 h-4 text-teal-600 dark:text-teal-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                <span class="truncate font-semibold">${l.teacher}</span>
+              </div>
+            ` : '<div></div>'}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderLessons() {
+      const empty = document.getElementById('emptyState');
+      const list = document.getElementById('lessonsList');
+      list.innerHTML = '';
+
+      if (appState.viewMode === 'daily') {
+        // Daily View Mode
+        const sched = appState.daySchedules.find(d => d.dayIndex === appState.selectedDayIndex);
+        const lessons = sched ? sched.lessons : [];
+
+        if (!lessons || lessons.length === 0) {
+          empty.classList.remove('hidden');
+          const dayTitle = document.getElementById('emptyDayTitle');
+          const isToday = isCurrentWeek() && (appState.selectedDayIndex === ((new Date().getDay() + 6) % 7));
+          dayTitle.textContent = isToday ? 'Hôm nay không có tiết học' : `${DAY_NAMES[appState.selectedDayIndex]} không có tiết học`;
+          return;
+        }
+
+        empty.classList.add('hidden');
+        lessons.forEach(l => {
+          list.insertAdjacentHTML('beforeend', createLessonCardHtml(l));
+        });
+
+      } else {
+        // Weekly Overview View Mode
+        const daysWithLessons = appState.daySchedules.filter(d => d.lessons.length > 0);
+        if (daysWithLessons.length === 0) {
+          empty.classList.remove('hidden');
+          document.getElementById('emptyDayTitle').textContent = 'Tuần này không có tiết học';
+          return;
+        }
+
+        empty.classList.add('hidden');
+
+        appState.daySchedules.forEach(d => {
+          if (d.lessons.length > 0) {
+            const isToday = d.isToday;
+            const groupHtml = `
+              <div class="space-y-2 pt-2">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-bold px-2.5 py-1 rounded-lg ${
+                    isToday ? 'bg-sky-600 text-white shadow-sm' : 'bg-sky-100 dark:bg-sky-950/80 text-sky-800 dark:text-sky-300'
+                  }">${d.dayName}</span>
+                  ${isToday ? '<span class="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-rose-500 text-white">Hôm nay</span>' : ''}
+                  <span class="text-[11px] text-slate-400 dark:text-slate-400 font-medium">${d.lessons.length} môn / nhóm học</span>
+                </div>
+                <div class="space-y-2.5">
+                  ${d.lessons.map(l => createLessonCardHtml(l)).join('')}
+                </div>
+              </div>
+            `;
+            list.insertAdjacentHTML('beforeend', groupHtml);
+          }
+        });
+      }
+    }
+
+    // Modal logic: Khoa -> Khóa -> Lớp (Chọn mục nào trước cũng được)
+    function populateFacultySelect() {
+      const sel = document.getElementById('facultySelect');
+      sel.innerHTML = '<option value="">-- Tất cả Khoa (chọn để lọc) --</option>';
+      appState.faculties.forEach(f => {
+        const opt = document.createElement('option');
+        opt.value = f.id;
+        opt.textContent = f.name;
+        if (appState.selectedFaculty && appState.selectedFaculty.id === f.id) {
+          opt.selected = true;
+        }
+        sel.appendChild(opt);
+      });
+
+      sel.onchange = async (e) => {
+        const fId = e.target.value;
+        if (!fId) {
+          appState.selectedFaculty = null;
+          if (appState.selectedCourse) {
+            await loadClassesForCourse('', appState.selectedCourse.id);
+          } else {
+            appState.classes = appState.initialClasses;
+            appState.courses = appState.initialCourses;
+            renderCoursesChips();
+            renderClassOptions();
+          }
+          return;
+        }
+        const faculty = appState.faculties.find(f => f.id === fId);
+        if (faculty) {
+          appState.selectedFaculty = faculty;
+          await loadCoursesForFaculty(faculty.id);
+        }
+      };
+
+      if (appState.selectedFaculty) {
+        loadCoursesForFaculty(appState.selectedFaculty.id);
+      }
+    }
+
+    async function loadCoursesForFaculty(facultyId) {
+      const coursesWrap = document.getElementById('coursesWrap');
+      coursesWrap.innerHTML = '<span class="text-xs text-slate-400 italic">Đang tải danh sách khóa...</span>';
+
+      try {
+        const res = await fetch(`/api/courses?faculty=${encodeURIComponent(facultyId)}`);
+        const data = await res.json();
+        appState.courses = data.courses || [];
+        renderCoursesChips();
+
+        if (appState.selectedCourse) {
+          await loadClassesForCourse(facultyId, appState.selectedCourse.id);
+        } else {
+          appState.classes = data.classes || [];
+          renderClassOptions();
+        }
+      } catch (e) {
+        coursesWrap.innerHTML = `<span class="text-xs text-red-500">Lỗi: ${e.message}</span>`;
+      }
+    }
+
+    function renderCoursesChips() {
+      const wrap = document.getElementById('coursesWrap');
+      wrap.innerHTML = '';
+
+      // "Tất cả" chip
+      const allBtn = document.createElement('button');
+      const isAllSelected = !appState.selectedCourse;
+      allBtn.className = `px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap transition active:scale-95 ${
+        isAllSelected 
+          ? 'bg-sky-600 text-white shadow-sm' 
+          : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+      }`;
+      allBtn.textContent = 'Tất cả';
+      allBtn.onclick = async () => {
+        appState.selectedCourse = null;
+        renderCoursesChips();
+        if (appState.selectedFaculty) {
+          await loadCoursesForFaculty(appState.selectedFaculty.id);
+        } else {
+          appState.classes = appState.initialClasses;
+          renderClassOptions();
+        }
+      };
+      wrap.appendChild(allBtn);
+
+      appState.courses.forEach(k => {
+        const isSelected = appState.selectedCourse && appState.selectedCourse.id === k.id;
+        const btn = document.createElement('button');
+        btn.className = `px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap transition active:scale-95 ${
+          isSelected 
+            ? 'bg-sky-600 text-white shadow-sm' 
+            : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+        }`;
+        btn.textContent = k.name;
+        btn.onclick = async () => {
+          if (isSelected) {
+            appState.selectedCourse = null;
+            renderCoursesChips();
+            if (appState.selectedFaculty) {
+              await loadCoursesForFaculty(appState.selectedFaculty.id);
+            } else {
+              appState.classes = appState.initialClasses;
+              renderClassOptions();
+            }
+          } else {
+            appState.selectedCourse = k;
+            renderCoursesChips();
+            await loadClassesForCourse(appState.selectedFaculty ? appState.selectedFaculty.id : '', k.id);
+          }
+        };
+        wrap.appendChild(btn);
+      });
+    }
+
+    async function loadClassesForCourse(facultyId, courseId) {
+      const wrap = document.getElementById('classesListWrap');
+      wrap.innerHTML = '<p class="p-4 text-xs text-center text-slate-400">Đang tải danh sách lớp...</p>';
+
+      try {
+        const res = await fetch(`/api/classes?faculty=${encodeURIComponent(facultyId || '')}&course=${encodeURIComponent(courseId || '')}`);
+        appState.classes = await res.json();
+        renderClassOptions();
+      } catch (e) {
+        wrap.innerHTML = `<p class="p-4 text-xs text-center text-red-500">Lỗi: ${e.message}</p>`;
+      }
+    }
+
+    function renderClassOptions(filter = '') {
+      const wrap = document.getElementById('classesListWrap');
+      wrap.innerHTML = '';
+
+      const q = filter.trim().toLowerCase();
+      const filtered = appState.classes.filter(c => 
+        c.name.toLowerCase().includes(q) || c.id.toLowerCase().includes(q)
+      );
+
+      if (filtered.length === 0) {
+        wrap.innerHTML = '<p class="p-4 text-xs text-center text-slate-400">Không tìm thấy lớp học phù hợp</p>';
+        return;
+      }
+
+      filtered.forEach(c => {
+        const item = document.createElement('div');
+        item.className = 'p-3 hover:bg-sky-50 dark:hover:bg-slate-700/60 cursor-pointer active:bg-sky-100 dark:active:bg-slate-700 transition flex items-center justify-between';
+        item.onclick = () => {
+          appState.selectedClass = c;
+          savePrefs(appState.selectedFaculty, appState.selectedCourse, c);
+          updateHeaderDisplay();
+          closeClassModal();
+          loadSchedule();
+        };
+
+        item.innerHTML = `
+          <div>
+            <p class="text-xs font-bold text-slate-800 dark:text-slate-100">${c.name}</p>
+            ${c.id !== c.name ? `<p class="text-[10px] text-slate-400 dark:text-slate-400">Mã: ${c.id}</p>` : ''}
+          </div>
+          <svg class="w-4 h-4 text-slate-300 dark:text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        `;
+        wrap.appendChild(item);
+      });
+    }
+
+    function openClassModal() {
+      document.getElementById('classModal').classList.remove('hidden');
+    }
+    function closeClassModal() {
+      if (appState.selectedClass) {
+        document.getElementById('classModal').classList.add('hidden');
+      }
+    }
+
+    function openWeekModal() {
+      const list = document.getElementById('weeksList');
+      list.innerHTML = '';
+
+      appState.weeks.forEach((w, idx) => {
+        const isCurrent = idx === appState.defaultWeekIndex;
+        const isSelected = idx === appState.currentWeekIndex;
+
+        const row = document.createElement('div');
+        row.className = `p-3 flex items-center justify-between cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/80 transition ${
+          isSelected ? 'bg-sky-50 dark:bg-sky-950/60 font-bold text-sky-700 dark:text-sky-300' : 'text-slate-700 dark:text-slate-200'
+        }`;
+        row.onclick = () => {
+          appState.currentWeekIndex = idx;
+          updateWeekDisplay();
+          document.getElementById('weekModal').classList.add('hidden');
+          loadSchedule();
+        };
+
+        row.innerHTML = `
+          <div class="flex items-center gap-2">
+            <span class="text-xs">Tuần ${w.weekNumber} (${w.startDate} - ${w.endDate})</span>
+          </div>
+          ${isCurrent ? '<span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-sky-600 text-white">Hiện tại</span>' : ''}
+        `;
+        list.appendChild(row);
+      });
+
+      document.getElementById('weekModal').classList.remove('hidden');
+    }
+
+    // Event Listeners
+    let themeClickCount = 0;
+    let lastThemeClickTime = 0;
+    document.getElementById('btnThemeToggle').onclick = () => {
+      const now = Date.now();
+      if (now - lastThemeClickTime < 1500) {
+        themeClickCount++;
+      } else {
+        themeClickCount = 1;
+      }
+      lastThemeClickTime = now;
+
+      toggleDarkMode();
+
+      if (themeClickCount >= 10) {
+        themeClickCount = 0;
+        document.getElementById('aboutModal').classList.remove('hidden');
+      }
+    };
+    document.getElementById('btnCloseAboutModal').onclick = () => {
+      document.getElementById('aboutModal').classList.add('hidden');
+    };
+    document.getElementById('btnChangeClass').onclick = openClassModal;
+    document.getElementById('btnCloseClassModal').onclick = closeClassModal;
+    document.getElementById('btnWeekDropdown').onclick = openWeekModal;
+    document.getElementById('btnCloseWeekModal').onclick = () => document.getElementById('weekModal').classList.add('hidden');
+
+    document.getElementById('btnNextWeek').onclick = () => {
+      if (appState.currentWeekIndex < appState.weeks.length - 1) {
+        appState.currentWeekIndex++;
+        updateWeekDisplay();
+        loadSchedule();
+      }
+    };
+    document.getElementById('btnPrevWeek').onclick = () => {
+      if (appState.currentWeekIndex > 0) {
+        appState.currentWeekIndex--;
+        updateWeekDisplay();
+        loadSchedule();
+      }
+    };
+    document.getElementById('btnJumpCurrentWeek').onclick = () => {
+      appState.currentWeekIndex = appState.defaultWeekIndex;
+      updateWeekDisplay();
+      loadSchedule();
+    };
+    document.getElementById('btnRefresh').onclick = loadSchedule;
+
+    document.getElementById('btnModeDaily').onclick = () => {
+      appState.viewMode = 'daily';
+      localStorage.setItem('dtcc_view_mode', 'daily');
+      updateViewModeUI();
+      renderDayTabs();
+      renderLessons();
+    };
+
+    document.getElementById('btnModeWeekly').onclick = () => {
+      appState.viewMode = 'weekly';
+      localStorage.setItem('dtcc_view_mode', 'weekly');
+      updateViewModeUI();
+      renderLessons();
+    };
+
+    document.getElementById('classSearchInput').oninput = (e) => {
+      renderClassOptions(e.target.value);
+    };
+
+    // Register Service Worker for offline support & iOS PWA
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js').catch(err => {
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
+
+    // Smart iOS "Add to Home Screen" prompt banner
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    const isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+    if (isIOS && !isStandalone && !localStorage.getItem('dtc_hide_ios_prompt')) {
+      const iosBanner = document.createElement('div');
+      iosBanner.id = 'iosInstallBanner';
+      iosBanner.className = 'fixed bottom-3 left-4 right-4 max-w-md mx-auto bg-slate-900/95 dark:bg-slate-800/95 backdrop-blur-md text-white px-4 py-3 rounded-2xl shadow-2xl border border-sky-500/40 z-50 flex items-center justify-between gap-3 text-xs animate-bounce-once';
+      iosBanner.innerHTML = `
+        <div class="flex items-center gap-2.5">
+          <img src="logo.png" class="w-8 h-8 rounded-lg bg-white p-0.5 object-contain flex-shrink-0" alt="Logo">
+          <div>
+            <p class="font-bold text-sky-400">Cài đặt trên iPhone/iPad</p>
+            <p class="text-[11px] text-slate-300">Bấm nút <strong>Chia sẻ</strong> <svg class="inline w-3.5 h-3.5 text-sky-400 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg> rồi chọn <strong>"Thêm vào MH chính"</strong> để dùng vĩnh viễn.</p>
+          </div>
+        </div>
+        <button id="btnCloseIosBanner" class="p-1 rounded-full text-slate-400 hover:text-white transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      `;
+      document.body.appendChild(iosBanner);
+      document.getElementById('btnCloseIosBanner').onclick = () => {
+        iosBanner.remove();
+        localStorage.setItem('dtc_hide_ios_prompt', 'true');
+      };
+    }
+
+    // Run
+    initApp();
+  </script>
+</body>
+</html>
