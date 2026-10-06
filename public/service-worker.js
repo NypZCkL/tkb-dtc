@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tkb-dtc-v3';
+const CACHE_NAME = 'tkb-dtc-v4';
 const ASSETS_TO_CACHE = [
   './index.html',
   './logo.png',
@@ -11,7 +11,6 @@ const ASSETS_TO_CACHE = [
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      // Use cache: 'reload' to ensure 200 OK responses and avoid 304 Not Modified rejection
       return Promise.allSettled(
         ASSETS_TO_CACHE.map((url) => {
           return fetch(new Request(url, { cache: 'reload' })).then((response) => {
@@ -47,7 +46,31 @@ self.addEventListener('fetch', (event) => {
   // Always bypass Service Worker for service-worker.js itself
   if (request.url.includes('service-worker.js')) return;
 
-  // For API calls, try network first, fallback to cached data if offline
+  // 1. Navigation / HTML requests: Network First, fallback to cached index.html offline
+  const isHtml = request.mode === 'navigate' || 
+                 request.url.endsWith('/') || 
+                 request.url.endsWith('index.html') ||
+                 (request.headers.get('accept') && request.headers.get('accept').includes('text/html'));
+
+  if (isHtml) {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          if (response && response.status === 200) {
+            const responseClone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(request, responseClone).catch(() => {});
+              cache.put('./index.html', responseClone.clone()).catch(() => {});
+            }).catch(() => {});
+          }
+          return response;
+        })
+        .catch(() => caches.match('./index.html'))
+    );
+    return;
+  }
+
+  // 2. API calls: Network first, fallback to cached data if offline
   if (request.url.includes('/api/')) {
     event.respondWith(
       fetch(request)
@@ -65,7 +88,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // For static assets, try cache first, then network
+  // 3. Static assets (Images, Manifest): Cache First, then Network
   event.respondWith(
     caches.match(request).then((cached) => {
       return cached || fetch(request).then((response) => {

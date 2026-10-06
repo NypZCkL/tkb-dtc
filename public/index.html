@@ -37,28 +37,22 @@
     <header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-30 px-3 py-2.5 transition-colors duration-200">
       <div class="flex items-center justify-between">
         <!-- Logo + Title + Subtitle -->
-        <div class="flex items-center gap-2 min-w-0">
+        <div class="flex items-center gap-2.5 min-w-0 flex-1 mr-2">
           <div class="w-9 h-9 rounded-lg bg-white border border-slate-200 dark:border-slate-700/60 shadow-sm flex items-center justify-center p-1 shrink-0">
             <img src="logo.png" alt="Logo DTC" class="w-7 h-7 object-contain">
           </div>
-          <div class="min-w-0">
+          <div class="min-w-0 flex-1">
             <h1 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white tracking-tight leading-snug">Thời Khóa Biểu</h1>
-            <p id="headerSub" class="text-xs text-sky-600 dark:text-sky-400 font-semibold truncate max-w-[125px] sm:max-w-[155px]">Đang tải dữ liệu...</p>
+            <p id="headerSub" class="text-xs text-sky-600 dark:text-sky-400 font-semibold truncate">Đang tải dữ liệu...</p>
           </div>
         </div>
 
         <!-- Actions -->
-        <div class="flex items-center gap-0.5 shrink-0">
+        <div class="flex items-center gap-1 shrink-0">
           <!-- Theme Dark/Light Toggle (10 taps = Easter Egg) -->
           <button id="btnThemeToggle" class="w-8 h-8 flex items-center justify-center text-sky-600 dark:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-800 active:scale-95 transition rounded-full" title="Chế độ sáng/tối">
             <svg id="iconThemeLight" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
             <svg id="iconThemeDark" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-          </button>
-
-          <!-- Toggle View Mode in TopBar -->
-          <button id="btnTopViewMode" class="w-8 h-8 flex items-center justify-center text-sky-600 dark:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-800 active:scale-95 transition rounded-full" title="Đổi chế độ xem">
-            <svg id="iconViewWeek" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
-            <svg id="iconViewDay" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
           </button>
 
           <!-- Refresh -->
@@ -67,7 +61,7 @@
           </button>
 
           <!-- Change Class (Filled Tonal Button) -->
-          <button id="btnChangeClass" class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1.5 rounded-full bg-sky-100 dark:bg-sky-950 text-sky-800 dark:text-sky-300 hover:bg-sky-200 dark:hover:bg-sky-900 active:scale-95 transition shrink-0 ml-1">
+          <button id="btnChangeClass" class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1.5 rounded-full bg-sky-100 dark:bg-sky-950 text-sky-800 dark:text-sky-300 hover:bg-sky-200 dark:hover:bg-sky-900 active:scale-95 transition shrink-0 ml-0.5">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
             <span>Đổi lớp</span>
           </button>
@@ -456,25 +450,15 @@
       const btnDaily = document.getElementById('btnModeDaily');
       const btnWeekly = document.getElementById('btnModeWeekly');
       const dayTabsWrap = document.getElementById('dayTabsWrap');
-      const iconWeek = document.getElementById('iconViewWeek');
-      const iconDay = document.getElementById('iconViewDay');
 
       if (appState.viewMode === 'daily') {
         btnDaily.className = 'px-3 py-1 rounded-lg text-xs font-bold transition shadow-sm bg-white dark:bg-slate-700 text-sky-700 dark:text-sky-300';
         btnWeekly.className = 'px-3 py-1 rounded-lg text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition';
         dayTabsWrap.classList.remove('hidden');
-        if (iconWeek && iconDay) {
-          iconWeek.classList.remove('hidden');
-          iconDay.classList.add('hidden');
-        }
       } else {
         btnWeekly.className = 'px-3 py-1 rounded-lg text-xs font-bold transition shadow-sm bg-white dark:bg-slate-700 text-sky-700 dark:text-sky-300';
         btnDaily.className = 'px-3 py-1 rounded-lg text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition';
         dayTabsWrap.classList.add('hidden');
-        if (iconWeek && iconDay) {
-          iconWeek.classList.add('hidden');
-          iconDay.classList.remove('hidden');
-        }
       }
     }
 
@@ -970,8 +954,6 @@
       }
     };
 
-    document.getElementById('btnTopViewMode').onclick = toggleViewMode;
-
     document.getElementById('btnModeDaily').onclick = () => {
       if (appState.viewMode !== 'daily') {
         appState.viewMode = 'daily';
@@ -1016,7 +998,9 @@
     // Register Service Worker for offline support & iOS PWA
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('service-worker.js').catch(err => {
+        navigator.serviceWorker.register('service-worker.js').then((reg) => {
+          reg.update();
+        }).catch(err => {
           console.log('ServiceWorker registration failed: ', err);
         });
       });

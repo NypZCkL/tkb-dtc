@@ -445,7 +445,7 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
                 )
                 return
 
-        # HTML Trang chủ (Tối ưu gzip + 3600s cache với ETag)
+        # HTML Trang chủ (Luôn revalidate để nhận giao diện mới nhất, ETag trả 304 nếu không đổi)
         if path == "/" or path == "/index.html":
             html_path = os.path.join(public_dir, "index.html")
             if os.path.exists(html_path):
@@ -454,7 +454,7 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
                 self.send_compressed_response(
                     content,
                     "text/html; charset=utf-8",
-                    cache_control="public, max-age=3600, must-revalidate"
+                    cache_control="no-cache, must-revalidate"
                 )
                 return
 
