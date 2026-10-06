@@ -382,39 +382,119 @@ def get_schedule(faculty_id, course_id, class_id, week_id, is_current_week):
     set_to_cache(cache_key, day_schedules)
     return day_schedules
 
+import gzip
+import hashlib
+
 class RequestHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=public_dir, **kwargs)
+
+    def send_compressed_response(self, content_bytes, content_type, cache_control="public, max-age=3600", status=200, is_service_worker=False):
+        etag = f'"{hashlib.md5(content_bytes).hexdigest()}"'
+
+        # Check ETag / Conditional GET (trả về 304 Not Modified = 0 byte dữ liệu)
+        if not is_service_worker and status == 200:
+            if_none_match = self.headers.get("If-None-Match")
+            if if_none_match and if_none_match.strip() == etag:
+                self.send_response(304)
+                self.send_header("ETag", etag)
+                self.send_header("Cache-Control", cache_control)
+                self.end_headers()
+                return
+
+        accept_encoding = self.headers.get("Accept-Encoding", "")
+        use_gzip = "gzip" in accept_encoding and len(content_bytes) > 150
+
+        if use_gzip:
+            payload = gzip.compress(content_bytes, compresslevel=6)
+        else:
+            payload = content_bytes
+
+        self.send_response(status)
+        self.send_header("Content-Type", content_type)
+        self.send_header("Content-Length", str(len(payload)))
+        if use_gzip:
+            self.send_header("Content-Encoding", "gzip")
+        self.send_header("Vary", "Accept-Encoding")
+        if not is_service_worker:
+            self.send_header("ETag", etag)
+        self.send_header("Cache-Control", cache_control)
+        self.send_header("Access-Control-Allow-Origin", "*")
+        if is_service_worker:
+            self.send_header("Pragma", "no-cache")
+            self.send_header("Expires", "0")
+        self.end_headers()
+        self.wfile.write(payload)
 
     def do_GET(self):
         parsed = urllib.parse.urlparse(self.path)
         path = parsed.path
         qs = urllib.parse.parse_qs(parsed.query)
 
-        # Service Worker must always return 200 OK without 304 conditional cache
+        # Service Worker: Always 200 OK without 304, no-cache
         if path == "/service-worker.js":
             sw_path = os.path.join(public_dir, "service-worker.js")
             if os.path.exists(sw_path):
                 with open(sw_path, "rb") as f:
                     content = f.read()
-                self.send_response(200)
-                self.send_header("Content-Type", "application/javascript; charset=utf-8")
-                self.send_header("Content-Length", str(len(content)))
-                self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
-                self.send_header("Pragma", "no-cache")
-                self.send_header("Expires", "0")
-                self.end_headers()
-                self.wfile.write(content)
+                self.send_compressed_response(
+                    content,
+                    "application/javascript; charset=utf-8",
+                    cache_control="no-cache, no-store, must-revalidate",
+                    is_service_worker=True
+                )
                 return
 
+        # HTML Trang chủ (Tối ưu gzip + 3600s cache với ETag)
+        if path == "/" or path == "/index.html":
+            html_path = os.path.join(public_dir, "index.html")
+            if os.path.exists(html_path):
+                with open(html_path, "rb") as f:
+                    content = f.read()
+                self.send_compressed_response(
+                    content,
+                    "text/html; charset=utf-8",
+                    cache_control="public, max-age=3600, must-revalidate"
+                )
+                return
+
+        # PWA Manifest
+        if path == "/manifest.json":
+            m_path = os.path.join(public_dir, "manifest.json")
+            if os.path.exists(m_path):
+                with open(m_path, "rb") as f:
+                    content = f.read()
+                self.send_compressed_response(
+                    content,
+                    "application/manifest+json; charset=utf-8",
+                    cache_control="public, max-age=86400"
+                )
+                return
+
+        # Ảnh tĩnh PNG (Cache vĩnh viễn 30 ngày trên trình duyệt = 0 byte lần sau)
+        if path.endswith(".png"):
+            file_name = os.path.basename(path)
+            img_path = os.path.join(public_dir, file_name)
+            if os.path.exists(img_path):
+                with open(img_path, "rb") as f:
+                    content = f.read()
+                self.send_compressed_response(
+                    content,
+                    "image/png",
+                    cache_control="public, max-age=2592000, immutable"
+                )
+                return
+
+        # API Khởi tạo
         if path == "/api/init":
             try:
                 data = get_initial()
-                self.send_response(200)
-                self.send_header("Content-Type", "application/json; charset=utf-8")
-                self.send_header("Access-Control-Allow-Origin", "*")
-                self.end_headers()
-                self.wfile.write(json.dumps(data, ensure_ascii=False).encode("utf-8"))
+                json_bytes = json.dumps(data, ensure_ascii=False).encode("utf-8")
+                self.send_compressed_response(
+                    json_bytes,
+                    "application/json; charset=utf-8",
+                    cache_control="public, max-age=600"
+                )
             except Exception as e:
                 self.send_response(500)
                 self.end_headers()
@@ -425,11 +505,12 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
             faculty_id = qs.get("faculty", [""])[0]
             try:
                 data = get_courses_for_faculty(faculty_id)
-                self.send_response(200)
-                self.send_header("Content-Type", "application/json; charset=utf-8")
-                self.send_header("Access-Control-Allow-Origin", "*")
-                self.end_headers()
-                self.wfile.write(json.dumps(data, ensure_ascii=False).encode("utf-8"))
+                json_bytes = json.dumps(data, ensure_ascii=False).encode("utf-8")
+                self.send_compressed_response(
+                    json_bytes,
+                    "application/json; charset=utf-8",
+                    cache_control="public, max-age=1800"
+                )
             except Exception as e:
                 self.send_response(500)
                 self.end_headers()
@@ -444,11 +525,12 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
                     classes = get_classes_for_course(faculty_id, course_id)
                 else:
                     classes = get_courses_for_faculty(faculty_id)["classes"]
-                self.send_response(200)
-                self.send_header("Content-Type", "application/json; charset=utf-8")
-                self.send_header("Access-Control-Allow-Origin", "*")
-                self.end_headers()
-                self.wfile.write(json.dumps(classes, ensure_ascii=False).encode("utf-8"))
+                json_bytes = json.dumps(classes, ensure_ascii=False).encode("utf-8")
+                self.send_compressed_response(
+                    json_bytes,
+                    "application/json; charset=utf-8",
+                    cache_control="public, max-age=1800"
+                )
             except Exception as e:
                 self.send_response(500)
                 self.end_headers()
@@ -463,11 +545,12 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
             is_cur = qs.get("isCurrent", ["true"])[0].lower() == "true"
             try:
                 schedules = get_schedule(faculty_id, course_id, class_id, week_id, is_cur)
-                self.send_response(200)
-                self.send_header("Content-Type", "application/json; charset=utf-8")
-                self.send_header("Access-Control-Allow-Origin", "*")
-                self.end_headers()
-                self.wfile.write(json.dumps(schedules, ensure_ascii=False).encode("utf-8"))
+                json_bytes = json.dumps(schedules, ensure_ascii=False).encode("utf-8")
+                self.send_compressed_response(
+                    json_bytes,
+                    "application/json; charset=utf-8",
+                    cache_control="public, max-age=300"
+                )
             except Exception as e:
                 self.send_response(500)
                 self.end_headers()
@@ -477,6 +560,8 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
         super().do_GET()
 
 if __name__ == "__main__":
+    socketserver.TCPServer.allow_reuse_address = True
     with socketserver.TCPServer(("", PORT), RequestHandler) as httpd:
         print(f"Server started at http://localhost:{PORT}")
         httpd.serve_forever()
+

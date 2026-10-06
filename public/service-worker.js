@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tkb-dtc-v2';
+const CACHE_NAME = 'tkb-dtc-v3';
 const ASSETS_TO_CACHE = [
   './index.html',
   './logo.png',
@@ -16,7 +16,7 @@ self.addEventListener('install', (event) => {
         ASSETS_TO_CACHE.map((url) => {
           return fetch(new Request(url, { cache: 'reload' })).then((response) => {
             if (response && (response.status === 200 || response.type === 'opaque')) {
-              return cache.put(url, response);
+              return cache.put(url, response).catch(() => {});
             }
           }).catch((err) => {
             console.warn('Could not cache asset:', url, err);
@@ -41,6 +41,9 @@ self.addEventListener('fetch', (event) => {
   const request = event.request;
   if (request.method !== 'GET') return;
 
+  // Ignore any non-http(s) requests (e.g. chrome-extension://, moz-extension://)
+  if (!request.url.startsWith('http:') && !request.url.startsWith('https:')) return;
+
   // Always bypass Service Worker for service-worker.js itself
   if (request.url.includes('service-worker.js')) return;
 
@@ -52,8 +55,8 @@ self.addEventListener('fetch', (event) => {
           if (response && response.status === 200) {
             const responseClone = response.clone();
             caches.open(CACHE_NAME).then((cache) => {
-              cache.put(request, responseClone);
-            });
+              cache.put(request, responseClone).catch(() => {});
+            }).catch(() => {});
           }
           return response;
         })
@@ -69,8 +72,8 @@ self.addEventListener('fetch', (event) => {
         if (response && response.status === 200) {
           const responseClone = response.clone();
           caches.open(CACHE_NAME).then((cache) => {
-            cache.put(request, responseClone);
-          });
+            cache.put(request, responseClone).catch(() => {});
+          }).catch(() => {});
         }
         return response;
       });
