@@ -15,7 +15,7 @@ BASE_URL = "https://dtcc.phanmemdaotao.edu.vn/Pages/Sims/ScheduleOfClass.aspx?pt
 public_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "public")
 
 # Thread locks and in-memory TTL cache
-SCRAPE_LOCK = threading.Lock()
+SCRAPE_LOCK = threading.RLock()
 CACHE_LOCK = threading.Lock()
 DATA_CACHE = {}
 
@@ -59,7 +59,7 @@ def calc_lesson_time(start_period, count):
 
 cached_form_fields = {}
 
-def fetch_school_page(method="GET", url=BASE_URL, data=None, timeout=10, retries=1):
+def fetch_school_page(method="GET", url=BASE_URL, data=None, timeout=(5, 10), retries=1):
     last_err = None
     for attempt in range(retries):
         try:
@@ -204,6 +204,8 @@ def get_initial():
                                     break
                             except:
                                 pass
+                    if "form_fields" in b_data:
+                        cached_form_fields.update(b_data["form_fields"])
                     set_to_cache("initial", b_data)
                     return b_data
                 except Exception as b_err:
@@ -273,28 +275,23 @@ def get_schedule(faculty_id, course_id, class_id, week_id, is_current_week):
     if cached is not None:
         return cached
 
-    with SCRAPE_LOCK:
-        cached = get_from_cache(cache_key, 900)
-        if cached is not None:
-            return cached
-
-        if not cached_form_fields:
-            get_initial()
-            
-        p = dict(cached_form_fields)
-        p["__EVENTTARGET"] = ""
-        p["__EVENTARGUMENT"] = ""
-        if faculty_id:
-            p["ctl00$cphMain$ScheduleOfClass1$uScheduleOfClass1$UClass1$ddlScienceID"] = faculty_id
-        if course_id:
-            p["ctl00$cphMain$ScheduleOfClass1$uScheduleOfClass1$UClass1$ddlCourseID"] = course_id
+    if not cached_form_fields:
+        get_initial()
+        
+    p = dict(cached_form_fields)
+    p["__EVENTTARGET"] = ""
+    p["__EVENTARGUMENT"] = ""
+    if faculty_id:
+        p["ctl00$cphMain$ScheduleOfClass1$uScheduleOfClass1$UClass1$ddlScienceID"] = faculty_id
+    if course_id:
+        p["ctl00$cphMain$ScheduleOfClass1$uScheduleOfClass1$UClass1$ddlCourseID"] = course_id
     p["ctl00$cphMain$ScheduleOfClass1$uScheduleOfClass1$UClass1$ddlClassID"] = class_id
     p["ctl00$cphMain$ScheduleOfClass1$uScheduleOfClass1$ddlWeek"] = week_id
     p["ctl00$cphMain$ScheduleOfClass1$uScheduleOfClass1$UClass1$btnSearch"] = "Tìm kiếm"
     p.pop("ctl00$MsgBox$btnOk", None)
     p.pop("ctl00$MsgBox$imgCloseButton", None)
     
-    r = fetch_school_page("POST", BASE_URL, data=p, timeout=10, retries=1)
+    r = fetch_school_page("POST", BASE_URL, data=p, timeout=(5, 10), retries=1)
     soup = BeautifulSoup(r.text, "html.parser")
     update_fields(soup)
     
