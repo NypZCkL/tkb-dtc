@@ -58,6 +58,18 @@ def calc_lesson_time(start_period, count):
     return start, end
 
 cached_form_fields = {}
+CLASS_FACULTY_MAP = {}
+
+backup_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "initial_backup.json")
+if os.path.exists(backup_file):
+    try:
+        with open(backup_file, "r", encoding="utf-8") as bf:
+            b_data = json.load(bf)
+            CLASS_FACULTY_MAP = b_data.get("class_faculty_map", {})
+            if "form_fields" in b_data:
+                cached_form_fields.update(b_data["form_fields"])
+    except Exception as e:
+        pass
 
 def fetch_school_page(method="GET", url=BASE_URL, data=None, timeout=(5, 10), retries=1):
     last_err = None
@@ -178,7 +190,8 @@ def get_initial():
                 "weeks": weeks,
                 "defaultWeekIndex": default_idx,
                 "initialCourses": initial_courses,
-                "initialClasses": initial_classes
+                "initialClasses": initial_classes,
+                "classFacultyMap": CLASS_FACULTY_MAP
             }
             set_to_cache("initial", res)
             return res
@@ -206,6 +219,7 @@ def get_initial():
                                 pass
                     if "form_fields" in b_data:
                         cached_form_fields.update(b_data["form_fields"])
+                    b_data["classFacultyMap"] = CLASS_FACULTY_MAP
                     set_to_cache("initial", b_data)
                     return b_data
                 except Exception as b_err:
@@ -278,6 +292,9 @@ def get_schedule(faculty_id, course_id, class_id, week_id, is_current_week):
     if not cached_form_fields:
         get_initial()
         
+    if not faculty_id and class_id:
+        faculty_id = CLASS_FACULTY_MAP.get(class_id, "")
+
     p = dict(cached_form_fields)
     p["__EVENTTARGET"] = ""
     p["__EVENTARGUMENT"] = ""
@@ -293,7 +310,6 @@ def get_schedule(faculty_id, course_id, class_id, week_id, is_current_week):
     
     r = fetch_school_page("POST", BASE_URL, data=p, timeout=(5, 10), retries=1)
     soup = BeautifulSoup(r.text, "html.parser")
-    update_fields(soup)
     
     lbl = soup.find(id="ctl00_cphMain_ScheduleOfClass1_uScheduleOfClass1_lblContent")
     if not lbl:
@@ -658,10 +674,11 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
             try:
                 schedules = get_schedule(faculty_id, course_id, class_id, week_id, is_cur)
                 json_bytes = json.dumps(schedules, ensure_ascii=False).encode("utf-8")
+                cache_header = "public, max-age=300" if (schedules and len(schedules) > 0) else "no-cache, no-store"
                 self.send_compressed_response(
                     json_bytes,
                     "application/json; charset=utf-8",
-                    cache_control="public, max-age=300"
+                    cache_control=cache_header
                 )
             except Exception as e:
                 self.handle_api_exception(e)

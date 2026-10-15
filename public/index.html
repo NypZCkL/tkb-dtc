@@ -450,6 +450,7 @@
       appState.classes = data.initialClasses || [];
       appState.initialCourses = data.initialCourses || [];
       appState.initialClasses = data.initialClasses || [];
+      appState.classFacultyMap = data.classFacultyMap || {};
       appState.currentWeekIndex = data.defaultWeekIndex || 0;
       appState.defaultWeekIndex = data.defaultWeekIndex || 0;
 
@@ -1205,6 +1206,11 @@
         item.className = 'p-3 hover:bg-sky-50 dark:hover:bg-slate-700/60 cursor-pointer active:bg-sky-100 dark:active:bg-slate-700 transition flex items-center justify-between';
         item.onclick = () => {
           appState.selectedClass = c;
+          if (!appState.selectedFaculty && appState.classFacultyMap && appState.classFacultyMap[c.id]) {
+            const facId = appState.classFacultyMap[c.id];
+            const facObj = appState.faculties.find(f => f.id === facId);
+            if (facObj) appState.selectedFaculty = facObj;
+          }
           savePrefs(appState.selectedFaculty, appState.selectedCourse, c);
           addRecentClass(c, appState.selectedFaculty, appState.selectedCourse);
           updateHeaderDisplay();
