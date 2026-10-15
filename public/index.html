@@ -832,13 +832,27 @@
       empty.classList.add('hidden');
       list.innerHTML = '';
 
+      const classId = appState.selectedClass.id;
+
+      // Tự động chuẩn hóa đúng Khoa của lớp (sửa ngay nếu người dùng lưu nhầm Khoa cũ trong localStorage)
+      if (appState.classFacultyMap && appState.classFacultyMap[classId]) {
+        const trueFacId = appState.classFacultyMap[classId];
+        if (!appState.selectedFaculty || appState.selectedFaculty.id !== trueFacId) {
+          const facObj = appState.faculties.find(f => f.id === trueFacId);
+          if (facObj) {
+            appState.selectedFaculty = facObj;
+            appState.selectedCourse = null;
+            savePrefs(appState.selectedFaculty, null, appState.selectedClass);
+          }
+        }
+      }
+
       const weekObj = appState.weeks[appState.currentWeekIndex];
       const weekId = weekObj ? weekObj.id : '1';
       const curParam = isCurrentWeek() ? 'true' : 'false';
       const facultyParam = appState.selectedFaculty ? encodeURIComponent(appState.selectedFaculty.id) : '';
       const courseParam = appState.selectedCourse ? encodeURIComponent(appState.selectedCourse.id) : '';
 
-      const classId = appState.selectedClass.id;
       const cacheKey = `dtcc_sched_${classId}_${weekId}`;
       const currentFallbackKey = `dtcc_sched_${classId}_current`;
 

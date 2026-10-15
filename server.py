@@ -292,8 +292,12 @@ def get_schedule(faculty_id, course_id, class_id, week_id, is_current_week):
     if not cached_form_fields:
         get_initial()
         
-    if not faculty_id and class_id:
-        faculty_id = CLASS_FACULTY_MAP.get(class_id, "")
+    # Tự động chuẩn hóa đúng Khoa của lớp (ngăn ngừa lỗi người dùng chọn sai Khoa hoặc lưu nhầm Khoa cũ)
+    true_faculty = CLASS_FACULTY_MAP.get(class_id)
+    if true_faculty:
+        if faculty_id != true_faculty:
+            faculty_id = true_faculty
+            course_id = ""
 
     p = dict(cached_form_fields)
     p["__EVENTTARGET"] = ""
@@ -346,6 +350,9 @@ def get_schedule(faculty_id, course_id, class_id, week_id, is_current_week):
                         break
                 collected.append(r)
             target_rows = collected
+        else:
+            # Nếu chỉ định class_id cụ thể mà không tìm thấy mã lớp trong bảng: tuyệt đối không lấy nhầm lịch của các lớp khác!
+            target_rows = []
 
     lessons = []
     active_rowspans = [0] * 7
