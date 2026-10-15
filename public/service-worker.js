@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tkb-dtc-v4';
+const CACHE_NAME = 'tkb-dtc-v5';
 const ASSETS_TO_CACHE = [
   './index.html',
   './logo.png',

@@ -2,17 +2,40 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Thời Khóa Biểu DTC</title>
-  <meta name="theme-color" content="#0284c7">
-  <link rel="icon" type="image/png" href="logo.png">
-  <link rel="manifest" href="manifest.json">
-  <!-- iOS PWA Support -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Thời Khóa Biểu DTC - Trường CĐ Cộng đồng Đồng Tháp</title>
+  <meta name="description" content="Tra cứu thời khóa biểu sinh viên Trường Cao đẳng Cộng đồng Đồng Tháp (DTCC) nhanh chóng, chính xác. Hỗ trợ lưu trữ xem ngoại tuyến khi không có mạng.">
+  <meta name="keywords" content="thời khóa biểu DTC, TKB DTCC, Cao đẳng Cộng đồng Đồng Tháp, TKB DTC, lịch học DTC, dtcc">
+  <meta name="author" content="Phan Nguyễn Hữu Nghĩa">
+  <meta name="theme-color" content="#0284c7" id="metaThemeColor">
+  <meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
+  <meta name="color-scheme" content="light dark">
+
+  <!-- Cross-Platform PWA Support (Android, ChromeOS, Windows, macOS, iOS) -->
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="TKB DTC">
+  <meta name="application-name" content="TKB DTC">
+  <meta name="msapplication-TileColor" content="#0284c7">
+
+  <!-- Open Graph / Facebook / Zalo -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Thời Khóa Biểu DTC - Trường CĐ Cộng đồng Đồng Tháp">
+  <meta property="og:description" content="Tra cứu thời khóa biểu sinh viên Trường CĐ Cộng đồng Đồng Tháp tiện lợi, nhanh chóng, hỗ trợ offline.">
+  <meta property="og:image" content="icon-512.png">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Thời Khóa Biểu DTC">
+  <meta name="twitter:description" content="Tra cứu thời khóa biểu sinh viên Trường CĐ Cộng đồng Đồng Tháp tiện lợi, nhanh chóng.">
+  <meta name="twitter:image" content="icon-192.png">
+
+  <link rel="icon" type="image/png" href="logo.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -21,9 +44,54 @@
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
     body {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       -webkit-tap-highlight-color: transparent;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: max(env(safe-area-inset-bottom, 0px), 16px);
+      padding-left: env(safe-area-inset-left, 0px);
+      padding-right: env(safe-area-inset-right, 0px);
+    }
+    button, a, select {
+      touch-action: manipulation;
+      -webkit-touch-callout: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    /* iOS input auto-zoom fix: inputs must be 16px on mobile viewports */
+    @media screen and (max-width: 640px) {
+      input[type="text"] {
+        font-size: 16px !important;
+      }
+    }
+    /* Custom elegant scrollbars for Windows, macOS, Linux, ChromeOS */
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.4);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(148, 163, 184, 0.7);
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: rgba(100, 116, 139, 0.4);
+    }
+    .dark ::-webkit-scrollbar-thumb:hover {
+      background: rgba(100, 116, 139, 0.7);
     }
     .hide-scrollbar::-webkit-scrollbar { display: none; }
     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -50,18 +118,18 @@
         <!-- Actions -->
         <div class="flex items-center gap-1 shrink-0">
           <!-- Theme Dark/Light Toggle (10 taps = Easter Egg) -->
-          <button id="btnThemeToggle" class="w-8 h-8 flex items-center justify-center text-sky-600 dark:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-800 active:scale-95 transition rounded-full" title="Chế độ sáng/tối">
+          <button id="btnThemeToggle" class="w-8 h-8 flex items-center justify-center text-sky-600 dark:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-800 active:scale-95 transition rounded-full" title="Chế độ sáng/tối" aria-label="Chuyển đổi giao diện sáng tối">
             <svg id="iconThemeLight" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
             <svg id="iconThemeDark" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
           </button>
 
           <!-- Refresh -->
-          <button id="btnRefresh" class="w-8 h-8 flex items-center justify-center text-sky-600 dark:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-800 active:scale-95 transition rounded-full" title="Làm mới">
+          <button id="btnRefresh" class="w-8 h-8 flex items-center justify-center text-sky-600 dark:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-800 active:scale-95 transition rounded-full" title="Làm mới" aria-label="Làm mới lịch học">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
           </button>
 
           <!-- Change Class (Filled Tonal Button) -->
-          <button id="btnChangeClass" class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1.5 rounded-full bg-sky-100 dark:bg-sky-950 text-sky-800 dark:text-sky-300 hover:bg-sky-200 dark:hover:bg-sky-900 active:scale-95 transition shrink-0 ml-0.5">
+          <button id="btnChangeClass" class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1.5 rounded-full bg-sky-100 dark:bg-sky-950 text-sky-800 dark:text-sky-300 hover:bg-sky-200 dark:hover:bg-sky-900 active:scale-95 transition shrink-0 ml-0.5" aria-label="Đổi lớp">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
             <span>Đổi lớp</span>
           </button>
@@ -69,30 +137,33 @@
       </div>
     </header>
 
+    <!-- Floating Toast Notifications Container -->
+    <div id="toastContainer" class="fixed top-3 left-1/2 -translate-x-1/2 z-50 flex flex-col gap-2 pointer-events-none w-full max-w-xs px-3"></div>
+
     <!-- Offline Mode Banner (Giống hệt Surface Banner của Jetpack Compose) -->
     <div id="offlineBanner" class="hidden mx-3 my-1.5 px-3 py-2 rounded-lg bg-sky-50 dark:bg-slate-800 border border-sky-200 dark:border-slate-700 flex items-center justify-between text-xs text-sky-900 dark:text-slate-200 transition-all shadow-sm">
       <div class="flex items-center gap-2 flex-1 min-w-0 mr-1">
         <svg class="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 00-9.78 2.096A4.001 4.001 0 003 15z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3l18 18"></path></svg>
         <span class="font-medium text-xs truncate">Đang xem lịch học ngoại tuyến (dữ liệu đã lưu)</span>
       </div>
-      <button id="btnOfflineRefresh" class="p-1 rounded-md text-sky-600 dark:text-sky-400 hover:bg-sky-100 dark:hover:bg-slate-700 active:scale-95 transition shrink-0" title="Thử kết nối lại">
+      <button id="btnOfflineRefresh" class="p-1 rounded-md text-sky-600 dark:text-sky-400 hover:bg-sky-100 dark:hover:bg-slate-700 active:scale-95 transition shrink-0" title="Thử kết nối lại" aria-label="Thử kết nối lại">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
       </button>
     </div>
 
     <!-- Week Navigation Header (Giống WeekNavigationBar của Jetpack Compose) -->
-    <div class="bg-white dark:bg-slate-900 px-3 py-2 border-b border-slate-100 dark:border-slate-800 transition-colors duration-200">
+    <div id="weekDropdownWrap" class="bg-white dark:bg-slate-900 px-3 py-2 border-b border-slate-100 dark:border-slate-800 transition-colors duration-200">
       <div class="flex items-center justify-between gap-1.5">
-        <button id="btnPrevWeek" class="w-9 h-9 flex items-center justify-center rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 active:scale-90 transition disabled:opacity-30 disabled:pointer-events-none" title="Tuần trước">
+        <button id="btnPrevWeek" class="w-9 h-9 flex items-center justify-center rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 active:scale-90 transition disabled:opacity-30 disabled:pointer-events-none" title="Tuần trước" aria-label="Tuần trước">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg>
         </button>
 
-        <button id="btnWeekDropdown" class="flex-1 bg-sky-50/60 dark:bg-slate-800/80 hover:bg-sky-100/60 dark:hover:bg-slate-800 border border-sky-100 dark:border-slate-700 rounded-xl py-2 px-3 flex items-center justify-center gap-1.5 active:scale-98 transition">
+        <button id="btnWeekDropdown" class="flex-1 bg-sky-50/60 dark:bg-slate-800/80 hover:bg-sky-100/60 dark:hover:bg-slate-800 border border-sky-100 dark:border-slate-700 rounded-xl py-2 px-3 flex items-center justify-center gap-1.5 active:scale-98 transition" aria-label="Chọn tuần học">
           <span id="weekLabel" class="text-xs font-bold text-sky-950 dark:text-sky-200 truncate">Đang tải tuần...</span>
           <svg class="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
         </button>
 
-        <button id="btnNextWeek" class="w-9 h-9 flex items-center justify-center rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 active:scale-90 transition disabled:opacity-30 disabled:pointer-events-none" title="Tuần sau">
+        <button id="btnNextWeek" class="w-9 h-9 flex items-center justify-center rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 active:scale-90 transition disabled:opacity-30 disabled:pointer-events-none" title="Tuần sau" aria-label="Tuần sau">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
         </button>
       </div>
@@ -106,7 +177,7 @@
     </div>
 
     <!-- View Mode Switcher: Từng ngày vs Cả tuần (Giống ViewModeBar) -->
-    <div class="px-3 py-1.5 bg-slate-50/60 dark:bg-slate-900/60 flex items-center justify-end border-b border-slate-100 dark:border-slate-800 transition-colors duration-200">
+    <div class="view-mode-bar px-3 py-1.5 bg-slate-50/60 dark:bg-slate-900/60 flex items-center justify-end border-b border-slate-100 dark:border-slate-800 transition-colors duration-200">
       <div class="inline-flex p-0.5 rounded-xl bg-slate-200/70 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
         <button id="btnModeDaily" class="px-3 py-1 rounded-lg text-xs font-bold transition shadow-sm bg-white dark:bg-slate-700 text-sky-700 dark:text-sky-300">
           🗓️ Từng ngày
@@ -126,10 +197,36 @@
 
     <!-- Main Schedule Content -->
     <main class="flex-1 p-3.5 overflow-y-auto bg-slate-50/60 dark:bg-slate-900/60 transition-colors duration-200">
-      <!-- Loading State -->
-      <div id="loadingState" class="py-16 text-center">
-        <div class="inline-block w-8 h-8 border-3 border-sky-600 border-t-transparent rounded-full animate-spin"></div>
-        <p class="mt-3 text-xs font-semibold text-slate-500 dark:text-slate-400">Đang tải lịch học...</p>
+      <!-- Loading State: Skeleton Shimmer Cards -->
+      <div id="loadingState" class="space-y-3 py-2">
+        <div class="flex items-center justify-center gap-2 py-1 text-slate-500 dark:text-slate-400">
+          <div class="w-4 h-4 border-2 border-sky-600 border-t-transparent rounded-full animate-spin"></div>
+          <span class="text-xs font-semibold">Đang cập nhật lịch học...</span>
+        </div>
+        <!-- Skeleton Card 1 -->
+        <div class="bg-white dark:bg-slate-800/80 rounded-2xl p-4 border border-slate-100 dark:border-slate-800 animate-pulse space-y-3 shadow-sm">
+          <div class="flex justify-between items-center">
+            <div class="h-4 bg-slate-200 dark:bg-slate-700 rounded-md w-3/5"></div>
+            <div class="h-5 bg-sky-100 dark:bg-sky-900/60 rounded-lg w-16"></div>
+          </div>
+          <div class="h-9 bg-slate-100 dark:bg-slate-900/70 rounded-xl w-full"></div>
+          <div class="space-y-2 pt-1">
+            <div class="h-3 bg-slate-200 dark:bg-slate-700 rounded w-1/2"></div>
+            <div class="h-3 bg-slate-200 dark:bg-slate-700 rounded w-2/5"></div>
+          </div>
+        </div>
+        <!-- Skeleton Card 2 -->
+        <div class="bg-white dark:bg-slate-800/80 rounded-2xl p-4 border border-slate-100 dark:border-slate-800 animate-pulse space-y-3 shadow-sm">
+          <div class="flex justify-between items-center">
+            <div class="h-4 bg-slate-200 dark:bg-slate-700 rounded-md w-2/3"></div>
+            <div class="h-5 bg-amber-100 dark:bg-amber-900/60 rounded-lg w-16"></div>
+          </div>
+          <div class="h-9 bg-slate-100 dark:bg-slate-900/70 rounded-xl w-full"></div>
+          <div class="space-y-2 pt-1">
+            <div class="h-3 bg-slate-200 dark:bg-slate-700 rounded w-2/5"></div>
+            <div class="h-3 bg-slate-200 dark:bg-slate-700 rounded w-1/3"></div>
+          </div>
+        </div>
       </div>
 
       <!-- Empty State (Giống EmptyDayView) -->
@@ -141,15 +238,26 @@
         <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Bạn có thể tự do ôn bài hoặc nghỉ ngơi!</p>
       </div>
 
-      <!-- Error State Card (Giống Card Error trong Jetpack Compose) -->
-      <div id="errorState" class="hidden py-8 px-2">
-        <div class="bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/60 rounded-2xl p-5 text-center">
-          <div class="w-12 h-12 mx-auto bg-rose-100 dark:bg-rose-900/50 rounded-full flex items-center justify-center text-rose-600 dark:text-rose-400 mb-3">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+      <!-- Error State Card (Hỗ trợ lỗi mạng thông thường và lỗi Cổng trường Timeout) -->
+      <div id="errorState" class="hidden py-6 px-1">
+        <div id="errorCardBox" class="bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/60 rounded-2xl p-5 text-center transition-all">
+          <div id="errorIconWrap" class="w-12 h-12 mx-auto bg-rose-100 dark:bg-rose-900/50 rounded-full flex items-center justify-center text-rose-600 dark:text-rose-400 mb-3">
+            <svg id="errorIconGeneral" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            <svg id="errorIconTimeout" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <svg id="errorIconOffline" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 00-9.78 2.096A4.001 4.001 0 003 15z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3l18 18"></path></svg>
           </div>
           <h4 class="text-sm font-bold text-rose-900 dark:text-rose-200 mb-1" id="errorMessageTitle">Không thể tải dữ liệu</h4>
-          <p class="text-xs text-rose-700 dark:text-rose-300 leading-relaxed mb-4" id="errorMessageText">Vui lòng kiểm tra kết nối mạng hoặc thử lại.</p>
-          <button id="btnErrorRetry" class="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-xl active:scale-95 transition shadow-sm">Thử lại</button>
+          <p class="text-xs text-rose-700 dark:text-rose-300 leading-relaxed mb-4 max-w-xs mx-auto" id="errorMessageText">Vui lòng kiểm tra kết nối mạng hoặc thử lại.</p>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-2 max-w-xs mx-auto">
+            <button id="btnErrorGoCurrent" class="hidden px-4 py-2 bg-sky-100 hover:bg-sky-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-sky-700 dark:text-sky-300 text-xs font-bold rounded-xl active:scale-95 transition shadow-sm inline-flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a5 5 0 015 5v2m-15-7l4-4m-4 4l4 4"/></svg>
+              <span>Về tuần hiện tại</span>
+            </button>
+            <button id="btnErrorRetry" class="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-xl active:scale-95 transition shadow-sm inline-flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+              <span>Thử lại ngay</span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -164,7 +272,7 @@
       <div class="bg-white dark:bg-slate-900 rounded-2xl max-w-sm w-full p-4 shadow-2xl max-h-[80vh] flex flex-col border border-slate-100 dark:border-slate-800">
         <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
           <h3 class="text-sm font-bold text-slate-900 dark:text-white">Chọn tuần học</h3>
-          <button id="btnCloseWeekModal" class="p-1 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+          <button id="btnCloseWeekModal" class="p-1 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-200" aria-label="Đóng bảng tuần">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
           </button>
         </div>
@@ -182,12 +290,21 @@
             <h3 class="text-base font-bold text-slate-900 dark:text-white">Chọn Khoa • Khóa • Lớp</h3>
             <p class="text-xs text-slate-500 dark:text-slate-400">Thông tin sẽ được tự động lưu lại</p>
           </div>
-          <button id="btnCloseClassModal" class="p-1.5 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+          <button id="btnCloseClassModal" class="p-1.5 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-200" aria-label="Đóng bảng chọn lớp">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
           </button>
         </div>
 
         <div class="mt-3 space-y-3 flex-1 overflow-hidden flex flex-col">
+          <!-- Recent Classes ("Lớp đã xem gần đây") -->
+          <div id="recentClassesWrap" class="hidden">
+            <div class="flex items-center justify-between mb-1">
+              <label class="block text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Lớp đã xem gần đây</label>
+              <button id="btnClearRecentClasses" class="text-[10px] text-slate-400 hover:text-rose-500 transition">Xóa</button>
+            </div>
+            <div id="recentClassesList" class="flex gap-1.5 overflow-x-auto hide-scrollbar py-0.5"></div>
+          </div>
+
           <!-- Step 1: Khoa -->
           <div>
             <label class="block text-xs font-bold text-sky-700 dark:text-sky-400 uppercase tracking-wider mb-1">1. Chọn Khoa</label>
@@ -248,18 +365,37 @@
     const DAY_NAMES = ['Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7', 'Chủ nhật'];
     const DAY_SHORT = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'];
 
-    let isDarkMode = localStorage.getItem('dtcc_dark_mode') === 'true';
+    let isDarkMode = false;
+    const savedTheme = localStorage.getItem('dtcc_dark_mode');
+    if (savedTheme !== null) {
+      isDarkMode = savedTheme === 'true';
+    } else {
+      isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
 
     function updateThemeUI() {
+      const metaTheme = document.getElementById('metaThemeColor');
       if (isDarkMode) {
         document.documentElement.classList.add('dark');
         document.getElementById('iconThemeLight').classList.remove('hidden');
         document.getElementById('iconThemeDark').classList.add('hidden');
+        if (metaTheme) metaTheme.setAttribute('content', '#0f172a');
       } else {
         document.documentElement.classList.remove('dark');
         document.getElementById('iconThemeLight').classList.add('hidden');
         document.getElementById('iconThemeDark').classList.remove('hidden');
+        if (metaTheme) metaTheme.setAttribute('content', '#0284c7');
       }
+    }
+
+    // Tự động nhận diện thay đổi Dark Mode từ hệ điều hành nếu người dùng chưa chọn thủ công
+    if (window.matchMedia) {
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (localStorage.getItem('dtcc_dark_mode') === null) {
+          isDarkMode = e.matches;
+          updateThemeUI();
+        }
+      });
     }
 
     function toggleDarkMode() {
@@ -323,6 +459,94 @@
       updateWeekDisplay();
     }
 
+    // Toast Notifications System
+    function showToast(message, type = 'info', duration = 3500) {
+      const container = document.getElementById('toastContainer');
+      if (!container) return;
+      const toast = document.createElement('div');
+
+      let bgClass = 'bg-slate-900/95 text-white border-slate-700/80';
+      let iconSvg = `<svg class="w-4 h-4 text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`;
+
+      if (type === 'success') {
+        bgClass = 'bg-emerald-950/95 text-emerald-100 border-emerald-700/80';
+        iconSvg = `<svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>`;
+      } else if (type === 'warning') {
+        bgClass = 'bg-amber-950/95 text-amber-100 border-amber-700/80';
+        iconSvg = `<svg class="w-4 h-4 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>`;
+      } else if (type === 'error') {
+        bgClass = 'bg-rose-950/95 text-rose-100 border-rose-700/80';
+        iconSvg = `<svg class="w-4 h-4 text-rose-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>`;
+      }
+
+      toast.className = `flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl shadow-xl backdrop-blur-md border text-xs font-medium pointer-events-auto transition-all duration-300 transform -translate-y-2 opacity-0 ${bgClass}`;
+      toast.innerHTML = `${iconSvg}<span class="flex-1 leading-snug">${message}</span>`;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.remove('-translate-y-2', 'opacity-0');
+        toast.classList.add('translate-y-0', 'opacity-100');
+      });
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('-translate-y-2', 'opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }, duration);
+    }
+
+    // Recent Classes ("Lớp đã xem gần đây") Management
+    function addRecentClass(classItem, faculty, course) {
+      if (!classItem || !classItem.id) return;
+      try {
+        let recent = JSON.parse(localStorage.getItem('dtcc_recent_classes') || '[]');
+        recent = recent.filter(r => r.id !== classItem.id);
+        recent.unshift({
+          id: classItem.id,
+          name: classItem.name,
+          faculty: faculty || null,
+          course: course || null
+        });
+        if (recent.length > 5) recent = recent.slice(0, 5);
+        localStorage.setItem('dtcc_recent_classes', JSON.stringify(recent));
+      } catch (e) {}
+    }
+
+    function renderRecentClasses() {
+      const wrap = document.getElementById('recentClassesWrap');
+      const list = document.getElementById('recentClassesList');
+      if (!wrap || !list) return;
+
+      try {
+        const recent = JSON.parse(localStorage.getItem('dtcc_recent_classes') || '[]');
+        if (!recent || recent.length === 0) {
+          wrap.classList.add('hidden');
+          return;
+        }
+        list.innerHTML = '';
+        wrap.classList.remove('hidden');
+
+        recent.forEach(r => {
+          const chip = document.createElement('button');
+          chip.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:border-sky-500 dark:hover:border-sky-400 hover:bg-sky-50 dark:hover:bg-slate-700/80 active:scale-95 transition shrink-0';
+          chip.textContent = r.name;
+          chip.onclick = () => {
+            appState.selectedClass = { id: r.id, name: r.name };
+            if (r.faculty) appState.selectedFaculty = r.faculty;
+            if (r.course) appState.selectedCourse = r.course;
+            savePrefs(appState.selectedFaculty, appState.selectedCourse, appState.selectedClass);
+            addRecentClass(appState.selectedClass, appState.selectedFaculty, appState.selectedCourse);
+            updateHeaderDisplay();
+            closeClassModal();
+            loadSchedule();
+          };
+          list.appendChild(chip);
+        });
+      } catch (e) {
+        wrap.classList.add('hidden');
+      }
+    }
+
     function updateOfflineBanner() {
       const banner = document.getElementById('offlineBanner');
       if (appState.isOffline && appState.daySchedules && appState.daySchedules.length > 0) {
@@ -332,8 +556,13 @@
       }
     }
 
-    function showErrorState(title, message) {
+    function showErrorState(title, message, errorType = 'general') {
       const errorCard = document.getElementById('errorState');
+      const errorCardBox = document.getElementById('errorCardBox');
+      const errorIconWrap = document.getElementById('errorIconWrap');
+      const errorIconGeneral = document.getElementById('errorIconGeneral');
+      const errorIconTimeout = document.getElementById('errorIconTimeout');
+      const btnErrorRetry = document.getElementById('btnErrorRetry');
       const empty = document.getElementById('emptyState');
       const list = document.getElementById('lessonsList');
       const loading = document.getElementById('loadingState');
@@ -344,6 +573,43 @@
 
       document.getElementById('errorMessageTitle').textContent = title;
       document.getElementById('errorMessageText').textContent = message;
+
+      const errorIconOffline = document.getElementById('errorIconOffline');
+      const btnErrorGoCurrent = document.getElementById('btnErrorGoCurrent');
+
+      errorIconGeneral.classList.add('hidden');
+      errorIconTimeout.classList.add('hidden');
+      if (errorIconOffline) errorIconOffline.classList.add('hidden');
+
+      if (errorType === 'timeout') {
+        errorCardBox.className = 'bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/60 rounded-2xl p-5 text-center transition-all';
+        errorIconWrap.className = 'w-12 h-12 mx-auto bg-amber-100 dark:bg-amber-900/50 rounded-full flex items-center justify-center text-amber-600 dark:text-amber-400 mb-3';
+        btnErrorRetry.className = 'px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold rounded-xl active:scale-95 transition shadow-sm inline-flex items-center gap-1.5';
+        errorIconTimeout.classList.remove('hidden');
+        if (btnErrorGoCurrent) btnErrorGoCurrent.classList.add('hidden');
+      } else if (errorType === 'offline') {
+        errorCardBox.className = 'bg-sky-50 dark:bg-slate-800/80 border border-sky-200 dark:border-slate-700 rounded-2xl p-6 text-center transition-all';
+        errorIconWrap.className = 'w-12 h-12 mx-auto bg-sky-100 dark:bg-sky-950/80 rounded-full flex items-center justify-center text-sky-600 dark:text-sky-400 mb-3';
+        if (errorIconOffline) errorIconOffline.classList.remove('hidden');
+        if (btnErrorGoCurrent) {
+          if (!isCurrentWeek()) {
+            btnErrorGoCurrent.className = 'w-full sm:w-auto px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold rounded-xl active:scale-95 transition shadow-sm inline-flex items-center justify-center gap-1.5';
+            btnErrorGoCurrent.classList.remove('hidden');
+            btnErrorGoCurrent.onclick = () => goToCurrentWeek();
+            btnErrorRetry.className = 'w-full sm:w-auto px-4 py-2 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 text-xs font-medium rounded-xl active:scale-95 transition inline-flex items-center justify-center gap-1.5';
+          } else {
+            btnErrorGoCurrent.classList.add('hidden');
+            btnErrorRetry.className = 'w-full sm:w-auto px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold rounded-xl active:scale-95 transition shadow-sm inline-flex items-center justify-center gap-1.5';
+          }
+        }
+      } else {
+        errorCardBox.className = 'bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/60 rounded-2xl p-5 text-center transition-all';
+        errorIconWrap.className = 'w-12 h-12 mx-auto bg-rose-100 dark:bg-rose-900/50 rounded-full flex items-center justify-center text-rose-600 dark:text-rose-400 mb-3';
+        btnErrorRetry.className = 'px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-xl active:scale-95 transition shadow-sm inline-flex items-center gap-1.5';
+        errorIconGeneral.classList.remove('hidden');
+        if (btnErrorGoCurrent) btnErrorGoCurrent.classList.add('hidden');
+      }
+
       errorCard.classList.remove('hidden');
     }
 
@@ -375,7 +641,15 @@
       // 2. Thử fetch /api/init từ mạng
       try {
         const res = await fetch('/api/init');
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        if (!res.ok) {
+          let errPayload = null;
+          try { errPayload = await res.json(); } catch(e){}
+          const isTimeout = res.status === 504 || (errPayload && errPayload.code === 'SCHOOL_TIMEOUT');
+          const errMsg = errPayload && errPayload.message ? errPayload.message : `HTTP ${res.status}`;
+          const err = new Error(errMsg);
+          err.isTimeout = isTimeout;
+          throw err;
+        }
         const data = await res.json();
 
         // Lưu vào localStorage cho những lần mở offline tiếp theo
@@ -396,6 +670,9 @@
         updateOfflineBanner();
 
         if (hasCachedInit) {
+          if (err.isTimeout) {
+            showToast('⏳ Web trường phản hồi chậm. Đang dùng dữ liệu đã lưu.', 'warning', 4000);
+          }
           if (appState.selectedClass) {
             updateHeaderDisplay();
             loadSchedule();
@@ -403,11 +680,19 @@
             openClassModal();
           }
         } else {
-          // Chưa có dữ liệu cache khởi tạo nào (lần đầu tiên mở app không có mạng)
-          showErrorState(
-            'Không có kết nối mạng',
-            'Vui lòng kết nối Internet lần đầu tiên để tải danh sách khoa & lớp học của trường.'
-          );
+          // Chưa có dữ liệu cache khởi tạo nào (lần đầu tiên mở app không có mạng / timeout)
+          if (err.isTimeout) {
+            showErrorState(
+              'Cổng trường phản hồi quá chậm (Timeout)',
+              'Hệ thống đào tạo trường (DTCC) hiện đang quá tải hoặc phản hồi chậm. Vui lòng bấm "Thử lại ngay" sau vài giây.',
+              'timeout'
+            );
+          } else {
+            showErrorState(
+              'Không thể kết nối máy chủ',
+              'Vui lòng kết nối Internet lần đầu tiên để tải danh sách khoa & lớp học của trường.'
+            );
+          }
         }
       }
     }
@@ -546,11 +831,25 @@
       const currentFallbackKey = `dtcc_sched_${classId}_current`;
 
       let scheduleData = null;
+      let isTimeoutError = false;
+      let serverErrorMsg = '';
 
       try {
         const url = `/api/schedule?faculty=${facultyParam}&course=${courseParam}&class=${encodeURIComponent(classId)}&week=${weekId}&isCurrent=${curParam}`;
         const res = await fetch(url);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        if (!res.ok) {
+          let errJson = null;
+          try { errJson = await res.json(); } catch(e){}
+          if (res.status === 504 || (errJson && errJson.code === 'SCHOOL_TIMEOUT')) {
+            isTimeoutError = true;
+            serverErrorMsg = errJson && errJson.message ? errJson.message : 'Cổng trường phản hồi quá lâu (Timeout).';
+          } else if (res.status === 502 || (errJson && errJson.code === 'SCHOOL_UNREACHABLE')) {
+            serverErrorMsg = errJson && errJson.message ? errJson.message : 'Không thể kết nối đến máy chủ cổng trường (DTCC).';
+          } else {
+            serverErrorMsg = errJson && errJson.message ? errJson.message : `Lỗi máy chủ (HTTP ${res.status})`;
+          }
+          throw new Error(serverErrorMsg);
+        }
         scheduleData = await res.json();
 
         // Lưu vào localStorage
@@ -560,7 +859,7 @@
         }
         appState.isOffline = false;
       } catch (err) {
-        console.warn('Không thể tải lịch từ mạng, đọc từ bộ nhớ ngoại tuyến:', err);
+        console.warn('Không thể tải lịch từ mạng, kiểm tra bản lưu ngoại tuyến:', err);
         appState.isOffline = true;
 
         // Đọc dữ liệu đã lưu từ localStorage
@@ -568,6 +867,11 @@
         if (rawCached) {
           try {
             scheduleData = JSON.parse(rawCached);
+            if (isTimeoutError) {
+              showToast('⏳ Cổng trường phản hồi chậm. Đang xem bản lưu ngoại tuyến.', 'warning', 4500);
+            } else {
+              showToast('Mất kết nối mạng. Đang xem bản lưu ngoại tuyến.', 'info', 3000);
+            }
           } catch (e) {}
         }
       } finally {
@@ -581,12 +885,24 @@
         } else {
           appState.daySchedules = [];
           renderDayTabs();
-          showErrorState(
-            'Không có dữ liệu',
-            appState.isOffline 
-              ? 'Đang xem ngoại tuyến và chưa có bản lưu cho tuần học này. Vui lòng kết nối Internet để cập nhật!'
-              : 'Không thể tải lịch học từ máy chủ. Vui lòng thử lại sau.'
-          );
+          if (isTimeoutError) {
+            showErrorState(
+              'Cổng trường phản hồi quá chậm (Timeout)',
+              'Cổng đào tạo trường (DTCC) hiện đang quá tải hoặc phản hồi quá lâu. Vui lòng bấm "Thử lại ngay" sau giây lát!',
+              'timeout'
+            );
+          } else if (appState.isOffline) {
+            showErrorState(
+              'Không có dữ liệu ngoại tuyến',
+              'Chưa có bản lưu cho tuần học này. Vui lòng kết nối Internet để cập nhật hoặc quay về tuần hiện tại!',
+              'offline'
+            );
+          } else {
+            showErrorState(
+              'Không thể tải lịch học',
+              serverErrorMsg || 'Không thể tải lịch học từ máy chủ. Vui lòng thử lại sau.'
+            );
+          }
         }
       }
     }
@@ -602,14 +918,14 @@
         : 'bg-amber-100 dark:bg-amber-900/80 text-amber-800 dark:text-amber-200 border-amber-200/60 dark:border-amber-800';
 
       return `
-        <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 border border-slate-100 dark:border-slate-700/70 shadow-sm hover:shadow-md transition">
+        <div class="lesson-card bg-white dark:bg-slate-800 rounded-2xl p-4 border border-slate-100 dark:border-slate-700/70 shadow-sm hover:shadow-md transition">
           <!-- Top Row: Tên môn học + Badge Tiết học -->
           <div class="flex items-start justify-between gap-2">
             <h4 class="text-sm sm:text-base font-bold text-sky-700 dark:text-sky-400 leading-snug flex-1">${l.subject}</h4>
             <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-lg border ${periodBadgeBg} shrink-0">${periodLabel}</span>
           </div>
 
-          <!-- Time Box: Khung giờ học nổi bật, siêu rõ nét giống Android app -->
+          <!-- Time Box: Khung giờ học nổi bật, rõ nét -->
           <div class="mt-2.5 flex items-center justify-between text-xs font-semibold bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-sky-500/40 rounded-xl px-3 py-2">
             <div class="flex items-center gap-2">
               <svg class="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -618,7 +934,7 @@
             <span class="text-[11px] text-sky-700 dark:text-sky-300 font-bold px-2 py-0.5 rounded-md bg-sky-50 dark:bg-sky-900/50">(${l.periodCount * 45} phút)</span>
           </div>
 
-          <!-- Thông tin Phòng học & Giảng viên (Dòng riêng biệt giống Jetpack Compose không bị che chữ) -->
+          <!-- Thông tin Phòng học & Giảng viên -->
           <div class="mt-2.5 space-y-1.5 text-xs">
             ${l.room ? `
               <div class="flex items-center gap-1.5 text-slate-700 dark:text-slate-300">
@@ -751,7 +1067,7 @@
           renderClassOptions();
         }
       } catch (e) {
-        coursesWrap.innerHTML = `<span class="text-xs text-red-500">Lỗi: ${e.message}</span>`;
+        coursesWrap.innerHTML = `<span class="text-xs text-rose-500">Lỗi kết nối khi tải khóa</span>`;
       }
     }
 
@@ -815,10 +1131,15 @@
 
       try {
         const res = await fetch(`/api/classes?faculty=${encodeURIComponent(facultyId || '')}&course=${encodeURIComponent(courseId || '')}`);
+        if (!res.ok) {
+          let errPayload = null;
+          try { errPayload = await res.json(); } catch(e){}
+          throw new Error(errPayload && errPayload.message ? errPayload.message : `HTTP ${res.status}`);
+        }
         appState.classes = await res.json();
         renderClassOptions();
       } catch (e) {
-        wrap.innerHTML = `<p class="p-4 text-xs text-center text-red-500">Lỗi: ${e.message}</p>`;
+        wrap.innerHTML = `<p class="p-4 text-xs text-center text-rose-500">${e.message || 'Lỗi tải danh sách lớp'}</p>`;
       }
     }
 
@@ -842,6 +1163,7 @@
         item.onclick = () => {
           appState.selectedClass = c;
           savePrefs(appState.selectedFaculty, appState.selectedCourse, c);
+          addRecentClass(c, appState.selectedFaculty, appState.selectedCourse);
           updateHeaderDisplay();
           closeClassModal();
           loadSchedule();
@@ -859,6 +1181,7 @@
     }
 
     function openClassModal() {
+      renderRecentClasses();
       document.getElementById('classModal').classList.remove('hidden');
     }
     function closeClassModal() {
@@ -944,8 +1267,14 @@
       updateWeekDisplay();
       loadSchedule();
     };
-    document.getElementById('btnRefresh').onclick = loadSchedule;
-    document.getElementById('btnOfflineRefresh').onclick = loadSchedule;
+    document.getElementById('btnRefresh').onclick = () => {
+      showToast('Đang làm mới lịch học...', 'info', 2000);
+      loadSchedule();
+    };
+    document.getElementById('btnOfflineRefresh').onclick = () => {
+      showToast('Đang thử kết nối lại...', 'info', 2000);
+      loadSchedule();
+    };
     document.getElementById('btnErrorRetry').onclick = () => {
       if (!appState.weeks || appState.weeks.length === 0) {
         initApp();
@@ -953,6 +1282,16 @@
         loadSchedule();
       }
     };
+
+    // Clear Recent Classes Handler
+    const btnClearRecent = document.getElementById('btnClearRecentClasses');
+    if (btnClearRecent) {
+      btnClearRecent.onclick = () => {
+        localStorage.removeItem('dtcc_recent_classes');
+        renderRecentClasses();
+        showToast('Đã xóa lịch sử lớp gần đây', 'info', 2000);
+      };
+    }
 
     document.getElementById('btnModeDaily').onclick = () => {
       if (appState.viewMode !== 'daily') {
@@ -982,6 +1321,7 @@
       console.log('Đã có mạng trở lại, tự động đồng bộ...');
       appState.isOffline = false;
       updateOfflineBanner();
+      showToast('Đã kết nối Internet trở lại!', 'success', 3000);
       if (!appState.weeks || appState.weeks.length === 0) {
         initApp();
       } else if (appState.selectedClass) {
@@ -993,6 +1333,7 @@
       console.log('Mất kết nối mạng, chuyển sang chế độ ngoại tuyến');
       appState.isOffline = true;
       updateOfflineBanner();
+      showToast('Mất kết nối mạng, chuyển sang chế độ ngoại tuyến', 'warning', 3500);
     });
 
     // Register Service Worker for offline support & iOS PWA
@@ -1006,31 +1347,24 @@
       });
     }
 
-    // Smart iOS "Add to Home Screen" prompt banner
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    const isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
-    if (isIOS && !isStandalone && !localStorage.getItem('dtc_hide_ios_prompt')) {
-      const iosBanner = document.createElement('div');
-      iosBanner.id = 'iosInstallBanner';
-      iosBanner.className = 'fixed bottom-3 left-4 right-4 max-w-md mx-auto bg-slate-900/95 dark:bg-slate-800/95 backdrop-blur-md text-white px-4 py-3 rounded-2xl shadow-2xl border border-sky-500/40 z-50 flex items-center justify-between gap-3 text-xs animate-bounce-once';
-      iosBanner.innerHTML = `
-        <div class="flex items-center gap-2.5">
-          <img src="logo.png" class="w-8 h-8 rounded-lg bg-white p-0.5 object-contain flex-shrink-0" alt="Logo">
-          <div>
-            <p class="font-bold text-sky-400">Cài đặt trên iPhone/iPad</p>
-            <p class="text-[11px] text-slate-300">Bấm nút <strong>Chia sẻ</strong> <svg class="inline w-3.5 h-3.5 text-sky-400 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg> rồi chọn <strong>"Thêm vào MH chính"</strong> để dùng vĩnh viễn.</p>
-          </div>
-        </div>
-        <button id="btnCloseIosBanner" class="p-1 rounded-full text-slate-400 hover:text-white transition">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
-      `;
-      document.body.appendChild(iosBanner);
-      document.getElementById('btnCloseIosBanner').onclick = () => {
-        iosBanner.remove();
-        localStorage.setItem('dtc_hide_ios_prompt', 'true');
-      };
-    }
+    // Hỗ trợ phím tắt và click ngoài backdrop trên mọi hệ điều hành (Windows, macOS, Linux, Mobile)
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeClassModal();
+        document.getElementById('weekModal').classList.add('hidden');
+        document.getElementById('aboutModal').classList.add('hidden');
+      }
+    });
+
+    document.getElementById('classModal').addEventListener('click', (e) => {
+      if (e.target.id === 'classModal') closeClassModal();
+    });
+    document.getElementById('weekModal').addEventListener('click', (e) => {
+      if (e.target.id === 'weekModal') document.getElementById('weekModal').classList.add('hidden');
+    });
+    document.getElementById('aboutModal').addEventListener('click', (e) => {
+      if (e.target.id === 'aboutModal') document.getElementById('aboutModal').classList.add('hidden');
+    });
 
     // Run
     initApp();

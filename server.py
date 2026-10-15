@@ -59,6 +59,26 @@ def calc_lesson_time(start_period, count):
 
 cached_form_fields = {}
 
+def fetch_school_page(method="GET", url=BASE_URL, data=None, timeout=12, retries=2):
+    last_err = None
+    for attempt in range(retries):
+        try:
+            if method == "GET":
+                return session.get(url, timeout=timeout)
+            else:
+                return session.post(url, data=data, timeout=timeout)
+        except (requests.exceptions.Timeout, requests.exceptions.ConnectTimeout, requests.exceptions.ReadTimeout) as e:
+            last_err = e
+            if attempt < retries - 1:
+                time.sleep(1)
+        except requests.exceptions.ConnectionError as e:
+            last_err = e
+            if attempt < retries - 1:
+                time.sleep(1)
+        except Exception as e:
+            raise e
+    raise last_err
+
 def update_fields(soup):
     global cached_form_fields
     for inp in soup.find_all("input"):
@@ -82,7 +102,7 @@ def get_initial():
         if cached is not None:
             return cached
 
-        r = session.get(BASE_URL, timeout=15)
+        r = fetch_school_page("GET", BASE_URL, timeout=12)
         soup = BeautifulSoup(r.text, "html.parser")
         update_fields(soup)
     
@@ -171,7 +191,7 @@ def get_courses_for_faculty(faculty_id):
     p["ctl00$cphMain$ScheduleOfClass1$uScheduleOfClass1$UClass1$ddlScienceID"] = faculty_id
     p.pop("ctl00$cphMain$ScheduleOfClass1$uScheduleOfClass1$UClass1$btnSearch", None)
     
-    r = session.post(BASE_URL, data=p, timeout=15)
+    r = fetch_school_page("POST", BASE_URL, data=p, timeout=12)
     soup = BeautifulSoup(r.text, "html.parser")
     update_fields(soup)
     
@@ -206,7 +226,7 @@ def get_classes_for_course(faculty_id, course_id):
     p["ctl00$cphMain$ScheduleOfClass1$uScheduleOfClass1$UClass1$ddlCourseID"] = course_id
     p.pop("ctl00$cphMain$ScheduleOfClass1$uScheduleOfClass1$UClass1$btnSearch", None)
     
-    r = session.post(BASE_URL, data=p, timeout=15)
+    r = fetch_school_page("POST", BASE_URL, data=p, timeout=12)
     soup = BeautifulSoup(r.text, "html.parser")
     update_fields(soup)
     
@@ -249,7 +269,7 @@ def get_schedule(faculty_id, course_id, class_id, week_id, is_current_week):
     p.pop("ctl00$MsgBox$btnOk", None)
     p.pop("ctl00$MsgBox$imgCloseButton", None)
     
-    r = session.post(BASE_URL, data=p, timeout=15)
+    r = fetch_school_page("POST", BASE_URL, data=p, timeout=12)
     soup = BeautifulSoup(r.text, "html.parser")
     update_fields(soup)
     
@@ -399,6 +419,9 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
                 self.send_response(304)
                 self.send_header("ETag", etag)
                 self.send_header("Cache-Control", cache_control)
+                self.send_header("X-Content-Type-Options", "nosniff")
+                self.send_header("X-Frame-Options", "SAMEORIGIN")
+                self.send_header("Referrer-Policy", "strict-origin-when-cross-origin")
                 self.end_headers()
                 return
 
@@ -420,16 +443,74 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
             self.send_header("ETag", etag)
         self.send_header("Cache-Control", cache_control)
         self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("X-Frame-Options", "SAMEORIGIN")
+        self.send_header("Referrer-Policy", "strict-origin-when-cross-origin")
         if is_service_worker:
             self.send_header("Pragma", "no-cache")
             self.send_header("Expires", "0")
         self.end_headers()
         self.wfile.write(payload)
 
+    def send_error_json(self, status_code, error_code, message, detail=""):
+        payload = {
+            "error": True,
+            "code": error_code,
+            "message": message,
+            "detail": str(detail)
+        }
+        json_bytes = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+        self.send_compressed_response(
+            json_bytes,
+            "application/json; charset=utf-8",
+            cache_control="no-cache, no-store, must-revalidate",
+            status=status_code
+        )
+
+    def handle_api_exception(self, e):
+        # Kiểm tra lỗi timeout từ cổng trường
+        if isinstance(e, (requests.exceptions.Timeout, requests.exceptions.ReadTimeout, requests.exceptions.ConnectTimeout)):
+            self.send_error_json(
+                504,
+                "SCHOOL_TIMEOUT",
+                "Cổng đào tạo trường (DTCC) phản hồi quá lâu hoặc đang quá tải. Vui lòng thử lại sau giây lát.",
+                detail=str(e)
+            )
+        elif isinstance(e, requests.exceptions.ConnectionError):
+            self.send_error_json(
+                502,
+                "SCHOOL_UNREACHABLE",
+                "Không thể kết nối đến máy chủ cổng đào tạo trường (DTCC). Hệ thống có thể đang bảo trì hoặc mạng gián đoạn.",
+                detail=str(e)
+            )
+        else:
+            self.send_error_json(
+                500,
+                "SERVER_ERROR",
+                f"Đã xảy ra lỗi khi lấy dữ liệu: {str(e)}",
+                detail=str(e)
+            )
+
     def do_GET(self):
         parsed = urllib.parse.urlparse(self.path)
         path = parsed.path
         qs = urllib.parse.parse_qs(parsed.query)
+
+        # Health check endpoint cho Render / Uptime Robot
+        if path == "/healthz" or path == "/api/health":
+            health_data = {
+                "status": "ok",
+                "service": "tkb-dtc",
+                "timestamp": int(time.time()),
+                "uptime": "online"
+            }
+            json_bytes = json.dumps(health_data).encode("utf-8")
+            self.send_compressed_response(
+                json_bytes,
+                "application/json; charset=utf-8",
+                cache_control="no-cache, no-store"
+            )
+            return
 
         # Service Worker: Always 200 OK without 304, no-cache
         if path == "/service-worker.js":
@@ -471,6 +552,19 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
                 )
                 return
 
+        # Robots.txt
+        if path == "/robots.txt":
+            r_path = os.path.join(public_dir, "robots.txt")
+            if os.path.exists(r_path):
+                with open(r_path, "rb") as f:
+                    content = f.read()
+                self.send_compressed_response(
+                    content,
+                    "text/plain; charset=utf-8",
+                    cache_control="public, max-age=86400"
+                )
+                return
+
         # Ảnh tĩnh PNG (Cache vĩnh viễn 30 ngày trên trình duyệt = 0 byte lần sau)
         if path.endswith(".png"):
             file_name = os.path.basename(path)
@@ -496,9 +590,7 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
                     cache_control="public, max-age=600"
                 )
             except Exception as e:
-                self.send_response(500)
-                self.end_headers()
-                self.wfile.write(str(e).encode("utf-8"))
+                self.handle_api_exception(e)
             return
             
         elif path == "/api/courses":
@@ -512,9 +604,7 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
                     cache_control="public, max-age=1800"
                 )
             except Exception as e:
-                self.send_response(500)
-                self.end_headers()
-                self.wfile.write(str(e).encode("utf-8"))
+                self.handle_api_exception(e)
             return
 
         elif path == "/api/classes":
@@ -532,9 +622,7 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
                     cache_control="public, max-age=1800"
                 )
             except Exception as e:
-                self.send_response(500)
-                self.end_headers()
-                self.wfile.write(str(e).encode("utf-8"))
+                self.handle_api_exception(e)
             return
             
         elif path == "/api/schedule":
@@ -552,9 +640,7 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
                     cache_control="public, max-age=300"
                 )
             except Exception as e:
-                self.send_response(500)
-                self.end_headers()
-                self.wfile.write(str(e).encode("utf-8"))
+                self.handle_api_exception(e)
             return
             
         super().do_GET()

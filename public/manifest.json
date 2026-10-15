@@ -1,27 +1,45 @@
 {
   "name": "Thời Khóa Biểu DTC",
   "short_name": "TKB DTC",
-  "description": "Ứng dụng xem thời khóa biểu sinh viên Trường CĐ Đồng Tháp",
+  "description": "Ứng dụng xem thời khóa biểu sinh viên Trường CĐ Cộng đồng Đồng Tháp (DTCC)",
+  "lang": "vi",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0284c7",
   "orientation": "portrait-primary",
+  "categories": ["education", "productivity", "utilities"],
   "icons": [
     {
       "src": "icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
       "src": "icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
       "src": "apple-touch-icon.png",
       "sizes": "180x180",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }
