@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tkb-dtc-v5';
+const CACHE_NAME = 'tkb-dtc-v6';
 const ASSETS_TO_CACHE = [
   './index.html',
   './logo.png',
@@ -70,7 +70,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // 2. API calls: Network first, fallback to cached data if offline
+  // 2. API calls: Network first, fallback to cached data if offline or 5xx server error
   if (request.url.includes('/api/')) {
     event.respondWith(
       fetch(request)
@@ -80,6 +80,10 @@ self.addEventListener('fetch', (event) => {
             caches.open(CACHE_NAME).then((cache) => {
               cache.put(request, responseClone).catch(() => {});
             }).catch(() => {});
+            return response;
+          }
+          if (response && response.status >= 500) {
+            return caches.match(request).then((cached) => cached || response);
           }
           return response;
         })

@@ -59,7 +59,7 @@ def calc_lesson_time(start_period, count):
 
 cached_form_fields = {}
 
-def fetch_school_page(method="GET", url=BASE_URL, data=None, timeout=12, retries=2):
+def fetch_school_page(method="GET", url=BASE_URL, data=None, timeout=10, retries=1):
     last_err = None
     for attempt in range(retries):
         try:
@@ -102,85 +102,113 @@ def get_initial():
         if cached is not None:
             return cached
 
-        r = fetch_school_page("GET", BASE_URL, timeout=12)
-        soup = BeautifulSoup(r.text, "html.parser")
-        update_fields(soup)
-    
-    faculties = []
-    f_sel = soup.find("select", id="ctl00_cphMain_ScheduleOfClass1_uScheduleOfClass1_UClass1_ddlScienceID")
-    if f_sel:
-        for opt in f_sel.find_all("option"):
-            v = opt.get("value", "").strip()
-            if v:
-                faculties.append({"id": v, "name": opt.text.strip()})
-                
-    weeks = []
-    w_sel = soup.find("select", id="ctl00_cphMain_ScheduleOfClass1_uScheduleOfClass1_ddlWeek")
-    week_pat = re.compile(r'(\d+)\s*\(\s*(\d{2}/\d{2})\s*-\s*(\d{2}/\d{2})\s*\)')
-    if w_sel:
-        for opt in w_sel.find_all("option"):
-            v = opt.get("value", "").strip()
-            t = opt.text.strip()
-            m = week_pat.search(t)
-            if m:
-                weeks.append({
-                    "id": v,
-                    "text": t,
-                    "weekNumber": int(m.group(1)),
-                    "startDate": m.group(2),
-                    "endDate": m.group(3)
-                })
-            elif v:
-                weeks.append({
-                    "id": v,
-                    "text": t,
-                    "weekNumber": int(v) if v.isdigit() else 1,
-                    "startDate": "",
-                    "endDate": ""
-                })
-                
-    now = datetime.now()
-    default_idx = 0
-    for idx, w in enumerate(weeks):
-        if w["startDate"] and w["endDate"]:
-            try:
-                s_d, s_m = map(int, w["startDate"].split("/"))
-                e_d, e_m = map(int, w["endDate"].split("/"))
-                s_y = now.year - 1 if (s_m > e_m and now.month <= e_m) else now.year
-                e_y = now.year + 1 if (s_m > e_m and now.month >= s_m) else now.year
-                dt_start = datetime(s_y, s_m, s_d)
-                dt_end = datetime(e_y, e_m, e_d, 23, 59, 59)
-                if dt_start <= now <= dt_end:
-                    default_idx = idx
-                    break
-            except:
-                pass
-                
-    initial_courses = []
-    c_sel = soup.find("select", id="ctl00_cphMain_ScheduleOfClass1_uScheduleOfClass1_UClass1_ddlCourseID")
-    if c_sel:
-        for opt in c_sel.find_all("option"):
-            v = opt.get("value", "").strip()
-            if v:
-                initial_courses.append({"id": v, "name": opt.text.strip()})
+        try:
+            r = fetch_school_page("GET", BASE_URL, timeout=10, retries=1)
+            soup = BeautifulSoup(r.text, "html.parser")
+            update_fields(soup)
+        
+            faculties = []
+            f_sel = soup.find("select", id="ctl00_cphMain_ScheduleOfClass1_uScheduleOfClass1_UClass1_ddlScienceID")
+            if f_sel:
+                for opt in f_sel.find_all("option"):
+                    v = opt.get("value", "").strip()
+                    if v:
+                        faculties.append({"id": v, "name": opt.text.strip()})
+                        
+            weeks = []
+            w_sel = soup.find("select", id="ctl00_cphMain_ScheduleOfClass1_uScheduleOfClass1_ddlWeek")
+            week_pat = re.compile(r'(\d+)\s*\(\s*(\d{2}/\d{2})\s*-\s*(\d{2}/\d{2})\s*\)')
+            if w_sel:
+                for opt in w_sel.find_all("option"):
+                    v = opt.get("value", "").strip()
+                    t = opt.text.strip()
+                    m = week_pat.search(t)
+                    if m:
+                        weeks.append({
+                            "id": v,
+                            "text": t,
+                            "weekNumber": int(m.group(1)),
+                            "startDate": m.group(2),
+                            "endDate": m.group(3)
+                        })
+                    elif v:
+                        weeks.append({
+                            "id": v,
+                            "text": t,
+                            "weekNumber": int(v) if v.isdigit() else 1,
+                            "startDate": "",
+                            "endDate": ""
+                        })
+                        
+            now = datetime.now()
+            default_idx = 0
+            for idx, w in enumerate(weeks):
+                if w["startDate"] and w["endDate"]:
+                    try:
+                        s_d, s_m = map(int, w["startDate"].split("/"))
+                        e_d, e_m = map(int, w["endDate"].split("/"))
+                        s_y = now.year - 1 if (s_m > e_m and now.month <= e_m) else now.year
+                        e_y = now.year + 1 if (s_m > e_m and now.month >= s_m) else now.year
+                        dt_start = datetime(s_y, s_m, s_d)
+                        dt_end = datetime(e_y, e_m, e_d, 23, 59, 59)
+                        if dt_start <= now <= dt_end:
+                            default_idx = idx
+                            break
+                    except:
+                        pass
+                        
+            initial_courses = []
+            c_sel = soup.find("select", id="ctl00_cphMain_ScheduleOfClass1_uScheduleOfClass1_UClass1_ddlCourseID")
+            if c_sel:
+                for opt in c_sel.find_all("option"):
+                    v = opt.get("value", "").strip()
+                    if v:
+                        initial_courses.append({"id": v, "name": opt.text.strip()})
 
-    initial_classes = []
-    cl_sel = soup.find("select", id="ctl00_cphMain_ScheduleOfClass1_uScheduleOfClass1_UClass1_ddlClassID")
-    if cl_sel:
-        for opt in cl_sel.find_all("option"):
-            v = opt.get("value", "").strip()
-            if v:
-                initial_classes.append({"id": v, "name": opt.text.strip()})
+            initial_classes = []
+            cl_sel = soup.find("select", id="ctl00_cphMain_ScheduleOfClass1_uScheduleOfClass1_UClass1_ddlClassID")
+            if cl_sel:
+                for opt in cl_sel.find_all("option"):
+                    v = opt.get("value", "").strip()
+                    if v:
+                        initial_classes.append({"id": v, "name": opt.text.strip()})
 
-    res = {
-        "faculties": faculties,
-        "weeks": weeks,
-        "defaultWeekIndex": default_idx,
-        "initialCourses": initial_courses,
-        "initialClasses": initial_classes
-    }
-    set_to_cache("initial", res)
-    return res
+            res = {
+                "faculties": faculties,
+                "weeks": weeks,
+                "defaultWeekIndex": default_idx,
+                "initialCourses": initial_courses,
+                "initialClasses": initial_classes
+            }
+            set_to_cache("initial", res)
+            return res
+        except Exception as e:
+            print(f"[WARN] Khong the lay live initial data tu cong truong ({e}), chuyen sang dung ban du phong...")
+            backup_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "initial_backup.json")
+            if os.path.exists(backup_file):
+                try:
+                    with open(backup_file, "r", encoding="utf-8") as bf:
+                        b_data = json.load(bf)
+                    now = datetime.now()
+                    for idx, w in enumerate(b_data.get("weeks", [])):
+                        if w.get("startDate") and w.get("endDate"):
+                            try:
+                                s_d, s_m = map(int, w["startDate"].split("/"))
+                                e_d, e_m = map(int, w["endDate"].split("/"))
+                                s_y = now.year - 1 if (s_m > e_m and now.month <= e_m) else now.year
+                                e_y = now.year + 1 if (s_m > e_m and now.month >= s_m) else now.year
+                                dt_start = datetime(s_y, s_m, s_d)
+                                dt_end = datetime(e_y, e_m, e_d, 23, 59, 59)
+                                if dt_start <= now <= dt_end:
+                                    b_data["defaultWeekIndex"] = idx
+                                    break
+                            except:
+                                pass
+                    set_to_cache("initial", b_data)
+                    return b_data
+                except Exception as b_err:
+                    print(f"[ERROR] Loi doc initial_backup.json: {b_err}")
+            raise e
 
 def get_courses_for_faculty(faculty_id):
     if not cached_form_fields:
@@ -252,15 +280,12 @@ def get_schedule(faculty_id, course_id, class_id, week_id, is_current_week):
 
         if not cached_form_fields:
             get_initial()
-        if faculty_id and cached_form_fields.get("ctl00$cphMain$ScheduleOfClass1$uScheduleOfClass1$UClass1$ddlScienceID") != faculty_id:
-            get_courses_for_faculty(faculty_id)
-        if course_id and cached_form_fields.get("ctl00$cphMain$ScheduleOfClass1$uScheduleOfClass1$UClass1$ddlCourseID") != course_id:
-            get_classes_for_course(faculty_id, course_id)
             
         p = dict(cached_form_fields)
         p["__EVENTTARGET"] = ""
         p["__EVENTARGUMENT"] = ""
-        p["ctl00$cphMain$ScheduleOfClass1$uScheduleOfClass1$UClass1$ddlScienceID"] = faculty_id
+        if faculty_id:
+            p["ctl00$cphMain$ScheduleOfClass1$uScheduleOfClass1$UClass1$ddlScienceID"] = faculty_id
         if course_id:
             p["ctl00$cphMain$ScheduleOfClass1$uScheduleOfClass1$UClass1$ddlCourseID"] = course_id
     p["ctl00$cphMain$ScheduleOfClass1$uScheduleOfClass1$UClass1$ddlClassID"] = class_id
@@ -269,7 +294,7 @@ def get_schedule(faculty_id, course_id, class_id, week_id, is_current_week):
     p.pop("ctl00$MsgBox$btnOk", None)
     p.pop("ctl00$MsgBox$imgCloseButton", None)
     
-    r = fetch_school_page("POST", BASE_URL, data=p, timeout=12)
+    r = fetch_school_page("POST", BASE_URL, data=p, timeout=10, retries=1)
     soup = BeautifulSoup(r.text, "html.parser")
     update_fields(soup)
     
@@ -406,6 +431,8 @@ import gzip
 import hashlib
 
 class RequestHandler(http.server.SimpleHTTPRequestHandler):
+    protocol_version = "HTTP/1.1"
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=public_dir, **kwargs)
 
@@ -645,9 +672,18 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
             
         super().do_GET()
 
+class ThreadedHTTPServer(socketserver.ThreadingMixIn, http.server.HTTPServer):
+    daemon_threads = True
+    allow_reuse_address = True
+
 if __name__ == "__main__":
-    socketserver.TCPServer.allow_reuse_address = True
-    with socketserver.TCPServer(("", PORT), RequestHandler) as httpd:
-        print(f"Server started at http://localhost:{PORT}")
+    server_address = ("0.0.0.0", PORT)
+    httpd = ThreadedHTTPServer(server_address, RequestHandler)
+    print(f"Server started at http://0.0.0.0:{PORT}")
+    try:
         httpd.serve_forever()
+    except KeyboardInterrupt:
+        pass
+    finally:
+        httpd.server_close()
 

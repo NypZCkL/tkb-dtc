@@ -342,7 +342,7 @@
         </div>
         <div>
           <h3 class="text-lg font-extrabold text-slate-900 dark:text-white">Thời Khóa Biểu DTC</h3>
-          <p class="text-xs font-semibold text-sky-600 dark:text-sky-400">Phiên bản 1.0 • Trường CĐ Đồng Tháp</p>
+          <p class="text-xs font-semibold text-sky-600 dark:text-sky-400">Phiên bản 1.1 • Trường CĐ Đồng Tháp</p>
         </div>
         <div class="w-full bg-slate-50 dark:bg-slate-800/60 rounded-xl p-3 text-left space-y-1 border border-slate-100 dark:border-slate-800">
           <p class="text-[11px] font-medium text-slate-400">Phát triển bởi:</p>
@@ -731,6 +731,17 @@
       }
     }
 
+    function goToCurrentWeek() {
+      if (appState.defaultWeekIndex >= 0 && appState.defaultWeekIndex < appState.weeks.length) {
+        appState.currentWeekIndex = appState.defaultWeekIndex;
+      } else {
+        appState.currentWeekIndex = 0;
+      }
+      updateWeekDisplay();
+      loadSchedule();
+    }
+    window.goToCurrentWeek = goToCurrentWeek;
+
     function updateViewModeUI() {
       const btnDaily = document.getElementById('btnModeDaily');
       const btnWeekly = document.getElementById('btnModeWeekly');
@@ -833,6 +844,37 @@
       let scheduleData = null;
       let isTimeoutError = false;
       let serverErrorMsg = '';
+
+      // Đọc trước cache để phản hồi tức thì
+      const rawCached = localStorage.getItem(cacheKey) || (isCurrentWeek() ? localStorage.getItem(currentFallbackKey) : null);
+      if (rawCached) {
+        try {
+          scheduleData = JSON.parse(rawCached);
+          if (scheduleData && Array.isArray(scheduleData) && scheduleData.length > 0) {
+            appState.daySchedules = scheduleData;
+            renderDayTabs();
+            renderLessons();
+            loading.classList.add('hidden');
+          }
+        } catch(e){}
+      }
+
+      // Nếu trình duyệt đang ngoại tuyến hoàn toàn (offline):
+      if (!navigator.onLine) {
+        loading.classList.add('hidden');
+        appState.isOffline = true;
+        updateOfflineBanner();
+        if (scheduleData && Array.isArray(scheduleData) && scheduleData.length > 0) {
+          showToast('Đang xem bản lưu ngoại tuyến.', 'info', 2500);
+        } else {
+          showErrorState(
+            'Không có dữ liệu ngoại tuyến',
+            'Chưa có bản lưu cho tuần học này. Vui lòng kết nối Internet để cập nhật hoặc quay về tuần hiện tại!',
+            'offline'
+          );
+        }
+        return;
+      }
 
       try {
         const url = `/api/schedule?faculty=${facultyParam}&course=${courseParam}&class=${encodeURIComponent(classId)}&week=${weekId}&isCurrent=${curParam}`;
@@ -954,6 +996,7 @@
     }
 
     function renderLessons() {
+      hideErrorState();
       const empty = document.getElementById('emptyState');
       const list = document.getElementById('lessonsList');
       list.innerHTML = '';
@@ -1262,11 +1305,7 @@
         loadSchedule();
       }
     };
-    document.getElementById('btnJumpCurrentWeek').onclick = () => {
-      appState.currentWeekIndex = appState.defaultWeekIndex;
-      updateWeekDisplay();
-      loadSchedule();
-    };
+    document.getElementById('btnJumpCurrentWeek').onclick = goToCurrentWeek;
     document.getElementById('btnRefresh').onclick = () => {
       showToast('Đang làm mới lịch học...', 'info', 2000);
       loadSchedule();

@@ -1,0 +1,3562 @@
+{
+  "faculties": [
+    {
+      "id": "CKXD",
+      "name": "KHOA CƠ KHÍ - XÂY DỰNG"
+    },
+    {
+      "id": "ĐĐT",
+      "name": "KHOA ĐIỆN - ĐIỆN TỬ"
+    },
+    {
+      "id": "K.TC",
+      "name": "TT Liên kết đào tạo, Bồi dưỡng"
+    },
+    {
+      "id": "KHCB",
+      "name": "KHOA KHOA HỌC CƠ BẢN"
+    },
+    {
+      "id": "KTCN",
+      "name": "KHOA KỸ THUẬT - CÔNG NGHỆ"
+    },
+    {
+      "id": "KTXHNV",
+      "name": "KHOA KINH TẾ XÃ HỘI & NHÂN VĂN"
+    },
+    {
+      "id": "NTTS",
+      "name": "KHOA NÔNG NGHIỆP - THỦY SẢN"
+    },
+    {
+      "id": "P.CTCTSV",
+      "name": "Phòng Chính trị & Công tác SV"
+    },
+    {
+      "id": "P.ĐTAO",
+      "name": "Phòng Đào tạo"
+    },
+    {
+      "id": "P.QHDN",
+      "name": "Phòng Quan hệ doanh nghiệp"
+    },
+    {
+      "id": "P.QLKH-HTQT",
+      "name": "Phòng Quản lý khoa học và Hợp tác quốc tế"
+    },
+    {
+      "id": "P.QTTBTV",
+      "name": "Phòng Quản trị - Thiết bị - Thư viện"
+    },
+    {
+      "id": "P.TCHC",
+      "name": "Phòng Tổ chức - Hành chánh"
+    },
+    {
+      "id": "P.TS-KT-ĐBLC",
+      "name": "Phòng Tuyển sinh - Quan hệ doanh nghiệp"
+    },
+    {
+      "id": "P.TVU",
+      "name": "Phòng Tài vụ"
+    },
+    {
+      "id": "TS",
+      "name": "Tuyển sinh"
+    },
+    {
+      "id": "TS2014",
+      "name": "Tuyển sinh"
+    },
+    {
+      "id": "TT NCPT-DBCL",
+      "name": "Trung tâm nghiên cứu phát triển & Đảm bảo chất lượng"
+    },
+    {
+      "id": "TT.NNTH",
+      "name": "Trung tâm NN-TH"
+    }
+  ],
+  "weeks": [
+    {
+      "id": "0",
+      "text": "1   (03/08 - 09/08)",
+      "weekNumber": 1,
+      "startDate": "03/08",
+      "endDate": "09/08"
+    },
+    {
+      "id": "1",
+      "text": "2   (10/08 - 16/08)",
+      "weekNumber": 2,
+      "startDate": "10/08",
+      "endDate": "16/08"
+    },
+    {
+      "id": "2",
+      "text": "3   (17/08 - 23/08)",
+      "weekNumber": 3,
+      "startDate": "17/08",
+      "endDate": "23/08"
+    },
+    {
+      "id": "3",
+      "text": "4   (24/08 - 30/08)",
+      "weekNumber": 4,
+      "startDate": "24/08",
+      "endDate": "30/08"
+    },
+    {
+      "id": "4",
+      "text": "5   (31/08 - 06/09)",
+      "weekNumber": 5,
+      "startDate": "31/08",
+      "endDate": "06/09"
+    },
+    {
+      "id": "5",
+      "text": "6   (07/09 - 13/09)",
+      "weekNumber": 6,
+      "startDate": "07/09",
+      "endDate": "13/09"
+    },
+    {
+      "id": "6",
+      "text": "7   (14/09 - 20/09)",
+      "weekNumber": 7,
+      "startDate": "14/09",
+      "endDate": "20/09"
+    },
+    {
+      "id": "7",
+      "text": "8   (21/09 - 27/09)",
+      "weekNumber": 8,
+      "startDate": "21/09",
+      "endDate": "27/09"
+    },
+    {
+      "id": "8",
+      "text": "9   (28/09 - 04/10)",
+      "weekNumber": 9,
+      "startDate": "28/09",
+      "endDate": "04/10"
+    },
+    {
+      "id": "9",
+      "text": "10   (05/10 - 11/10)",
+      "weekNumber": 10,
+      "startDate": "05/10",
+      "endDate": "11/10"
+    },
+    {
+      "id": "10",
+      "text": "11   (12/10 - 18/10)",
+      "weekNumber": 11,
+      "startDate": "12/10",
+      "endDate": "18/10"
+    },
+    {
+      "id": "11",
+      "text": "12   (19/10 - 25/10)",
+      "weekNumber": 12,
+      "startDate": "19/10",
+      "endDate": "25/10"
+    },
+    {
+      "id": "12",
+      "text": "13   (26/10 - 01/11)",
+      "weekNumber": 13,
+      "startDate": "26/10",
+      "endDate": "01/11"
+    },
+    {
+      "id": "13",
+      "text": "14   (02/11 - 08/11)",
+      "weekNumber": 14,
+      "startDate": "02/11",
+      "endDate": "08/11"
+    },
+    {
+      "id": "14",
+      "text": "15   (09/11 - 15/11)",
+      "weekNumber": 15,
+      "startDate": "09/11",
+      "endDate": "15/11"
+    },
+    {
+      "id": "15",
+      "text": "16   (16/11 - 22/11)",
+      "weekNumber": 16,
+      "startDate": "16/11",
+      "endDate": "22/11"
+    },
+    {
+      "id": "16",
+      "text": "17   (23/11 - 29/11)",
+      "weekNumber": 17,
+      "startDate": "23/11",
+      "endDate": "29/11"
+    },
+    {
+      "id": "17",
+      "text": "18   (30/11 - 06/12)",
+      "weekNumber": 18,
+      "startDate": "30/11",
+      "endDate": "06/12"
+    },
+    {
+      "id": "18",
+      "text": "19   (07/12 - 13/12)",
+      "weekNumber": 19,
+      "startDate": "07/12",
+      "endDate": "13/12"
+    },
+    {
+      "id": "19",
+      "text": "20   (14/12 - 20/12)",
+      "weekNumber": 20,
+      "startDate": "14/12",
+      "endDate": "20/12"
+    },
+    {
+      "id": "20",
+      "text": "21   (21/12 - 27/12)",
+      "weekNumber": 21,
+      "startDate": "21/12",
+      "endDate": "27/12"
+    },
+    {
+      "id": "21",
+      "text": "22   (28/12 - 03/01)",
+      "weekNumber": 22,
+      "startDate": "28/12",
+      "endDate": "03/01"
+    },
+    {
+      "id": "22",
+      "text": "23   (04/01 - 10/01)",
+      "weekNumber": 23,
+      "startDate": "04/01",
+      "endDate": "10/01"
+    },
+    {
+      "id": "23",
+      "text": "24   (11/01 - 17/01)",
+      "weekNumber": 24,
+      "startDate": "11/01",
+      "endDate": "17/01"
+    },
+    {
+      "id": "57",
+      "text": "58   (06/09 - 12/09)",
+      "weekNumber": 58,
+      "startDate": "06/09",
+      "endDate": "12/09"
+    }
+  ],
+  "defaultWeekIndex": 10,
+  "initialCourses": [
+    {
+      "id": "CD26",
+      "name": "CDK26"
+    },
+    {
+      "id": "TC26",
+      "name": "TCK26"
+    },
+    {
+      "id": "CD25",
+      "name": "CDK25"
+    },
+    {
+      "id": "TC25",
+      "name": "TCK25"
+    },
+    {
+      "id": "CD24",
+      "name": "CDK24"
+    },
+    {
+      "id": "TC24",
+      "name": "TCK24"
+    },
+    {
+      "id": "CD23",
+      "name": "CDK23"
+    },
+    {
+      "id": "TC23",
+      "name": "TCK23"
+    },
+    {
+      "id": "CC-TH-22",
+      "name": "CC-TH-22"
+    },
+    {
+      "id": "CD22",
+      "name": "CDK22"
+    },
+    {
+      "id": "TC22",
+      "name": "TC22"
+    },
+    {
+      "id": "CD21",
+      "name": "CDK21"
+    },
+    {
+      "id": "CD21LT",
+      "name": "CDK21LT"
+    },
+    {
+      "id": "ĐH21",
+      "name": "ĐH21"
+    },
+    {
+      "id": "TC21",
+      "name": "TC21"
+    },
+    {
+      "id": "CD20",
+      "name": "CDK20"
+    },
+    {
+      "id": "DH20",
+      "name": "DH20"
+    },
+    {
+      "id": "TC20",
+      "name": "TC20"
+    },
+    {
+      "id": "CD19",
+      "name": "CDK19"
+    },
+    {
+      "id": "ĐH19",
+      "name": "ĐH19"
+    },
+    {
+      "id": "NH",
+      "name": "Ngắn hạn"
+    },
+    {
+      "id": "TC19",
+      "name": "TC19"
+    },
+    {
+      "id": "CD18N",
+      "name": "CD18N"
+    },
+    {
+      "id": "CD18",
+      "name": "CDK18"
+    },
+    {
+      "id": "ĐH18",
+      "name": "ĐH18"
+    },
+    {
+      "id": "TC18",
+      "name": "TC18"
+    },
+    {
+      "id": "TC18N",
+      "name": "TC18N"
+    },
+    {
+      "id": "CD17N",
+      "name": "CD17N"
+    },
+    {
+      "id": "CD17",
+      "name": "CDK17"
+    },
+    {
+      "id": "DH17",
+      "name": "DH17"
+    },
+    {
+      "id": "TC17",
+      "name": "TC17"
+    },
+    {
+      "id": "TC17N",
+      "name": "TC17N"
+    },
+    {
+      "id": "CD16N",
+      "name": "CD16N"
+    },
+    {
+      "id": "CD16",
+      "name": "CDK16"
+    },
+    {
+      "id": "DH16",
+      "name": "DH16"
+    },
+    {
+      "id": "TC16",
+      "name": "TC16"
+    },
+    {
+      "id": "TC16N",
+      "name": "TC16N"
+    },
+    {
+      "id": "CD15",
+      "name": "CDK15"
+    },
+    {
+      "id": "TC15",
+      "name": "TC15"
+    },
+    {
+      "id": "CD14",
+      "name": "CDK14"
+    },
+    {
+      "id": "DH14",
+      "name": "DH14"
+    },
+    {
+      "id": "TC14",
+      "name": "TC14"
+    },
+    {
+      "id": "TC13",
+      "name": "TC13"
+    },
+    {
+      "id": "CD12",
+      "name": "CDK12"
+    },
+    {
+      "id": "TC12",
+      "name": "TC12"
+    },
+    {
+      "id": "CD11",
+      "name": "CD11"
+    },
+    {
+      "id": "TC11",
+      "name": "TC11"
+    },
+    {
+      "id": "CD10",
+      "name": "CDK10"
+    },
+    {
+      "id": "CD09",
+      "name": "CD09"
+    }
+  ],
+  "initialClasses": [
+    {
+      "id": "TX BDML K26A",
+      "name": "TX Kỹ năng bảo dưỡng máy lạnh K26A"
+    },
+    {
+      "id": "CD_LTKT_11&12",
+      "name": "Kế toán liên thông (11&12)"
+    },
+    {
+      "id": "CD_CNTP_K11A_11",
+      "name": "Công nghệ thực phẩm K11_A"
+    },
+    {
+      "id": "CD_CNTP_K11B_11",
+      "name": "Công nghệ thực phẩm K11_B"
+    },
+    {
+      "id": "CD_TINHOC_K9_11",
+      "name": "Tin học K9"
+    },
+    {
+      "id": "CD_KETOAN_K10A_11",
+      "name": "Kế toán K10_A"
+    },
+    {
+      "id": "CD_KETOAN_K10B_11",
+      "name": "Kế toán K10_B"
+    },
+    {
+      "id": "CD_QTKD_K4_11",
+      "name": "Quản trị kinh doanh K4"
+    },
+    {
+      "id": "CDBVTVK4A_11",
+      "name": "Bảo vệ thực vật K4A"
+    },
+    {
+      "id": "CDBVTVK4B_11",
+      "name": "Bảo vệ thực vật K4B"
+    },
+    {
+      "id": "CD_DVTY_K6_11",
+      "name": "Dịch vụ thú y_K6"
+    },
+    {
+      "id": "CD_NTTS_K9_11",
+      "name": "Nuôi trồng thủy sản K9"
+    },
+    {
+      "id": "CN1203A1C",
+      "name": "Công nghệ thông tin K10"
+    },
+    {
+      "id": "CN1201A1C",
+      "name": "Công nghệ thực phẩm K12A"
+    },
+    {
+      "id": "CN1201A2C",
+      "name": "Công nghệ thực phẩm K12B"
+    },
+    {
+      "id": "CN1201A3C",
+      "name": "Công nghệ thực phẩm K12C"
+    },
+    {
+      "id": "KT1202A1C",
+      "name": "Cao đẳng Kế toán K11A"
+    },
+    {
+      "id": "KT1202A2C",
+      "name": "Cao đẳng Kế toán K11B"
+    },
+    {
+      "id": "KT1206A1C",
+      "name": "Cao đẳng Quản Trị Kinh Doanh K5"
+    },
+    {
+      "id": "NN1207A1C",
+      "name": "Cao đẳng Bảo vệ thực vật K5A"
+    },
+    {
+      "id": "NN1207A2C",
+      "name": "Cao đẳng Bảo Vệ Thực Vật K5B"
+    },
+    {
+      "id": "NN1205A1C",
+      "name": "Cao đẳng Dịch Vụ Thú Y K7"
+    },
+    {
+      "id": "NN1204A1C",
+      "name": "Cao đẳng Nuôi trồng thủy sản K10"
+    },
+    {
+      "id": "CN1403A1C",
+      "name": "Công nghệ thông tin K12"
+    },
+    {
+      "id": "CN1401A1C",
+      "name": "Công nghệ thực phẩm K14A"
+    },
+    {
+      "id": "CN1401A2C",
+      "name": "Công nghệ thực phẩm K14B"
+    },
+    {
+      "id": "KT1402A1C",
+      "name": "Kế toán K13"
+    },
+    {
+      "id": "KT1406A1C",
+      "name": "Quản trị kinh doanh K6"
+    },
+    {
+      "id": "NN1407A1C",
+      "name": "Bảo vệ thực vật K7A"
+    },
+    {
+      "id": "NN1407A2C",
+      "name": "Bảo vệ thực vật K7B"
+    },
+    {
+      "id": "NN1405A1C",
+      "name": "Dịch vụ thú y K9"
+    },
+    {
+      "id": "NN1404A1C",
+      "name": "Nuôi trồng thuỷ sản K12"
+    },
+    {
+      "id": "CN1503A1C",
+      "name": "Công nghệ thông tin K13"
+    },
+    {
+      "id": "CN1501AC",
+      "name": "Công nghệ thực phẩm K15"
+    },
+    {
+      "id": "CN1501A1C",
+      "name": "Công nghệ thực phẩm K15 A"
+    },
+    {
+      "id": "CN1501A2C",
+      "name": "Công nghệ thực phẩm K15 B"
+    },
+    {
+      "id": "KT1502A1C",
+      "name": "Kế toán K14"
+    },
+    {
+      "id": "KT1506A1C",
+      "name": "Quản trị kinh doanh K7"
+    },
+    {
+      "id": "NN1507A1C",
+      "name": "Bảo vệ thực vât K8 A"
+    },
+    {
+      "id": "NN1507A2C",
+      "name": "Bảo vệ thực vật K8 B"
+    },
+    {
+      "id": "NN1505A1C",
+      "name": "Dịch vụ thú y K10"
+    },
+    {
+      "id": "NN1504A1C",
+      "name": "Nuôi trồng thủy sản K13"
+    },
+    {
+      "id": "CD_LTBVTV_2016",
+      "name": "Bảo vệ thực vật K1"
+    },
+    {
+      "id": "CN1603A1C",
+      "name": "Công nghệ thông tin K14"
+    },
+    {
+      "id": "CN1601A1C",
+      "name": "Công nghệ thực phẩm K16 A"
+    },
+    {
+      "id": "CN1601A2C",
+      "name": "Công nghệ thực phẩm K16 B"
+    },
+    {
+      "id": "KT1602A1C",
+      "name": "Kế toán K15"
+    },
+    {
+      "id": "KT1602A2C",
+      "name": "Kế toán K15B"
+    },
+    {
+      "id": "KT1606A1C",
+      "name": "Quản trị kinh doanh K8"
+    },
+    {
+      "id": "NN1607A1C",
+      "name": "Bảo vệ thực vật K9"
+    },
+    {
+      "id": "NN1608A1C",
+      "name": "Chăn nuôi K1"
+    },
+    {
+      "id": "NN1605A1C",
+      "name": "Dịch vụ thú y K11"
+    },
+    {
+      "id": "NN1609A1C",
+      "name": "Khoa học cây trồng K1"
+    },
+    {
+      "id": "NN1604A1C",
+      "name": "Nuôi trồng thủy sản K14"
+    },
+    {
+      "id": "TEST",
+      "name": "TEST"
+    },
+    {
+      "id": "CK2217A1C",
+      "name": "Cắt gọt kim loại K22"
+    },
+    {
+      "id": "CK2216A1C",
+      "name": "Công nghệ ô tô K22A"
+    },
+    {
+      "id": "CK2216A2C",
+      "name": "Công nghệ ô tô K22B"
+    },
+    {
+      "id": "CK2216A4C",
+      "name": "Công nghệ ô tô K22C"
+    },
+    {
+      "id": "CK2216A3C",
+      "name": "Công nghệ ô tô K22D"
+    },
+    {
+      "id": "HL_CGKL.K22",
+      "name": "HL_CGKL.K22"
+    },
+    {
+      "id": "HL-CD.CGKL.K22",
+      "name": "HL-CD.CGKL.K22"
+    },
+    {
+      "id": "HL-CD.OTO.K22",
+      "name": "HL-CD.OTO.K22"
+    },
+    {
+      "id": "HL-OTO.K22D",
+      "name": "HL-OTO.K22D"
+    },
+    {
+      "id": "CK2221A1C",
+      "name": "Kỹ thuật xây dựng K22"
+    },
+    {
+      "id": "ĐĐ2226A1C",
+      "name": "Công nghệ kỹ thuật  điện, điện tử  K22"
+    },
+    {
+      "id": "ĐĐ2219A1C",
+      "name": "Điện công nghiệp K22"
+    },
+    {
+      "id": "HL.CD.KTMLDHKKK22",
+      "name": "HL.CD.KTMLDHKKK22"
+    },
+    {
+      "id": "ĐĐ2222A1C",
+      "name": "Kỹ Thuật máy lạnh và Điều hòa không khí  K22A"
+    },
+    {
+      "id": "ĐĐ2222A2C",
+      "name": "Kỹ Thuật máy lạnh và Điều hòa không khí  K22B"
+    },
+    {
+      "id": "ĐĐ2222A3C",
+      "name": "Kỹ Thuật máy lạnh và Điều hòa không khí  K22C"
+    },
+    {
+      "id": "CN2203A1C",
+      "name": "Công nghệ thông tin K22A"
+    },
+    {
+      "id": "CN2203A3C",
+      "name": "Công nghệ thông tin K22B"
+    },
+    {
+      "id": "CN2203A2C",
+      "name": "Công nghệ thông tin K22C"
+    },
+    {
+      "id": "CN2201A1C",
+      "name": "Công nghệ thực phẩm K22A"
+    },
+    {
+      "id": "CN2201A2C",
+      "name": "Công nghệ thực phẩm K22B"
+    },
+    {
+      "id": "CN2201A3C",
+      "name": "Công nghệ thực phẩm K22C"
+    },
+    {
+      "id": "BS-KTK22",
+      "name": "BS-Ke Toan K22"
+    },
+    {
+      "id": "HL-KTK22",
+      "name": "HL-KTK22"
+    },
+    {
+      "id": "KT2202A1C",
+      "name": "Kế toán K22A"
+    },
+    {
+      "id": "KT2202A2C",
+      "name": "Kế toán K22B"
+    },
+    {
+      "id": "KT2206A1C",
+      "name": "Quản trị Kinh doanh K22"
+    },
+    {
+      "id": "NN2207A1C",
+      "name": "Bảo vệ thực vật K22"
+    },
+    {
+      "id": "NN2205A1C",
+      "name": "Dịch vụ thú y K22"
+    },
+    {
+      "id": "HL-BVTVK22",
+      "name": "HL-BVTVK22"
+    },
+    {
+      "id": "HL-DVTY-K22",
+      "name": "HL-DVTY-K22"
+    },
+    {
+      "id": "NN2204A1C",
+      "name": "Nuôi trồng thủy sản K22"
+    },
+    {
+      "id": "BS-KNKTBT-KTXD.K23",
+      "name": "BS-KNKTBT-KTXD.K23"
+    },
+    {
+      "id": "CK2317A1C",
+      "name": "Cắt gọt kim loại K23A"
+    },
+    {
+      "id": "CK2317A2C",
+      "name": "Cắt gọt kim loại K23B"
+    },
+    {
+      "id": "CK2316A1C",
+      "name": "Công nghệ ô tô K23A"
+    },
+    {
+      "id": "CK2316A2C",
+      "name": "Công nghệ ô tô K23B"
+    },
+    {
+      "id": "CK2316A3C",
+      "name": "Công nghệ ô tô K23C"
+    },
+    {
+      "id": "CK2316A5C",
+      "name": "Công nghệ ô tô K23D"
+    },
+    {
+      "id": "CK2316A4C",
+      "name": "Công nghệ ô tô K23E"
+    },
+    {
+      "id": "HL-KTBT-OTO.K23",
+      "name": "HL-KTBT-OTO.K23"
+    },
+    {
+      "id": "HL-OTO.K23",
+      "name": "HL-OTO.K23"
+    },
+    {
+      "id": "CK2321A1C",
+      "name": "Kỹ thuật xây dựng K23"
+    },
+    {
+      "id": "ĐĐ2326A1C",
+      "name": "Công nghệ kỹ thuật  điện, điện tử  K23"
+    },
+    {
+      "id": "ĐĐ2319A1C",
+      "name": "Điện công nghiệp K23A"
+    },
+    {
+      "id": "ĐĐ2319A2C",
+      "name": "Điện công nghiệp K23B"
+    },
+    {
+      "id": "HL-KTML-DHKK-K23",
+      "name": "HL-KTML-DHKK-K23"
+    },
+    {
+      "id": "ĐĐ2322A1C",
+      "name": "Kỹ Thuật máy lạnh & Điều hòa không khí  K23A"
+    },
+    {
+      "id": "ĐĐ2322A2C",
+      "name": "Kỹ Thuật máy lạnh & Điều hòa không khí  K23B"
+    },
+    {
+      "id": "ĐĐ2322A3C",
+      "name": "Kỹ Thuật máy lạnh & Điều hòa không khí  K23C"
+    },
+    {
+      "id": "CD-CNTTK23-HL",
+      "name": "CD-CNTTK23-HL"
+    },
+    {
+      "id": "CN2303A1C",
+      "name": "Công nghệ thông tin K23A"
+    },
+    {
+      "id": "CN2301A1C",
+      "name": "Công nghệ thực phẩm K23A"
+    },
+    {
+      "id": "CN2301A2C",
+      "name": "Công nghệ thực phẩm K23B"
+    },
+    {
+      "id": "HL-CNTPK23",
+      "name": "HL-CNTPK23"
+    },
+    {
+      "id": "CN2314A1C",
+      "name": "Thiết kế đồ họa K23"
+    },
+    {
+      "id": "HL-TIENG ANH-CD-CS1",
+      "name": "HL-TIENG ANH-CD-CS1"
+    },
+    {
+      "id": "HL-TIENG ANH-CD-TSC",
+      "name": "HL-TIENG ANH-CD-TSC"
+    },
+    {
+      "id": "KT2302A1C",
+      "name": "Kế toán K23A"
+    },
+    {
+      "id": "KT2302A2C",
+      "name": "Kế toán K23B"
+    },
+    {
+      "id": "KT2306A1C",
+      "name": "Quản trị Kinh doanh K23"
+    },
+    {
+      "id": "NN2307A1C",
+      "name": "Bảo vệ thực vật K23A"
+    },
+    {
+      "id": "NN2307A2C",
+      "name": "Bảo vệ thực vật K23B"
+    },
+    {
+      "id": "NN2305A1C",
+      "name": "Dịch vụ thú y K23"
+    },
+    {
+      "id": "KTBT-HL-K23",
+      "name": "KTBT-HL-K23"
+    },
+    {
+      "id": "NN2304A1C",
+      "name": "Nuôi trồng thủy sản K23"
+    },
+    {
+      "id": "CK2417A1C",
+      "name": "Cắt gọt kim loại K24A"
+    },
+    {
+      "id": "CK2417A2C",
+      "name": "Cắt gọt kim loại K24B"
+    },
+    {
+      "id": "CK2416A1C",
+      "name": "Công nghệ ô tô K24A"
+    },
+    {
+      "id": "CK2416A2C",
+      "name": "Công nghệ ô tô K24B"
+    },
+    {
+      "id": "CK2416A3C",
+      "name": "Công nghệ ô tô K24C"
+    },
+    {
+      "id": "CK2416A5C",
+      "name": "Công nghệ ô tô K24D"
+    },
+    {
+      "id": "CK2416A4C",
+      "name": "Công nghệ ô tô K24E"
+    },
+    {
+      "id": "CK2421A1C",
+      "name": "Kỹ thuật xây dựng K24"
+    },
+    {
+      "id": "ĐĐ2426A1C",
+      "name": "Công nghệ kỹ thuật  điện, điện tử  K24"
+    },
+    {
+      "id": "ĐĐ2419A1C",
+      "name": "Điện công nghiệp K24A"
+    },
+    {
+      "id": "ĐĐ2419A3C",
+      "name": "Điện công nghiệp K24B"
+    },
+    {
+      "id": "ĐĐ2419A2C",
+      "name": "Điện công nghiệp K24C"
+    },
+    {
+      "id": "ĐĐ2422A1C",
+      "name": "Kỹ Thuật máy lạnh và Điều hòa không khí  K24A"
+    },
+    {
+      "id": "ĐĐ2422A2C",
+      "name": "Kỹ Thuật máy lạnh và Điều hòa không khí  K24B"
+    },
+    {
+      "id": "ĐĐ2422A3C",
+      "name": "Kỹ Thuật máy lạnh và Điều hòa không khí  K24C"
+    },
+    {
+      "id": "ĐĐ2422A4C",
+      "name": "Kỹ Thuật máy lạnh và Điều hòa không khí  K24D"
+    },
+    {
+      "id": "CN2403A1C",
+      "name": "Công nghệ thông tin K24A"
+    },
+    {
+      "id": "CN2403A2C",
+      "name": "Công nghệ thông tin K24B"
+    },
+    {
+      "id": "CN2401A1C",
+      "name": "Công nghệ thực phẩm K24A"
+    },
+    {
+      "id": "CN2401A2C",
+      "name": "Công nghệ thực phẩm K24B"
+    },
+    {
+      "id": "CN2401A3C",
+      "name": "Công nghệ thực phẩm K24C"
+    },
+    {
+      "id": "CN2427A1C",
+      "name": "Kỹ Thuật  sửa chữa, lắp ráp máy tính K24"
+    },
+    {
+      "id": "CN2414A1C",
+      "name": "Thiết kế đồ họa K24"
+    },
+    {
+      "id": "KT2402A1C",
+      "name": "Kế toán K24A"
+    },
+    {
+      "id": "KT2402A2C",
+      "name": "Kế toán K24B"
+    },
+    {
+      "id": "KT2406A1C",
+      "name": "Quản trị Kinh doanh K24"
+    },
+    {
+      "id": "NN2407A1C",
+      "name": "Bảo vệ thực vật K24A"
+    },
+    {
+      "id": "NN2407A2C",
+      "name": "Bảo vệ thực vật K24B"
+    },
+    {
+      "id": "NN2407A3C",
+      "name": "Bảo vệ thực vật K24C"
+    },
+    {
+      "id": "NN2405A1C",
+      "name": "Dịch vụ thú y K24A"
+    },
+    {
+      "id": "NN2405A2C",
+      "name": "Dịch vụ thú y K24B"
+    },
+    {
+      "id": "NN2404A1C",
+      "name": "Nuôi trồng thủy sản K24"
+    },
+    {
+      "id": "TEST-04",
+      "name": "Tập huấn pm"
+    },
+    {
+      "id": "CK2517A1C",
+      "name": "Cắt gọt kim loại K25A"
+    },
+    {
+      "id": "CK2517A2C",
+      "name": "Cắt gọt kim loại K25B"
+    },
+    {
+      "id": "CK2516A1C",
+      "name": "Công nghệ ô tô K25A"
+    },
+    {
+      "id": "CK2516A2C",
+      "name": "Công nghệ ô tô K25B"
+    },
+    {
+      "id": "CK2516A3C",
+      "name": "Công nghệ ô tô K25C"
+    },
+    {
+      "id": "CK2521A1C",
+      "name": "Kỹ thuật xây dựng K25"
+    },
+    {
+      "id": "ĐĐ2526A1C",
+      "name": "Công nghệ kỹ thuật  điện, điện tử  K25A"
+    },
+    {
+      "id": "ĐĐ2526A2C",
+      "name": "Công nghệ kỹ thuật  điện, điện tử  K25B"
+    },
+    {
+      "id": "ĐĐ2526A3C",
+      "name": "Công nghệ kỹ thuật  điện, điện tử  K25C"
+    },
+    {
+      "id": "ĐĐ2519A1C",
+      "name": "Điện công nghiệp K25A"
+    },
+    {
+      "id": "ĐĐ2519A2C",
+      "name": "Điện công nghiệp K25B"
+    },
+    {
+      "id": "ĐĐ2519A3C",
+      "name": "Điện công nghiệp K25C"
+    },
+    {
+      "id": "ĐĐ2522A1C",
+      "name": "Kỹ thuật máy lạnh và điều hòa không khí  K25A"
+    },
+    {
+      "id": "ĐĐ2522A2C",
+      "name": "Kỹ thuật máy lạnh và điều hòa không khí  K25B"
+    },
+    {
+      "id": "ĐĐ2522A3C",
+      "name": "Kỹ thuật máy lạnh và điều hòa không khí  K25C"
+    },
+    {
+      "id": "CN2532A1C",
+      "name": "Chế biến thực phẩm K25"
+    },
+    {
+      "id": "CN2503A2C",
+      "name": "Công nghệ thông tin K25A"
+    },
+    {
+      "id": "CN2503A3C",
+      "name": "Công nghệ thông tin K25B"
+    },
+    {
+      "id": "CN2503A4C",
+      "name": "Công nghệ thông tin K25C"
+    },
+    {
+      "id": "CN2501A1C",
+      "name": "Công nghệ thực phẩm K25A"
+    },
+    {
+      "id": "CN2501A2C",
+      "name": "Công nghệ thực phẩm K25B"
+    },
+    {
+      "id": "CN2501A3C",
+      "name": "Công nghệ thực phẩm K25C"
+    },
+    {
+      "id": "CN2501A4C",
+      "name": "Công nghệ thực phẩm K25D"
+    },
+    {
+      "id": "CN2527A1C",
+      "name": "Kỹ thuật  sửa chữa, lắp ráp máy tính K25"
+    },
+    {
+      "id": "CN2514A1C",
+      "name": "Thiết kế đồ họa K25"
+    },
+    {
+      "id": "C2.K25.GDQPAN_CD",
+      "name": "C2.K25.GDQPAN_CD"
+    },
+    {
+      "id": "C3.K25.GDQPAN_CD",
+      "name": "C3.K25.GDQPAN_CD"
+    },
+    {
+      "id": "C4.K25.GDQPAN_CD",
+      "name": "C4.K25.GDQPAN_CD"
+    },
+    {
+      "id": "C5.K25.GDQPAN_CD",
+      "name": "C5.K25.GDQPAN_CD"
+    },
+    {
+      "id": "C6.K25.GDQPAN_CD",
+      "name": "C6.K25.GDQPAN_CD"
+    },
+    {
+      "id": "C7.K25.GDQPAN_CD",
+      "name": "C7.K25.GDQPAN_CD"
+    },
+    {
+      "id": "C8.K25.GDQPAN_CD",
+      "name": "C8.K25.GDQPAN_CD"
+    },
+    {
+      "id": "CS1C-GDQP25",
+      "name": "CS1C-GDQP25"
+    },
+    {
+      "id": "KT2502A1C",
+      "name": "Kế toán K25A"
+    },
+    {
+      "id": "KT2502A2C",
+      "name": "Kế toán K25B"
+    },
+    {
+      "id": "KT2502A4C",
+      "name": "Kế toán K25C"
+    },
+    {
+      "id": "KT2502A5C",
+      "name": "Kế toán K25D"
+    },
+    {
+      "id": "KT2511A1C",
+      "name": "Quản trị bán hàng K25"
+    },
+    {
+      "id": "KT2506A1C",
+      "name": "Quản trị Kinh doanh K25A"
+    },
+    {
+      "id": "KT2506A2C",
+      "name": "Quản trị Kinh doanh K25B"
+    },
+    {
+      "id": "KT2506A3C",
+      "name": "Quản trị Kinh doanh K25C"
+    },
+    {
+      "id": "KT2531A1C",
+      "name": "Tiếng Anh K25"
+    },
+    {
+      "id": "NN2507A1C",
+      "name": "Bảo vệ thực vật K25A"
+    },
+    {
+      "id": "NN2507A2C",
+      "name": "Bảo vệ thực vật K25B"
+    },
+    {
+      "id": "NN2507A3C",
+      "name": "Bảo vệ thực vật K25C"
+    },
+    {
+      "id": "NN2505A1C",
+      "name": "Dịch vụ thú y K25A"
+    },
+    {
+      "id": "NN2505A2C",
+      "name": "Dịch vụ thú y K25B"
+    },
+    {
+      "id": "NN2504A1C",
+      "name": "Nuôi trồng thủy sản K25A"
+    },
+    {
+      "id": "NN2504A2C",
+      "name": "Nuôi trồng thủy sản K25B"
+    },
+    {
+      "id": "CK2617A",
+      "name": "Cắt gọt kim loại K26"
+    },
+    {
+      "id": "CK2617AC",
+      "name": "Cắt gọt kim loại K26 (TS"
+    },
+    {
+      "id": "CK2616AC",
+      "name": "Công nghệ ô tô K26 (TS)"
+    },
+    {
+      "id": "CK2616A",
+      "name": "Công nghệ ô tô K26A"
+    },
+    {
+      "id": "CK2616B",
+      "name": "Công nghệ ô tô K26B"
+    },
+    {
+      "id": "CK2616C",
+      "name": "Công nghệ ô tô K26C"
+    },
+    {
+      "id": "CK2616D",
+      "name": "Công nghệ ô tô K26D"
+    },
+    {
+      "id": "CK2621A",
+      "name": "Kỹ thuật xây dựng K26"
+    },
+    {
+      "id": "CK2621AC",
+      "name": "Kỹ thuật xây dựng K26 (TS)"
+    },
+    {
+      "id": "ĐĐ2626AC",
+      "name": "Công nghệ kỹ thuật  điện, điện tử  K26 (TS)"
+    },
+    {
+      "id": "ĐĐ2626 A",
+      "name": "Công nghệ kỹ thuật điện, điện tử  K26A"
+    },
+    {
+      "id": "ĐĐ2626B",
+      "name": "Công nghệ kỹ thuật điện, điện tử  K26B"
+    },
+    {
+      "id": "ĐĐ2628A",
+      "name": "Công nghệ kỹ thuật điều khiển và tự động hóa K26"
+    },
+    {
+      "id": "ĐĐ2628AC",
+      "name": "Công nghệ kỹ thuật điều khiển và tự động hóa K26 (TS)"
+    },
+    {
+      "id": "ĐĐ2619AC",
+      "name": "Điện công nghiệp K26 (TS)"
+    },
+    {
+      "id": "ĐĐ2619A",
+      "name": "Điện công nghiệp K26A"
+    },
+    {
+      "id": "ĐĐ2619B",
+      "name": "Điện công nghiệp K26B"
+    },
+    {
+      "id": "ĐĐ2619C",
+      "name": "Điện công nghiệp K26C"
+    },
+    {
+      "id": "ĐĐ2622AC",
+      "name": "Kỹ thuật máy lạnh và điều hòa không khí  K26 (TS)"
+    },
+    {
+      "id": "ĐĐ2622A",
+      "name": "Kỹ thuật máy lạnh và điều hòa không khí  K26A"
+    },
+    {
+      "id": "ĐĐ2622B",
+      "name": "Kỹ thuật máy lạnh và điều hòa không khí  K26B"
+    },
+    {
+      "id": "ĐĐ2622C",
+      "name": "Kỹ thuật máy lạnh và điều hòa không khí  K26C"
+    },
+    {
+      "id": "CN2632AC",
+      "name": "Chế biến thực phẩm (TS)"
+    },
+    {
+      "id": "CN2632A",
+      "name": "Chế biến thực phẩm K26"
+    },
+    {
+      "id": "CN2629A",
+      "name": "Công nghệ sau thu hoạch K26"
+    },
+    {
+      "id": "CN2629AC",
+      "name": "Công nghệ sau thu hoạch K26 (TS)"
+    },
+    {
+      "id": "CN2603AC",
+      "name": "Công nghệ thông tin K26 (TS)"
+    },
+    {
+      "id": "CN2603A",
+      "name": "Công nghệ thông tin K26A"
+    },
+    {
+      "id": "CN2603B",
+      "name": "Công nghệ thông tin K26B"
+    },
+    {
+      "id": "CN2603C",
+      "name": "Công nghệ thông tin K26C"
+    },
+    {
+      "id": "CN2601A5C",
+      "name": "Công nghệ thực phẩm K26 (TS)"
+    },
+    {
+      "id": "CN2601A",
+      "name": "Công nghệ thực phẩm K26A"
+    },
+    {
+      "id": "CN2601B",
+      "name": "Công nghệ thực phẩm K26B"
+    },
+    {
+      "id": "CN2601C",
+      "name": "Công nghệ thực phẩm K26C"
+    },
+    {
+      "id": "CN2601D",
+      "name": "Công nghệ thực phẩm K26D"
+    },
+    {
+      "id": "CN2627AC",
+      "name": "Kỹ thuật  sửa chữa, lắp ráp máy tính K26 (TS)"
+    },
+    {
+      "id": "CN2627A",
+      "name": "Kỹ thuật sửa chữa, lắp ráp máy tính K26"
+    },
+    {
+      "id": "CN2527B",
+      "name": "Kỹ thuật sửa chữa, lắp ráp máy tính K26B"
+    },
+    {
+      "id": "CN2614A",
+      "name": "Thiết kế đồ họa K26"
+    },
+    {
+      "id": "CN2614AC",
+      "name": "Thiết kế đồ họa K26 (TS)"
+    },
+    {
+      "id": "CN2614B",
+      "name": "Thiết kế đồ họa K26B"
+    },
+    {
+      "id": "KT260302",
+      "name": "Kế toán doanh nghiệp K26"
+    },
+    {
+      "id": "KT2603TS",
+      "name": "Kế toán doanh nghiệp K26 (TS)"
+    },
+    {
+      "id": "KT2602AC",
+      "name": "Kế toán K26 (TS)"
+    },
+    {
+      "id": "KT2602A",
+      "name": "Kế toán K26A"
+    },
+    {
+      "id": "KT2602B",
+      "name": "Kế toán K26B"
+    },
+    {
+      "id": "KT2602C",
+      "name": "Kế toán K26C"
+    },
+    {
+      "id": "KT2611A",
+      "name": "Quản trị bán hàng K26"
+    },
+    {
+      "id": "KT2611AC",
+      "name": "Quản trị bán hàng K26 (TS)"
+    },
+    {
+      "id": "KT2606AC",
+      "name": "Quản trị Kinh doanh K26 (TS)"
+    },
+    {
+      "id": "KT2606A",
+      "name": "Quản trị kinh doanh K26A"
+    },
+    {
+      "id": "KT2606B",
+      "name": "Quản trị kinh doanh K26B"
+    },
+    {
+      "id": "KT2631AC",
+      "name": "Tiếng Anh (TS)"
+    },
+    {
+      "id": "KT2631A",
+      "name": "Tiếng Anh K26"
+    },
+    {
+      "id": "NN2607AC",
+      "name": "Bảo vệ thực vật K26 (TS)"
+    },
+    {
+      "id": "NN2607A",
+      "name": "Bảo vệ thực vật K26A"
+    },
+    {
+      "id": "NN2607B",
+      "name": "Bảo vệ thực vật K26B"
+    },
+    {
+      "id": "NN2607C",
+      "name": "Bảo vệ thực vật K26C"
+    },
+    {
+      "id": "NN2605AC",
+      "name": "Dịch vụ thú y K26 (TS)"
+    },
+    {
+      "id": "NN2605A",
+      "name": "Dịch vụ thú y K26A"
+    },
+    {
+      "id": "NN2605B",
+      "name": "Dịch vụ thú y K26B"
+    },
+    {
+      "id": "NN2630A",
+      "name": "Nông nghiệp công nghệ cao K26"
+    },
+    {
+      "id": "NN2630AC",
+      "name": "Nông nghiệp công nghệ cao K26 (TS)"
+    },
+    {
+      "id": "NN2604AC",
+      "name": "Nuôi trồng thủy sản K26 (TS)"
+    },
+    {
+      "id": "NN2604A",
+      "name": "Nuôi trồng thủy sản K26A"
+    },
+    {
+      "id": "NN2604B",
+      "name": "Nuôi trồng thủy sản K26B"
+    },
+    {
+      "id": "CN2501A6C",
+      "name": "(Dự thính) Công nghệ thực phẩm K25LT"
+    },
+    {
+      "id": "CN2503A1C",
+      "name": "(DU THINH)Công nghệ thông tin K25LT"
+    },
+    {
+      "id": "CN2503A5C",
+      "name": "Công nghệ thông tin K25LT"
+    },
+    {
+      "id": "CN2501A7C",
+      "name": "Công nghệ thực phẩm K25LT"
+    },
+    {
+      "id": "CN1703A1C",
+      "name": "Công nghệ thông tin K15"
+    },
+    {
+      "id": "CN1701A1C",
+      "name": "Công nghệ thực phẩm K17 A"
+    },
+    {
+      "id": "CN1701A2C",
+      "name": "Công nghệ thực phẩm K17 B"
+    },
+    {
+      "id": "KT1702A1C",
+      "name": "Kế toán K16"
+    },
+    {
+      "id": "KT1706A1C",
+      "name": "Quản trị kinh doanh K9"
+    },
+    {
+      "id": "NN1707A1C",
+      "name": "Bảo vệ thực vật K10 A"
+    },
+    {
+      "id": "NN1707A2C",
+      "name": "Bảo vệ thực vật K10 B"
+    },
+    {
+      "id": "NN1708A1C",
+      "name": "Chăn nuôi K2"
+    },
+    {
+      "id": "NN1705A1C",
+      "name": "Dịch vụ thú y K12"
+    },
+    {
+      "id": "NN1709A1C",
+      "name": "Khoa học Cây trồng K2"
+    },
+    {
+      "id": "NN1704A1C",
+      "name": "Nuôi trồng thủy sản K15"
+    },
+    {
+      "id": "DVTY-VLVH-2018",
+      "name": "Dịch vụ thú y-VLVH-2018"
+    },
+    {
+      "id": "CN1803A1C",
+      "name": "Công nghệ thông tin K16"
+    },
+    {
+      "id": "CN1801A1C",
+      "name": "Công nghệ thực phẩm K18A"
+    },
+    {
+      "id": "CN1801A2C",
+      "name": "Công nghệ thực phẩm K18B"
+    },
+    {
+      "id": "CN1801A3C",
+      "name": "Công nghệ thực phẩm K18C"
+    },
+    {
+      "id": "KT1802A1C",
+      "name": "Kế toán K17"
+    },
+    {
+      "id": "KT1806A1C",
+      "name": "Quản trị kinh doanh K10"
+    },
+    {
+      "id": "NN1807A1C",
+      "name": "Bảo vệ thực vật K11A"
+    },
+    {
+      "id": "NN1807A2C",
+      "name": "Bảo vệ thực vật K11B"
+    },
+    {
+      "id": "NN1805A1C",
+      "name": "Dịch vụ thú y K13"
+    },
+    {
+      "id": "NN1804A1C",
+      "name": "Nuôi trồng thủy sản K16"
+    },
+    {
+      "id": "CK1916A1C",
+      "name": "Công nghệ ô tô K19A"
+    },
+    {
+      "id": "CK1916A2C",
+      "name": "Công nghệ ô tô K19B"
+    },
+    {
+      "id": "CK1916A3C",
+      "name": "Công nghệ ô tô K19C"
+    },
+    {
+      "id": "ĐĐ1919A1C",
+      "name": "Điện công nghiệp K19"
+    },
+    {
+      "id": "ĐĐ1922A1C",
+      "name": "Kỹ Thuật máy lạnh và điều hòa không khí K19A"
+    },
+    {
+      "id": "ĐĐ1922A2C",
+      "name": "Kỹ Thuật máy lạnh và điều hòa không khí K19B"
+    },
+    {
+      "id": "CNTPK19B-HL-BL",
+      "name": "CNTPK19B-HL-BL"
+    },
+    {
+      "id": "CN1903A1C",
+      "name": "Công nghệ thông tin K19"
+    },
+    {
+      "id": "CN1901A1C",
+      "name": "Công nghệ thực phẩm K19A"
+    },
+    {
+      "id": "CN1901A2C",
+      "name": "Công nghệ thực phẩm K19B"
+    },
+    {
+      "id": "CN1901A3C",
+      "name": "Công nghệ thực phẩm K19C"
+    },
+    {
+      "id": "HL_CNTT19C",
+      "name": "HL_CNTT19"
+    },
+    {
+      "id": "KT1902A1C",
+      "name": "Kế toán K19A"
+    },
+    {
+      "id": "KT1902A2C",
+      "name": "Kế toán K19B"
+    },
+    {
+      "id": "KT1906A1C",
+      "name": "Quản trị kinh doanh  K19"
+    },
+    {
+      "id": "NN1907A1C",
+      "name": "Bảo vệ thực vật K19A"
+    },
+    {
+      "id": "NN1907A2C",
+      "name": "Bảo vệ thực vật K19B"
+    },
+    {
+      "id": "NN1908A1C",
+      "name": "Chăn nuôi K2 (2019)"
+    },
+    {
+      "id": "NN1905A1C",
+      "name": "Dịch vụ thú y  K19"
+    },
+    {
+      "id": "HL-BVTVCD19",
+      "name": "HL-BVTVCD19"
+    },
+    {
+      "id": "HL-CD.BVTVK19",
+      "name": "HL-CD.BVTVK19"
+    },
+    {
+      "id": "NN1904A1C",
+      "name": "Nuôi trồng thủy sản K19"
+    },
+    {
+      "id": "CK2017A1C",
+      "name": "Cắt gọt kim loại K20"
+    },
+    {
+      "id": "CK2016A1C",
+      "name": "Công nghệ ô tô K20A"
+    },
+    {
+      "id": "CK2016A2C",
+      "name": "Công nghệ ô tô K20B"
+    },
+    {
+      "id": "CK2016A3C",
+      "name": "Công nghệ ô tô K20C"
+    },
+    {
+      "id": "CK2016A4C",
+      "name": "Công nghệ ô tô K20D"
+    },
+    {
+      "id": "CK2021A1C",
+      "name": "Kỹ thuật xây dựng K20"
+    },
+    {
+      "id": "ĐĐ2026A1C",
+      "name": "Công nghệ kỹ thuật  điện, điện tử  K20"
+    },
+    {
+      "id": "ĐĐ2019A1C",
+      "name": "Điện công nghiệp K20"
+    },
+    {
+      "id": "ĐĐ2018A1C",
+      "name": "Điện tử công nghiệp K20"
+    },
+    {
+      "id": "ĐĐ2022A1C",
+      "name": "Kỹ Thuật máy lạnh và điều hòa không khí K20A"
+    },
+    {
+      "id": "ĐĐ2022A2C",
+      "name": "Kỹ Thuật máy lạnh và điều hòa không khí K20B"
+    },
+    {
+      "id": "CN2003A1C",
+      "name": "Công nghệ thông tin K20A"
+    },
+    {
+      "id": "CN2003A2C",
+      "name": "Công nghệ thông tin K20B"
+    },
+    {
+      "id": "CN2001A1C",
+      "name": "Công nghệ thực phẩm K20A"
+    },
+    {
+      "id": "CN2001A2C",
+      "name": "Công nghệ thực phẩm K20B"
+    },
+    {
+      "id": "CN2001A3C",
+      "name": "Công nghệ thực phẩm K20C"
+    },
+    {
+      "id": "HL-CNTPK20",
+      "name": "HL-CNTPK20"
+    },
+    {
+      "id": "HL-CNTT.K20",
+      "name": "HL-CNTT.K20"
+    },
+    {
+      "id": "HL-CNTTK20",
+      "name": "HL-CNTTK20"
+    },
+    {
+      "id": "CN2027A1C",
+      "name": "Kỹ thuật sửa chữa, lắp ráp máy tính K20"
+    },
+    {
+      "id": "CN2014A1C",
+      "name": "Thiết kế đồ họa K20A"
+    },
+    {
+      "id": "CN2020A1C",
+      "name": "Thiết kế thời trang K20"
+    },
+    {
+      "id": "HL_QTKDK20",
+      "name": "HL_QTKDK20"
+    },
+    {
+      "id": "HL-QTKD.K20",
+      "name": "HL-QTKD.K20"
+    },
+    {
+      "id": "KT2002A1C",
+      "name": "Kế toán K20A"
+    },
+    {
+      "id": "KT2002A2C",
+      "name": "Kế toán K20B"
+    },
+    {
+      "id": "KT2011A1C",
+      "name": "Quản trị bán hàng K20"
+    },
+    {
+      "id": "KT2006A1C",
+      "name": "Quản trị Kinh doanh K20"
+    },
+    {
+      "id": "NN2007A1C",
+      "name": "Bảo vệ thực vật K20A"
+    },
+    {
+      "id": "NN2007A2C",
+      "name": "Bảo vệ thực vật K20B"
+    },
+    {
+      "id": "NN2005A1C",
+      "name": "Dịch vụ thú y K20"
+    },
+    {
+      "id": "HL_NTTSK20",
+      "name": "HL_NTTSK20"
+    },
+    {
+      "id": "NN2004A1C",
+      "name": "Nuôi trồng thủy sản K20"
+    },
+    {
+      "id": "CK2117A1C",
+      "name": "Cắt gọt kim loại K21"
+    },
+    {
+      "id": "CD.OTO.K21-HL",
+      "name": "CD.OTO.K21-HL"
+    },
+    {
+      "id": "CK2116A1C",
+      "name": "Công nghệ ô tô K21 A"
+    },
+    {
+      "id": "CK2116A2C",
+      "name": "Công nghệ ô tô K21 B"
+    },
+    {
+      "id": "CK2116A3C",
+      "name": "Công nghệ ô tô K21 C"
+    },
+    {
+      "id": "HL-K21.CD.CS1.K.CKXD",
+      "name": "HL-K21.CD.CS1.K.CKXD"
+    },
+    {
+      "id": "HL-OTO.K21",
+      "name": "HL-OTO.K21"
+    },
+    {
+      "id": "CK2121A1C",
+      "name": "Kỹ thuật xây dựng K21"
+    },
+    {
+      "id": "ĐĐ2126A1C",
+      "name": "Công nghệ kỹ thuật  điện, điện tử  K21"
+    },
+    {
+      "id": "ĐĐ2119A1C",
+      "name": "Điện công nghiệp K21"
+    },
+    {
+      "id": "HL-CDKTML.K21",
+      "name": "HL-CDKTML.K21"
+    },
+    {
+      "id": "HL-KTML-DHKK-K21",
+      "name": "HL-KTML-DHKK-K21"
+    },
+    {
+      "id": "ĐĐ2122A1C",
+      "name": "Kỹ Thuật máy lạnh và điều hòa không khí  K21 A"
+    },
+    {
+      "id": "ĐĐ2122A2C",
+      "name": "Kỹ Thuật máy lạnh và Điều hòa không khí  K21 B"
+    },
+    {
+      "id": "CN2103A1C",
+      "name": "Công nghệ thông tin K21 A"
+    },
+    {
+      "id": "CN2103A2C",
+      "name": "Công nghệ thông tin K21 B"
+    },
+    {
+      "id": "CN2101A1C",
+      "name": "Công nghệ thực phẩm K21 A"
+    },
+    {
+      "id": "CN2101A2C",
+      "name": "Công nghệ thực phẩm K21 B"
+    },
+    {
+      "id": "CN2114A1C",
+      "name": "Thiết kế đồ họa K21"
+    },
+    {
+      "id": "HL-QTKD.K21",
+      "name": "HL-QTKD.K21"
+    },
+    {
+      "id": "KT2102A1C",
+      "name": "Kế toán K21 A"
+    },
+    {
+      "id": "KT2102A2C",
+      "name": "Kế toán K21 B"
+    },
+    {
+      "id": "QTKD.K21-HL",
+      "name": "QTKD.K21-HL"
+    },
+    {
+      "id": "KT2106A1C",
+      "name": "Quản trị Kinh doanh K21"
+    },
+    {
+      "id": "NN2107A1C",
+      "name": "Bảo vệ thực vật K21A"
+    },
+    {
+      "id": "NN2107A2C",
+      "name": "Bảo vệ thực vật K21B"
+    },
+    {
+      "id": "NN2105A1C",
+      "name": "Dịch vụ thú y K21"
+    },
+    {
+      "id": "NN2104A1C",
+      "name": "Nuôi trồng thủy sản K21"
+    },
+    {
+      "id": "HL-LT.CDXD",
+      "name": "HL-LT.CDXD"
+    },
+    {
+      "id": "CK2121A2C",
+      "name": "Kỹ thuật xây dựng liên thông K21"
+    },
+    {
+      "id": "CCK16",
+      "name": "Cắt gọt kim loại_K16"
+    },
+    {
+      "id": "CCO16A",
+      "name": "Công nghệ ô tô K16 (GTVT)"
+    },
+    {
+      "id": "CCO16",
+      "name": "Công nghệ ô tô_K16"
+    },
+    {
+      "id": "CĐC16",
+      "name": "Điện công nghiệp_K16"
+    },
+    {
+      "id": "CĐTC16",
+      "name": "Điện tử công nghiệp_K16"
+    },
+    {
+      "id": "CKĐ16",
+      "name": "Kỹ thuật máy lạnh & điều hoà không khí_K16"
+    },
+    {
+      "id": "CTĐ16",
+      "name": "Thiết kế đồ hoạ_K16"
+    },
+    {
+      "id": "CKD16",
+      "name": "Kế toán doanh nghiệp_K16"
+    },
+    {
+      "id": "CQB16",
+      "name": "Quản trị bán hàng_K16"
+    },
+    {
+      "id": "CCT16",
+      "name": "Thú y_K16"
+    },
+    {
+      "id": "CCK17",
+      "name": "Cắt gọt kim loại_K17"
+    },
+    {
+      "id": "CCO17A",
+      "name": "Công nghệ ô tô 1_K17"
+    },
+    {
+      "id": "CCO17B",
+      "name": "Công nghệ ô tô 2_K17"
+    },
+    {
+      "id": "CĐC17",
+      "name": "Điện công nghiệp_K17"
+    },
+    {
+      "id": "CĐTC17",
+      "name": "Điện tử công nghiệp_K17"
+    },
+    {
+      "id": "CKĐ17",
+      "name": "Kỹ thuật máy lạnh & điều hoà không khí_K17"
+    },
+    {
+      "id": "CTĐ17",
+      "name": "Thiết kế đồ hoạ_K17"
+    },
+    {
+      "id": "CKD17",
+      "name": "Kế toán doanh nghiệp_K17"
+    },
+    {
+      "id": "CQB17",
+      "name": "Quản trị bán hàng_K17"
+    },
+    {
+      "id": "CCT17",
+      "name": "Thú y_K17"
+    },
+    {
+      "id": "CCK18",
+      "name": "Cắt gọt kim loại_K18"
+    },
+    {
+      "id": "CCO18A",
+      "name": "Công nghệ ô tô 1_K18"
+    },
+    {
+      "id": "CCO18B",
+      "name": "Công nghệ ô tô 2_K18"
+    },
+    {
+      "id": "CCĐ18",
+      "name": "Công nghệ kỹ thuật điện- điện tử_K18"
+    },
+    {
+      "id": "CĐC18",
+      "name": "Điện công nghiệp_K18"
+    },
+    {
+      "id": "CKĐ18",
+      "name": "Kỹ thuật máy lạnh & điều hoà không khí _K18"
+    },
+    {
+      "id": "CCU18",
+      "name": "Công nghệ thông tin (ứng dụng phần mềm)_K18"
+    },
+    {
+      "id": "CKD18A",
+      "name": "Kế toán doanh nghiệp 1_K18"
+    },
+    {
+      "id": "CKD18B",
+      "name": "Kế toán doanh nghiệp 2_K18"
+    },
+    {
+      "id": "CCT18",
+      "name": "Thú y_K18"
+    },
+    {
+      "id": "LUUTRU14",
+      "name": "LUUTRU14"
+    },
+    {
+      "id": "Baochi-16",
+      "name": "Báo chí -16"
+    },
+    {
+      "id": "CTN-2016",
+      "name": "DH Cấp thoát nước"
+    },
+    {
+      "id": "Luutru-16",
+      "name": "Lưu trữ và Quản trị văn phòng"
+    },
+    {
+      "id": "Baochi-17",
+      "name": "Báo chí -17"
+    },
+    {
+      "id": "Luutru-17",
+      "name": "Lưu trữ -17"
+    },
+    {
+      "id": "Thường xuyên 2025",
+      "name": "Kỹ năng Lắp đặt điện dân dụng"
+    },
+    {
+      "id": "NH-2019",
+      "name": "Kế toán trưởng doanh nghiệp"
+    },
+    {
+      "id": "KTTHCSN-2019",
+      "name": "Kế toán trưởng hành chính sự nghiệp"
+    },
+    {
+      "id": "Lái xe 0520",
+      "name": "Lái xe 0520"
+    },
+    {
+      "id": "Lái xe",
+      "name": "Lái xe hạng A1"
+    },
+    {
+      "id": "Thường xuyên 2026",
+      "name": "Kỹ năng Bảo dưỡng máy lạnh K26A"
+    },
+    {
+      "id": "TX TRHC K24",
+      "name": "TX  Kỹ năng trồng rau hữu cơ K24"
+    },
+    {
+      "id": "TX CBBQ ECH K22",
+      "name": "TX Chế biến và bảo quản ếch K22"
+    },
+    {
+      "id": "TX DCN K21",
+      "name": "TX Điện công nghiệp K21"
+    },
+    {
+      "id": "TX DCN K22",
+      "name": "TX Điện công nghiệp K22"
+    },
+    {
+      "id": "TX HĐ K22",
+      "name": "TX Hàn điện K22"
+    },
+    {
+      "id": "TX KTHH-BCT K25",
+      "name": "TX Kế toán thực hành 2- K25"
+    },
+    {
+      "id": "TX KTTHTT K24",
+      "name": "TX Kế toán thực hành thực tế K24"
+    },
+    {
+      "id": "TX KTTHTT K25",
+      "name": "TX Kế toán thực hành thực tế K25A"
+    },
+    {
+      "id": "TX KTTHTT K25B",
+      "name": "TX Kế toán thực hành thực tế K25B"
+    },
+    {
+      "id": "TX KTTHTT K26A",
+      "name": "TX Kế toán thực hành thực tế K26A"
+    },
+    {
+      "id": "TX KTTHTT K26B",
+      "name": "TX Kế toán thực hành thực tế K26B"
+    },
+    {
+      "id": "TX LRCĐMT K24",
+      "name": "TX Kỹ năng  lắp ráp, cài đặt máy tính K24"
+    },
+    {
+      "id": "TX BDML K24",
+      "name": "TX Kỹ năng bảo dưỡng máy lạnh K24"
+    },
+    {
+      "id": "TX DLCĐ K24",
+      "name": "TX Kỹ năng du lịch cộng đồng K24"
+    },
+    {
+      "id": "TX LĐĐDD K24",
+      "name": "TX Kỹ năng lắp đặt điện dân dụng K24"
+    },
+    {
+      "id": "TX LĐĐDD K25",
+      "name": "TX Kỹ năng lắp đặt điện dân dụng K25"
+    },
+    {
+      "id": "TCCBTS_K6A",
+      "name": "Trung cấp chế biến thủy sản K6A"
+    },
+    {
+      "id": "TCCBTS_K6B",
+      "name": "Trung cấp chế biến thủy sản K6B"
+    },
+    {
+      "id": "TCKT_K9A",
+      "name": "Trung cấp kế toán K9A"
+    },
+    {
+      "id": "TCKT_K9B",
+      "name": "Trung cấp kế toán K9B"
+    },
+    {
+      "id": "TCBVTV_K1",
+      "name": "Trung cấp Bảo vệ thực vật K1"
+    },
+    {
+      "id": "TCCBTS_K7A",
+      "name": "Trung cấp chế biến thuỷ sản K7A"
+    },
+    {
+      "id": "TCCBTS_K7B",
+      "name": "Trung cấp chế biến thuỷ sản K7B"
+    },
+    {
+      "id": "TCKT_K10",
+      "name": "Trung cấp Kế toán K10"
+    },
+    {
+      "id": "TCBVTV_K2",
+      "name": "Trung cấp Bảo vệ thực vật K2"
+    },
+    {
+      "id": "TCNTTS_K1",
+      "name": "Trung cấp Nuôi trồng thuỷ sản K1"
+    },
+    {
+      "id": "TCCBTS_K8",
+      "name": "Trung cấp Kỹ thuật CB và bảo quản thủy sản K8"
+    },
+    {
+      "id": "TCKT_K11",
+      "name": "Trung cấp Kế toán K11"
+    },
+    {
+      "id": "TCBVTV_K3",
+      "name": "Trung cấp Trồng trọt và  Bảo vệ thực vật K3"
+    },
+    {
+      "id": "HL-TC.OTOK22",
+      "name": "HL-TC.OTOK22"
+    },
+    {
+      "id": "TCGKL22",
+      "name": "TC Cắt gọt kim loại  K22"
+    },
+    {
+      "id": "TCNOT22A",
+      "name": "TC Công nghệ ô tô K22A"
+    },
+    {
+      "id": "TCNOT22B",
+      "name": "TC Công nghệ ô tô K22B"
+    },
+    {
+      "id": "TCNOT22C",
+      "name": "TC Công nghệ ô tô K22C"
+    },
+    {
+      "id": "TCNOT22D",
+      "name": "TC Công nghệ ô tô K22D"
+    },
+    {
+      "id": "TCNOT22E",
+      "name": "TC Công nghệ ô tô K22E"
+    },
+    {
+      "id": "TKTXD22",
+      "name": "TC Kỹ thuật xây dựng K22"
+    },
+    {
+      "id": "TC.OTO.K22-HL",
+      "name": "TC.OTO.K22-HL"
+    },
+    {
+      "id": "BS.TCK22.CS1",
+      "name": "BS.TCK22.CS1"
+    },
+    {
+      "id": "HL.TC.KTMLDHKKK22",
+      "name": "HL.TC.KTMLDHKKK22"
+    },
+    {
+      "id": "HL-TCK22-CS1",
+      "name": "HL-TCK22-CS1"
+    },
+    {
+      "id": "HL-TCK22-TSC",
+      "name": "HL-TCK22-TSC"
+    },
+    {
+      "id": "TCNKTĐĐT22",
+      "name": "TC Công nghệ kỹ thuật điện, điện tử K22"
+    },
+    {
+      "id": "TĐCN22",
+      "name": "TC Điện công nghiệp K22A"
+    },
+    {
+      "id": "TĐCN22B",
+      "name": "TC Điện công nghiệp K22B"
+    },
+    {
+      "id": "TKTMLĐHKK22A",
+      "name": "TC Kỹ Thuật máy lạnh và điều hòa không khí K22A"
+    },
+    {
+      "id": "TKTMLĐHKK22B",
+      "name": "TC Kỹ Thuật máy lạnh và điều hòa không khí K22B"
+    },
+    {
+      "id": "TKTMLĐHKK22C",
+      "name": "TC Kỹ Thuật máy lạnh và điều hòa không khí K22C"
+    },
+    {
+      "id": "HL-THVP.K22",
+      "name": "HL-THVP.K22"
+    },
+    {
+      "id": "TCNTP22",
+      "name": "TC Công nghệ thực phẩm K22"
+    },
+    {
+      "id": "TKTSCLRMT22",
+      "name": "TC Kỹ Thuật  sửa chữa, lắp ráp máy tính K22"
+    },
+    {
+      "id": "TTKĐH22",
+      "name": "TC Thiết kế đồ họa K22"
+    },
+    {
+      "id": "TTKTT22",
+      "name": "TC Thiết kế thời Trang K22"
+    },
+    {
+      "id": "TTHVP22",
+      "name": "TC Tin học văn phòng K22"
+    },
+    {
+      "id": "TC.TKDH.K22-HL",
+      "name": "TC.TKDH.K22-HL"
+    },
+    {
+      "id": "TKTDN22",
+      "name": "TC  Kế toán doanh nghiệp K22A"
+    },
+    {
+      "id": "TKTDN22B",
+      "name": "TC  Kế toán doanh nghiệp K22B"
+    },
+    {
+      "id": "TNVBH22",
+      "name": "TC  Nghiệp vụ bán hàng K22"
+    },
+    {
+      "id": "TVTLT22",
+      "name": "TC Văn thư lưu trữ K22"
+    },
+    {
+      "id": "BS.TCK22.TSC",
+      "name": "BS.TCK22.TSC"
+    },
+    {
+      "id": "HL-TC.BVTVK22",
+      "name": "HL-TC.BVTVK22"
+    },
+    {
+      "id": "HL-TC.TTBVTV22",
+      "name": "HL-TC.TTBVTV22"
+    },
+    {
+      "id": "TCNTY22",
+      "name": "TC  Chăn nuôi- Thú  y K22"
+    },
+    {
+      "id": "TTTBVTV22",
+      "name": "TC Trồng trọt và bảo vệ thực vật K22"
+    },
+    {
+      "id": "HL-TCOTO.K23-CS1",
+      "name": "HL-TCOTO.K23-CS1"
+    },
+    {
+      "id": "HL-TCOTO.K23-TSC",
+      "name": "HL-TCOTO.K23-TSC"
+    },
+    {
+      "id": "TCGKL23",
+      "name": "TC Cắt gọt kim loại  K23"
+    },
+    {
+      "id": "TCNOT23A",
+      "name": "TC Công nghệ ô tô K23A"
+    },
+    {
+      "id": "TCNOT23B",
+      "name": "TC Công nghệ ô tô K23B"
+    },
+    {
+      "id": "TCNOT23C",
+      "name": "TC Công nghệ ô tô K23C"
+    },
+    {
+      "id": "TCNOT23D",
+      "name": "TC Công nghệ ô tô K23D"
+    },
+    {
+      "id": "TC CNOT K23E",
+      "name": "TC Công nghệ ô tô K23E"
+    },
+    {
+      "id": "HL-TC.K23",
+      "name": "HL-TC.K23"
+    },
+    {
+      "id": "TC-CNKTD-DTK23-HL",
+      "name": "HL-TC-CNKTD-DTK23"
+    },
+    {
+      "id": "HL-TCK23-CS1",
+      "name": "HL-TCK23-CS1"
+    },
+    {
+      "id": "TCNKTĐĐT23",
+      "name": "TC Công nghệ kỹ thuật điện, điện tử K23A"
+    },
+    {
+      "id": "TCNKTĐĐT23B",
+      "name": "TC Công nghệ kỹ thuật điện, điện tử K23B"
+    },
+    {
+      "id": "TĐCN23",
+      "name": "TC Điện công nghiệp K23"
+    },
+    {
+      "id": "TKTMLĐHKK23A",
+      "name": "TC Kỹ Thuật máy lạnh & điều hòa không khí K23A"
+    },
+    {
+      "id": "TKTMLĐHKK23",
+      "name": "TC Kỹ Thuật máy lạnh & điều hòa không khí K23B-TSC"
+    },
+    {
+      "id": "TKTMLĐHKK23C",
+      "name": "TC Kỹ Thuật máy lạnh & điều hòa không khí K23C"
+    },
+    {
+      "id": "TKTMLĐHKK23D",
+      "name": "TC Kỹ Thuật máy lạnh & điều hòa không khí K23D"
+    },
+    {
+      "id": "TKTMLĐHKK23B",
+      "name": "TC Kỹ Thuật máy lạnh và điều hòa không khí K23B"
+    },
+    {
+      "id": "HL-TC.CNTPK23",
+      "name": "HL-TC.CNTPK23"
+    },
+    {
+      "id": "HL-TCTKDH.K23",
+      "name": "HL-TCTKDH.K23"
+    },
+    {
+      "id": "TCNTP23",
+      "name": "TC Công nghệ thực phẩm K23"
+    },
+    {
+      "id": "TKTSCLRMT23",
+      "name": "TC Kỹ Thuật  sửa chữa, lắp ráp máy tính K23"
+    },
+    {
+      "id": "TTKĐH23A",
+      "name": "TC Thiết kế đồ họa K23A"
+    },
+    {
+      "id": "TTKĐH23B",
+      "name": "TC Thiết kế đồ họa K23B"
+    },
+    {
+      "id": "TTHVP23",
+      "name": "TC Tin học văn phòng K23"
+    },
+    {
+      "id": "TC-CNTP K23-HL",
+      "name": "TC-CNTP K23-HL"
+    },
+    {
+      "id": "TC-KTSCLRMTK23-HL",
+      "name": "TC-KTSCLRMTK23-HL"
+    },
+    {
+      "id": "HL-TIENG ANH-TC-CS1",
+      "name": "HL-TIENG ANH-TC-CS1"
+    },
+    {
+      "id": "HL-TIENG ANH-TC-TSC",
+      "name": "HL-TIENG ANH-TC-TSC"
+    },
+    {
+      "id": "TKTDN23",
+      "name": "TC  Kế toán doanh nghiệp K23A"
+    },
+    {
+      "id": "TKTDN23B",
+      "name": "TC  Kế toán doanh nghiệp K23B"
+    },
+    {
+      "id": "TCNTY23",
+      "name": "TC  Chăn nuôi- Thú  y K23"
+    },
+    {
+      "id": "TNTTS23",
+      "name": "TC Nuôi trồng thủy sản K23 - VLVH"
+    },
+    {
+      "id": "TTTBVTV23",
+      "name": "TC trồng trọt và bảo vệ thực vật K23"
+    },
+    {
+      "id": "TCGKL24",
+      "name": "TC Cắt gọt kim loại  K24A"
+    },
+    {
+      "id": "TCGKL24B",
+      "name": "TC Cắt gọt kim loại  K24B"
+    },
+    {
+      "id": "TCNOT24A",
+      "name": "TC Công nghệ ô tô K24A"
+    },
+    {
+      "id": "TCNOT24B",
+      "name": "TC Công nghệ ô tô K24B"
+    },
+    {
+      "id": "TCNOT24C",
+      "name": "TC Công nghệ ô tô K24C"
+    },
+    {
+      "id": "TCNOT24D",
+      "name": "TC Công nghệ ô tô K24D"
+    },
+    {
+      "id": "TCNOT24E",
+      "name": "TC Công nghệ ô tô K24E"
+    },
+    {
+      "id": "BS-TC.DCN.K24-CS1",
+      "name": "BS-TC.DCN.K24-CS1"
+    },
+    {
+      "id": "BS-TC.K24",
+      "name": "BS-TC.K24"
+    },
+    {
+      "id": "HL-TCK24-D-DT",
+      "name": "HL-TCK24-D-DT"
+    },
+    {
+      "id": "TCNKTĐĐT24",
+      "name": "TC Công nghệ kỹ thuật điện, điện tử K24"
+    },
+    {
+      "id": "TĐCN24",
+      "name": "TC Điện công nghiệp K24A"
+    },
+    {
+      "id": "TĐCN24B",
+      "name": "TC Điện công nghiệp K24B"
+    },
+    {
+      "id": "TĐCN24C",
+      "name": "TC Điện công nghiệp K24C"
+    },
+    {
+      "id": "TKTMLĐHKK24A",
+      "name": "TC Kỹ thuật máy lạnh và điều hòa không khí K24A"
+    },
+    {
+      "id": "TKTMLĐHKK24B",
+      "name": "TC Kỹ thuật máy lạnh và điều hòa không khí K24B"
+    },
+    {
+      "id": "TKTMLĐHKK24C",
+      "name": "TC Kỹ thuật máy lạnh và điều hòa không khí K24C"
+    },
+    {
+      "id": "TKTMLĐHKK24D",
+      "name": "TC Kỹ thuật máy lạnh và điều hòa không khí K24D"
+    },
+    {
+      "id": "TKTMLĐHKK24E",
+      "name": "TC Kỹ Thuật máy lạnh và điều hòa không khí K24E"
+    },
+    {
+      "id": "TKTMLĐHKK24F",
+      "name": "TC Kỹ thuật máy lạnh và điều hòa không khí K24F"
+    },
+    {
+      "id": "HL-TC.LR-SCMT.K24",
+      "name": "HL-TC.LR-SCMT.K24"
+    },
+    {
+      "id": "HL-TC.TKDHK24",
+      "name": "HL-TC.TKDHK24"
+    },
+    {
+      "id": "TCNTP24",
+      "name": "TC Công nghệ thực phẩm K24A"
+    },
+    {
+      "id": "TCNTP24B",
+      "name": "TC Công nghệ thực phẩm K24B"
+    },
+    {
+      "id": "TKTSCLRMT24",
+      "name": "TC Kỹ Thuật  sửa chữa, lắp ráp máy tính K24A"
+    },
+    {
+      "id": "TKTSCLRMT24B",
+      "name": "TC Kỹ Thuật  sửa chữa, lắp ráp máy tính K24B"
+    },
+    {
+      "id": "TKTSCLRMT24C",
+      "name": "TC Kỹ Thuật  sửa chữa, lắp ráp máy tính K24C"
+    },
+    {
+      "id": "TTKĐH24A",
+      "name": "TC Thiết kế đồ họa K24A"
+    },
+    {
+      "id": "TTKĐH24C",
+      "name": "TC Thiết kế đồ họa K24B"
+    },
+    {
+      "id": "TTKĐH24B",
+      "name": "TC Thiết kế đồ họa K24C"
+    },
+    {
+      "id": "TTKĐH25",
+      "name": "TC Thiết kế đồ họa K24G"
+    },
+    {
+      "id": "TTHVP24",
+      "name": "TC Tin học văn phòng K24"
+    },
+    {
+      "id": "TTHVP24B",
+      "name": "TC Tin học văn phòng K24B"
+    },
+    {
+      "id": "TTHVP24C",
+      "name": "TC Tin học văn phòng K24C"
+    },
+    {
+      "id": "TKTDN24",
+      "name": "TC  Kế toán doanh nghiệp K24A"
+    },
+    {
+      "id": "TKTDN24B",
+      "name": "TC  Kế toán doanh nghiệp K24B"
+    },
+    {
+      "id": "TNVBH24",
+      "name": "TC  Nghiệp vụ bán hàng K24A"
+    },
+    {
+      "id": "TNVBH24B",
+      "name": "TC  Nghiệp vụ bán hàng K24B"
+    },
+    {
+      "id": "TNVBH24C",
+      "name": "TC  Nghiệp vụ bán hàng K24C"
+    },
+    {
+      "id": "TTTBVTV24VLVH",
+      "name": "(VLVH)- TC Trồng trọt và bảo vệ thực vật K24"
+    },
+    {
+      "id": "TCNTY24",
+      "name": "TC  Chăn nuôi - Thú y K24"
+    },
+    {
+      "id": "TTTBVTV24",
+      "name": "TC trồng trọt và bảo vệ thực vật K24"
+    },
+    {
+      "id": "TCGKL25A",
+      "name": "TC Cắt gọt kim loại  K25A"
+    },
+    {
+      "id": "TCGKL25",
+      "name": "TC Cắt gọt kim loại  K25B"
+    },
+    {
+      "id": "TCNOT25A",
+      "name": "TC Công nghệ ô tô K25A"
+    },
+    {
+      "id": "TCNOT25B",
+      "name": "TC Công nghệ ô tô K25B"
+    },
+    {
+      "id": "TCNOT25C",
+      "name": "TC Công nghệ ô tô K25C"
+    },
+    {
+      "id": "TCNOT25D",
+      "name": "TC Công nghệ ô tô K25D"
+    },
+    {
+      "id": "TCNKTĐĐT25",
+      "name": "TC Công nghệ kỹ thuật điện, điện tử K25A"
+    },
+    {
+      "id": "TCNKTĐĐT25B",
+      "name": "TC Công nghệ kỹ thuật điện, điện tử K25B"
+    },
+    {
+      "id": "TĐCN25",
+      "name": "TC Điện công nghiệp K25"
+    },
+    {
+      "id": "TKTMLĐHKK25A",
+      "name": "TC Kỹ thuật máy lạnh và điều hòa không khí K25A"
+    },
+    {
+      "id": "TKTMLĐHKK25B",
+      "name": "TC Kỹ thuật máy lạnh và điều hòa không khí K25B"
+    },
+    {
+      "id": "TKTMLĐHKK25C",
+      "name": "TC Kỹ thuật máy lạnh và điều hòa không khí K25C"
+    },
+    {
+      "id": "TKTMLĐHKK25D",
+      "name": "TC Kỹ thuật máy lạnh và điều hòa không khí K25D"
+    },
+    {
+      "id": "TCNTP25A",
+      "name": "TC Công nghệ thực phẩm K25A"
+    },
+    {
+      "id": "TCNTP25B",
+      "name": "TC Công nghệ thực phẩm K25B"
+    },
+    {
+      "id": "TKTSCLRMT25",
+      "name": "TC Kỹ Thuật  sửa chữa, lắp ráp máy tính K25"
+    },
+    {
+      "id": "TTKĐH25A",
+      "name": "TC Thiết kế đồ họa K25A"
+    },
+    {
+      "id": "TTKĐH25B",
+      "name": "TC Thiết kế đồ họa K25B"
+    },
+    {
+      "id": "TTHVP25A",
+      "name": "TC Tin học văn phòng K25A"
+    },
+    {
+      "id": "T1.K25.GDQPAN_TC",
+      "name": "T1.K25.GDQPAN_TC"
+    },
+    {
+      "id": "T2.K25.GDQPAN_TC",
+      "name": "T2.K25.GDQPAN_TC"
+    },
+    {
+      "id": "T3.K25.GDQPAN_TC",
+      "name": "T3.K25.GDQPAN_TC"
+    },
+    {
+      "id": "T4.K25.GDQPAN_TC",
+      "name": "T4.K25.GDQPAN_TC"
+    },
+    {
+      "id": "T_KTDN_25",
+      "name": "TC  Kế toán doanh nghiệp K25 (TS)"
+    },
+    {
+      "id": "TKTDN25TSVHVL",
+      "name": "TC  Kế toán doanh nghiệp K25 (TS)VLVH"
+    },
+    {
+      "id": "TKTDN25VLVH",
+      "name": "TC  Kế toán doanh nghiệp K25 VLVH"
+    },
+    {
+      "id": "TKTDN25",
+      "name": "TC  Kế toán doanh nghiệp K25A"
+    },
+    {
+      "id": "TKTDN25B",
+      "name": "TC  Kế toán doanh nghiệp K25B"
+    },
+    {
+      "id": "TNVBH25",
+      "name": "TC  Nghiệp vụ bán hàng K25"
+    },
+    {
+      "id": "TNTTS25",
+      "name": "TC  Nuôi trồng thủy sản K25 (VLVH)"
+    },
+    {
+      "id": "TNTTS25VLVH",
+      "name": "TC  Nuôi trồng thủy sản K25 VLVH"
+    },
+    {
+      "id": "TCNTY25",
+      "name": "TC Chăn nuôi - Thú y K25"
+    },
+    {
+      "id": "TTTBVTV25",
+      "name": "TC trồng trọt và bảo vệ thực vật K25"
+    },
+    {
+      "id": "TCGKL26",
+      "name": "TC Cắt gọt kim loại  K26"
+    },
+    {
+      "id": "TCGKL26TS",
+      "name": "TC Cắt gọt kim loại  K26 TS"
+    },
+    {
+      "id": "TCGKL26A",
+      "name": "TC Cắt gọt kim loại  K26A"
+    },
+    {
+      "id": "TCNOT26TS",
+      "name": "TC Công nghệ ô tô K26 (TS)"
+    },
+    {
+      "id": "TCNOT26A",
+      "name": "TC Công nghệ ô tô K26A"
+    },
+    {
+      "id": "TCNOT26B",
+      "name": "TC Công nghệ ô tô K26B"
+    },
+    {
+      "id": "TCNOT26C",
+      "name": "TC Công nghệ ô tô K26C"
+    },
+    {
+      "id": "TKTXD26",
+      "name": "TC Kỹ thuật xây dựng  K26"
+    },
+    {
+      "id": "TKTXD26TS",
+      "name": "TC Kỹ thuật xây dựng  K26 (TS)"
+    },
+    {
+      "id": "TCNKTĐĐT 26",
+      "name": "TC Công nghệ kỹ thuật điện, điện tử K26"
+    },
+    {
+      "id": "TCNKTĐĐT26TS",
+      "name": "TC Công nghệ kỹ thuật điện, điện tử K26 (TS)"
+    },
+    {
+      "id": "TCNKTĐĐT26B",
+      "name": "TC Công nghệ kỹ thuật điện, điện tử K26B"
+    },
+    {
+      "id": "TĐCN26",
+      "name": "TC Điện công nghiệp K26"
+    },
+    {
+      "id": "TĐCN26TS",
+      "name": "TC Điện công nghiệp K26 (TS)"
+    },
+    {
+      "id": "TĐCN26A",
+      "name": "TC Điện công nghiệp K26A"
+    },
+    {
+      "id": "TKTMLĐHKK26TS",
+      "name": "TC Kỹ Thuật máy lạnh & điều hòa không khí K26 (TS)"
+    },
+    {
+      "id": "TKTMLĐHKK26A",
+      "name": "TC Kỹ thuật máy lạnh và điều hòa không khí K26A"
+    },
+    {
+      "id": "TKTMLĐHKK26B",
+      "name": "TC Kỹ thuật máy lạnh và điều hòa không khí K26B"
+    },
+    {
+      "id": "TKTMLĐHKK26C",
+      "name": "TC Kỹ Thuật máy lạnh và điều hòa không khí K26C"
+    },
+    {
+      "id": "TCBBQTS26TS",
+      "name": "TC Chế biến và bảo quản thủy sản K26 (TS)"
+    },
+    {
+      "id": "TCNTP26",
+      "name": "TC Công nghệ thực phẩm K26"
+    },
+    {
+      "id": "TCNTP26TS",
+      "name": "TC Công nghệ thực phẩm K26 (TS)"
+    },
+    {
+      "id": "TKTSCLRMT26TS",
+      "name": "TC Kỹ Thuật  sửa chữa, lắp ráp máy tính K26 (TS)"
+    },
+    {
+      "id": "TKTSCLRMT26A",
+      "name": "TC Kỹ Thuật  sửa chữa, lắp ráp máy tính K26A"
+    },
+    {
+      "id": "TKTSCLRMT26B",
+      "name": "TC Kỹ Thuật  sửa chữa, lắp ráp máy tính K26B"
+    },
+    {
+      "id": "TTKĐH26",
+      "name": "TC Thiết kế đồ họa K26"
+    },
+    {
+      "id": "TTKĐH26TS",
+      "name": "TC Thiết kế đồ họa K26 (TS)"
+    },
+    {
+      "id": "TTKĐH26A",
+      "name": "TC Thiết kế đồ họa K26A"
+    },
+    {
+      "id": "TTHVP26",
+      "name": "TC Tin học văn phòng K26"
+    },
+    {
+      "id": "TTHVP26TS",
+      "name": "TC Tin học văn phòng K26 (TS)"
+    },
+    {
+      "id": "TKTDN26TS",
+      "name": "TC  Kế toán doanh nghiệp K26 (TS)"
+    },
+    {
+      "id": "TNVBH26TS",
+      "name": "TC  Nghiệp vụ bán hàng K26 (TS)"
+    },
+    {
+      "id": "TNVBH26A",
+      "name": "TC  Nghiệp vụ bán hàng K26A"
+    },
+    {
+      "id": "TNVBH26B",
+      "name": "TC  Nghiệp vụ bán hàng K26B"
+    },
+    {
+      "id": "TKTDN26A",
+      "name": "TC Kế toán doanh nghiệp K26"
+    },
+    {
+      "id": "TKTDN26B",
+      "name": "TC. Kế toán doanh nghiệp K26B"
+    },
+    {
+      "id": "(TSTX)TTTBVTV26",
+      "name": "(TX)- TC Trồng trọt và bảo vệ thực vật K26"
+    },
+    {
+      "id": "TCNTY26TS",
+      "name": "TC  Chăn nuôi - Thú  y K26 (TS)"
+    },
+    {
+      "id": "TNTTS26",
+      "name": "TC  Nuôi trồng thủy sản K26"
+    },
+    {
+      "id": "TNTTS26TS",
+      "name": "TC  Nuôi trồng thủy sản K26 (TS)"
+    },
+    {
+      "id": "TCNTY26",
+      "name": "TC Chăn nuôi - Thú  y K26"
+    },
+    {
+      "id": "TTTBVTV26",
+      "name": "TC trồng trọt và bảo vệ thực vật K26"
+    },
+    {
+      "id": "TTTBVTV26TS",
+      "name": "TC trồng trọt và bảo vệ thực vật K26 (TS)"
+    },
+    {
+      "id": "TTTBVTV26 (TX)",
+      "name": "TC Trồng trọt và bảo vệ thực vật K26.TX"
+    },
+    {
+      "id": "TCVTLT-LK-2017",
+      "name": "TC Văn thư- Lưu trữ"
+    },
+    {
+      "id": "TCKT-LK-2017",
+      "name": "TC Kế toán 2017"
+    },
+    {
+      "id": "TCBVTV-LK-2017",
+      "name": "TC Trồng trọt và bảo vệ thực vật K7"
+    },
+    {
+      "id": "TCBVTV-K7",
+      "name": "TC Trồng trọt và bảo vệ thực vật K7A"
+    },
+    {
+      "id": "TCBVTV-LKGDTX-2017",
+      "name": "TC Trồng trọt và bảo vệ thực vật K7B"
+    },
+    {
+      "id": "TC_THUD_2018",
+      "name": "TC Tin học ứng dung-2018"
+    },
+    {
+      "id": "TC_THVP_2018A",
+      "name": "TC Tin học văn phòng-2018A"
+    },
+    {
+      "id": "TC_THVP_2018B",
+      "name": "TC Tin học văn phòng-2018B"
+    },
+    {
+      "id": "TC_KTDN_2018",
+      "name": "TC Kế toán doanh nghiệp-2018"
+    },
+    {
+      "id": "TC_NTTS_2018",
+      "name": "TC Nuôi trồng thủy sản-2018"
+    },
+    {
+      "id": "TC_TTBVTV_2018_CL2",
+      "name": "TC Trồng trọt và bảo vệ thực vật- CL2-2018"
+    },
+    {
+      "id": "TC_TTBVTV_2018",
+      "name": "TC Trồng trọt và Bảo vệ thực vật-2018"
+    },
+    {
+      "id": "HL_TC.K19CS1",
+      "name": "HL_TC.K19CS1"
+    },
+    {
+      "id": "HL-TC-CS1-CKXD",
+      "name": "HL-TC-CS1-CKXD"
+    },
+    {
+      "id": "T_CK_19",
+      "name": "TC Cắt gọt kim loại K19"
+    },
+    {
+      "id": "T_CO_19A",
+      "name": "TC Công nghệ ô tô K19A"
+    },
+    {
+      "id": "T_CO_19B",
+      "name": "TC Công nghệ ô tô K19B"
+    },
+    {
+      "id": "T_CO_19C",
+      "name": "TC Công nghệ ô tô K19C"
+    },
+    {
+      "id": "T_CO_19D",
+      "name": "TC Công nghệ ô tô K19D"
+    },
+    {
+      "id": "T_CO_19E",
+      "name": "TC Công nghệ ô tô K19E"
+    },
+    {
+      "id": "T_KX_19",
+      "name": "TC Kỹ thuật xây dựng K19"
+    },
+    {
+      "id": "HL_K.DT-TC",
+      "name": "HL_K.DT-TC"
+    },
+    {
+      "id": "T_KĐ_19A",
+      "name": "TC  Kỹ thuật máy lạnh và điều hòa Không khí K19 A"
+    },
+    {
+      "id": "T_CĐ_19",
+      "name": "TC Công nghệ kỹ thuật điện, điện tử K19"
+    },
+    {
+      "id": "T_ĐC_19",
+      "name": "TC Điện công nghiệp K19"
+    },
+    {
+      "id": "T_KĐ_19B",
+      "name": "TC Kỹ Thuật máy lạnh và điều hòa Không khí K19 B"
+    },
+    {
+      "id": "HL_CN19TC",
+      "name": "HL_CN19TC"
+    },
+    {
+      "id": "T_CNTP_19",
+      "name": "TC Công nghệ thực phẩm K19"
+    },
+    {
+      "id": "T_KL_19",
+      "name": "TC Kỹ thuật sửa chữa, lắp ráp máy tính K19"
+    },
+    {
+      "id": "T_TĐ_19",
+      "name": "TC Thiết kế đồ họa K19"
+    },
+    {
+      "id": "T_TT_19",
+      "name": "TC Thiết kế thời Trang K19"
+    },
+    {
+      "id": "T_THVP_19A",
+      "name": "TC Tin học văn phòng K19A"
+    },
+    {
+      "id": "T_THVP_19B",
+      "name": "TC Tin học văn phòng K19B"
+    },
+    {
+      "id": "T_THVP_19C",
+      "name": "TC Tin học văn phòng K19C"
+    },
+    {
+      "id": "T_THVP_19D",
+      "name": "TC Tin học văn phòng K19D"
+    },
+    {
+      "id": "T_KTDN_19",
+      "name": "TC Kế toán doanh nghiệp K19"
+    },
+    {
+      "id": "HL-TC.TTBVTVK19",
+      "name": "HL-TC.TTBVTVK19"
+    },
+    {
+      "id": "T_NTTS_19",
+      "name": "TC Nuôi trồng thủy sản K19"
+    },
+    {
+      "id": "T_TTBVTV_19",
+      "name": "TC Trồng trọt và bảo vệ thực vật K19"
+    },
+    {
+      "id": "T_CGKL_20A",
+      "name": "TC Cắt gọt kim loại K20A"
+    },
+    {
+      "id": "T_CGKL_20B",
+      "name": "TC Cắt gọt kim loại K20B"
+    },
+    {
+      "id": "T_CNOT_20A",
+      "name": "TC Công nghệ ô tô K20A"
+    },
+    {
+      "id": "T_CNOT_20B",
+      "name": "TC Công nghệ ô tô K20B"
+    },
+    {
+      "id": "T_CNOT_20C",
+      "name": "TC Công nghệ ô tô K20C"
+    },
+    {
+      "id": "T_CNOT_20D",
+      "name": "TC Công nghệ ô tô K20D"
+    },
+    {
+      "id": "T_KTXD_20",
+      "name": "TC Kỹ thuật xây dựng K20"
+    },
+    {
+      "id": "T_CNKTDDT_20",
+      "name": "TC Công nghệ kỹ thuật điện, điện tử K20"
+    },
+    {
+      "id": "T_DCN_20A",
+      "name": "TC Điện công nghiệp K20A"
+    },
+    {
+      "id": "T_DCN_20B",
+      "name": "TC Điện công nghiệp K20B"
+    },
+    {
+      "id": "T_KTMLDHKK_20A",
+      "name": "TC Kỹ thuật máy lạnh và điều hòa không khí K20A"
+    },
+    {
+      "id": "T_KTMLDHKK_20B",
+      "name": "TC Kỹ thuật máy lạnh và điều hòa không khí K20B"
+    },
+    {
+      "id": "T_KTMLDHKK_20C",
+      "name": "TC Kỹ Thuật máy lạnh và điều hòa không khí K20C"
+    },
+    {
+      "id": "HL_CN20TC",
+      "name": "HL_CN20TC"
+    },
+    {
+      "id": "T_CBBQTS_20",
+      "name": "TC  Chế biến và bảo quản thủy sản K20"
+    },
+    {
+      "id": "T_CNTP_20",
+      "name": "TC Công nghệ thực phẩm K20"
+    },
+    {
+      "id": "T_KTSCLRMT_20",
+      "name": "TC Kỹ Thuật  sửa chữa, lắp ráp máy tính K20"
+    },
+    {
+      "id": "T_QTMMT_20",
+      "name": "TC Quản trị mạng máy tính K20"
+    },
+    {
+      "id": "T_TKĐH_20",
+      "name": "TC Thiết kế đồ họa K20"
+    },
+    {
+      "id": "T_TKTT_20",
+      "name": "TC Thiết kế thời Trang K20"
+    },
+    {
+      "id": "T_THVP_20",
+      "name": "TC Tin học văn phòng K20"
+    },
+    {
+      "id": "T_KTDN_20",
+      "name": "TC  Kế toán doanh nghiệp K20"
+    },
+    {
+      "id": "T_NVBH_20",
+      "name": "TC  Nghiệp vụ bán hàng K20"
+    },
+    {
+      "id": "T_CNTY_20",
+      "name": "TC  Chăn nuôi- Thú y  K20"
+    },
+    {
+      "id": "T_NTTS_20",
+      "name": "TC  Nuôi trồng thủy sản K20"
+    },
+    {
+      "id": "T_TTBVTV_20",
+      "name": "TC trồng trọt và bảo vệ thực vật K20"
+    },
+    {
+      "id": "T_CGKL_21",
+      "name": "TC Cắt gọt kim loại  K21"
+    },
+    {
+      "id": "T_CNOT_21A",
+      "name": "TC Công nghệ ô tô K21A"
+    },
+    {
+      "id": "T_CNOT_21B",
+      "name": "TC Công nghệ ô tô K21B"
+    },
+    {
+      "id": "T_CNOT_21C",
+      "name": "TC Công nghệ ô tô K21C"
+    },
+    {
+      "id": "T_CNOT_21D",
+      "name": "TC Công nghệ ô tô K21D"
+    },
+    {
+      "id": "T_CNOT_21E",
+      "name": "TC Công nghệ ô tô K21E"
+    },
+    {
+      "id": "T_CNKTDDT_21",
+      "name": "TC Công nghệ kỹ thuật điện, điện tử K21"
+    },
+    {
+      "id": "T_DCN_21",
+      "name": "TC Điện công nghiệp K21"
+    },
+    {
+      "id": "T_KTMLDHKKĐ_21C",
+      "name": "TC Kỹ Thuật máy lạnh và điều hòa không khí K21 C"
+    },
+    {
+      "id": "T_KTMLDHKKĐ_21A",
+      "name": "TC Kỹ Thuật máy lạnh và điều hòa không khí K21A"
+    },
+    {
+      "id": "T_KTMLDHKKĐ_21B",
+      "name": "TC Kỹ Thuật máy lạnh và điều hòa không khí K21B"
+    },
+    {
+      "id": "HL-TC.LR-SCMT.K21",
+      "name": "HL-TC.LR-SCMT.K21"
+    },
+    {
+      "id": "HL-TC-CS1",
+      "name": "HL-TC-CS1"
+    },
+    {
+      "id": "T_CNTP_21A",
+      "name": "TC Công nghệ thực phẩm K21A"
+    },
+    {
+      "id": "T_CNTP_21B",
+      "name": "TC Công nghệ thực phẩm K21B"
+    },
+    {
+      "id": "T_KTSCLRMT_21",
+      "name": "TC Kỹ Thuật  sửa chữa, lắp ráp máy tính K21"
+    },
+    {
+      "id": "T_TKĐH_21",
+      "name": "TC Thiết kế đồ họa K21"
+    },
+    {
+      "id": "T_TKTT_21",
+      "name": "TC Thiết kế thời Trang K21"
+    },
+    {
+      "id": "T_THVP_21A",
+      "name": "TC Tin học văn phòng K21 A"
+    },
+    {
+      "id": "T_THVP_21B",
+      "name": "TC Tin học văn phòng K21 B"
+    },
+    {
+      "id": "T_THVP_21C",
+      "name": "TC Tin học văn phòng K21 C"
+    },
+    {
+      "id": "HL-TC.NVBH.K21",
+      "name": "HL-TC.NVBH.K21"
+    },
+    {
+      "id": "T_KTDN_21",
+      "name": "TC  Kế toán doanh nghiệp K21"
+    },
+    {
+      "id": "T_NVBH_21",
+      "name": "TC  Nghiệp vụ bán hàng K21"
+    },
+    {
+      "id": "T_VTLT_21",
+      "name": "TC Văn thư-Lưu trữ"
+    },
+    {
+      "id": "T_CNTY_21",
+      "name": "TC  Chăn nuôi- Thú  y K21"
+    },
+    {
+      "id": "T_TTBVTV_21",
+      "name": "TC trồng trọt và bảo vệ thực vật K21"
+    },
+    {
+      "id": "TCCBTS_K9",
+      "name": "Công nghệ kỹ thuật chế biến và bảo quản thuỷ sản"
+    },
+    {
+      "id": "TCKT_K12",
+      "name": "Trung cấp Kế toán doanh nghiệp K12"
+    },
+    {
+      "id": "TCNTTS_K2",
+      "name": "Nuôi trồng thuỷ sản K2"
+    },
+    {
+      "id": "TCCNTY_K4",
+      "name": "Trung cấp Chăn nuôi thú y K4"
+    },
+    {
+      "id": "TCBVTV_K4",
+      "name": "Trung cấp Trồng trọt vả Bảo vệ thực vật K4"
+    },
+    {
+      "id": "TCBVTV_K5",
+      "name": "Trung cấp Trồng trọt và Bảo vệ thực vật K5"
+    },
+    {
+      "id": "TCCNTP_K1",
+      "name": "Trung cấp Công nghệ thực phẩm K1"
+    },
+    {
+      "id": "KT-2016",
+      "name": "Kế toán K13"
+    },
+    {
+      "id": "TTBVTV-2016",
+      "name": "Trồng trọt và bảo vệ thực vật 2016"
+    },
+    {
+      "id": "TCCNTY_K5",
+      "name": "Trung cấp Chăn nuôi - Thú y"
+    },
+    {
+      "id": "TCBVTV_K6",
+      "name": "Trung cấp Trồng trọt và Bảo vệ thực vật K6"
+    },
+    {
+      "id": "TCK16",
+      "name": "Cắt gọt kim loại_K16"
+    },
+    {
+      "id": "TCO16A",
+      "name": "Công nghệ ô tô 1_K16"
+    },
+    {
+      "id": "TCO16B",
+      "name": "Công nghệ ô tô 2_K16"
+    },
+    {
+      "id": "TĐC16",
+      "name": "Điện công nghiệp_K16"
+    },
+    {
+      "id": "TKĐ16",
+      "name": "Kỹ thuật máy lạnh & điều hoà không khí_K16"
+    },
+    {
+      "id": "TKL16",
+      "name": "Kỹ thuật sửa chữa, lắp ráp máy tính_K16"
+    },
+    {
+      "id": "TTT16",
+      "name": "Thiết kế thời trang_K16"
+    },
+    {
+      "id": "TKD16",
+      "name": "Kế toan doanh nghiệp_K16"
+    },
+    {
+      "id": "TCT16",
+      "name": "Thú y_K16"
+    },
+    {
+      "id": "TCK17",
+      "name": "Cắt gọt kim loại_K17"
+    },
+    {
+      "id": "TCO17A",
+      "name": "Công nghệ ô tô 1_K17"
+    },
+    {
+      "id": "TCO17B",
+      "name": "Công nghệ ô tô 2_K17"
+    },
+    {
+      "id": "TĐC17",
+      "name": "Điện công nghiệp_K17"
+    },
+    {
+      "id": "TKĐ17",
+      "name": "Kỹ thuật máy lạnh & điều hoà không khí_K17"
+    },
+    {
+      "id": "TKL17",
+      "name": "Kỹ thuật sửa chữa, lắp ráp máy tính_K17"
+    },
+    {
+      "id": "TTĐ17",
+      "name": "Thiết kế đồ hoạ_K17"
+    },
+    {
+      "id": "TTT17",
+      "name": "Thiết kế thời trang_K17"
+    },
+    {
+      "id": "TKD17",
+      "name": "Kế toan doanh nghiệp_K17"
+    },
+    {
+      "id": "TCT17",
+      "name": "Thú y_K17"
+    },
+    {
+      "id": "TCK18",
+      "name": "Cắt gọt kim loại_K18"
+    },
+    {
+      "id": "TCO18A",
+      "name": "Công nghệ ô tô 1_K18"
+    },
+    {
+      "id": "TCO18B",
+      "name": "Công nghệ ô tô 2_K18"
+    },
+    {
+      "id": "TCO18C",
+      "name": "Công nghệ ô tô 3_K18"
+    },
+    {
+      "id": "TKX18",
+      "name": "Kỹ thuật xây dựng_K18"
+    },
+    {
+      "id": "TCĐ18",
+      "name": "Công nghệ kỹ thuật điệ- điện tử_K18"
+    },
+    {
+      "id": "TĐC18",
+      "name": "Điện công nghiệp_K18"
+    },
+    {
+      "id": "TKĐ18A",
+      "name": "Kỹ thuật máy lạnh & điều hoà không khí 1_K18"
+    },
+    {
+      "id": "TKĐ18B",
+      "name": "Kỹ thuật máy lạnh & điều hoà không khí 2_K18"
+    },
+    {
+      "id": "TKL18",
+      "name": "Kỹ thuật sửa chữa, lắp ráp máy tính_K18"
+    },
+    {
+      "id": "TTT18",
+      "name": "Thiết kế thời trang_K18"
+    },
+    {
+      "id": "TKD18A",
+      "name": "Kế toan doanh nghiệp 1_K18"
+    },
+    {
+      "id": "TKD18B",
+      "name": "Kế toan doanh nghiệp 2_K18"
+    },
+    {
+      "id": "TCT18",
+      "name": "Thú y_K18"
+    }
+  ]
+}
