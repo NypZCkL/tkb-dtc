@@ -1,7 +1,7 @@
 {
   "name": "Thời Khóa Biểu DTC",
   "short_name": "TKB DTC",
-  "description": "Ứng dụng xem thời khóa biểu sinh viên Trường CĐ Cộng đồng Đồng Tháp (DTCC)",
+  "description": "Ứng dụng xem thời khóa biểu sinh viên Trường Cao Đẳng Đồng Tháp (DTC)",
   "lang": "vi",
   "start_url": "./index.html",
   "scope": "./",

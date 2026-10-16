@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Thời Khóa Biểu DTC - Trường CĐ Cộng đồng Đồng Tháp</title>
-  <meta name="description" content="Tra cứu thời khóa biểu sinh viên Trường Cao đẳng Cộng đồng Đồng Tháp (DTCC) nhanh chóng, chính xác. Hỗ trợ lưu trữ xem ngoại tuyến khi không có mạng.">
-  <meta name="keywords" content="thời khóa biểu DTC, TKB DTCC, Cao đẳng Cộng đồng Đồng Tháp, TKB DTC, lịch học DTC, dtcc">
+  <title>Thời Khóa Biểu DTC - Trường Cao Đẳng Đồng Tháp</title>
+  <meta name="description" content="Tra cứu thời khóa biểu sinh viên Trường Cao Đẳng Đồng Tháp (DTC) nhanh chóng, chính xác. Hỗ trợ lưu trữ xem ngoại tuyến khi không có mạng.">
+  <meta name="keywords" content="thời khóa biểu DTC, TKB DTC, Cao Đẳng Đồng Tháp, TKB DTC, lịch học DTC, dtc">
   <meta name="author" content="Phan Nguyễn Hữu Nghĩa">
   <meta name="theme-color" content="#0284c7" id="metaThemeColor">
   <meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
@@ -21,14 +21,14 @@
 
   <!-- Open Graph / Facebook / Zalo -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Thời Khóa Biểu DTC - Trường CĐ Cộng đồng Đồng Tháp">
-  <meta property="og:description" content="Tra cứu thời khóa biểu sinh viên Trường CĐ Cộng đồng Đồng Tháp tiện lợi, nhanh chóng, hỗ trợ offline.">
+  <meta property="og:title" content="Thời Khóa Biểu DTC - Trường Cao Đẳng Đồng Tháp">
+  <meta property="og:description" content="Tra cứu thời khóa biểu sinh viên Trường Cao Đẳng Đồng Tháp tiện lợi, nhanh chóng, hỗ trợ offline.">
   <meta property="og:image" content="icon-512.png">
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Thời Khóa Biểu DTC">
-  <meta name="twitter:description" content="Tra cứu thời khóa biểu sinh viên Trường CĐ Cộng đồng Đồng Tháp tiện lợi, nhanh chóng.">
+  <meta name="twitter:description" content="Tra cứu thời khóa biểu sinh viên Trường Cao Đẳng Đồng Tháp tiện lợi, nhanh chóng.">
   <meta name="twitter:image" content="icon-192.png">
 
   <link rel="icon" type="image/png" href="logo.png">
@@ -324,10 +324,10 @@
           <!-- Step 3: Search and Select Class -->
           <div class="flex-1 flex flex-col min-h-0">
             <label class="block text-xs font-bold text-sky-700 dark:text-sky-400 uppercase tracking-wider mb-1">3. Tìm & Chọn Lớp</label>
-            <input id="classSearchInput" type="text" placeholder="Nhập tên lớp..." class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs font-medium text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-sky-500 mb-2">
+            <input id="classSearchInput" type="text" placeholder="Tìm kiếm lớp học toàn trường (ví dụ: NN2605B, CD26...)..." class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs font-medium text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-sky-500 mb-2">
             
             <div id="classesListWrap" class="flex-1 overflow-y-auto border border-slate-200 dark:border-slate-700 rounded-xl divide-y divide-slate-100 dark:divide-slate-800 bg-slate-50 dark:bg-slate-800/50">
-              <p id="classesPlaceholder" class="p-4 text-xs text-center text-slate-400">Vui lòng chọn Khoa và Khóa</p>
+              <p id="classesPlaceholder" class="p-4 text-xs text-center text-slate-400">Đang tải danh sách lớp học...</p>
             </div>
           </div>
         </div>
@@ -342,7 +342,7 @@
         </div>
         <div>
           <h3 class="text-lg font-extrabold text-slate-900 dark:text-white">Thời Khóa Biểu DTC</h3>
-          <p class="text-xs font-semibold text-sky-600 dark:text-sky-400">Phiên bản 1.1 • Trường CĐ Đồng Tháp</p>
+          <p class="text-xs font-semibold text-sky-600 dark:text-sky-400">Phiên bản 1.1 • Trường Cao Đẳng Đồng Tháp</p>
         </div>
         <div class="w-full bg-slate-50 dark:bg-slate-800/60 rounded-xl p-3 text-left space-y-1 border border-slate-100 dark:border-slate-800">
           <p class="text-[11px] font-medium text-slate-400">Phát triển bởi:</p>
@@ -454,6 +454,17 @@
       appState.currentWeekIndex = data.defaultWeekIndex || 0;
       appState.defaultWeekIndex = data.defaultWeekIndex || 0;
 
+      // Tự động chữa lành localStorage nếu đã từng lưu sai Khoa/Khóa của lớp đã chọn
+      if (appState.selectedClass && appState.classFacultyMap[appState.selectedClass.id]) {
+        const trueFacId = appState.classFacultyMap[appState.selectedClass.id];
+        if (!appState.selectedFaculty || appState.selectedFaculty.id !== trueFacId) {
+          const foundFac = appState.faculties.find(f => f.id === trueFacId);
+          appState.selectedFaculty = foundFac || { id: trueFacId, name: trueFacId };
+          appState.selectedCourse = null;
+          savePrefs(appState.selectedFaculty, null, appState.selectedClass);
+        }
+      }
+
       populateFacultySelect();
       renderCoursesChips();
       renderClassOptions();
@@ -502,10 +513,18 @@
       try {
         let recent = JSON.parse(localStorage.getItem('dtcc_recent_classes') || '[]');
         recent = recent.filter(r => r.id !== classItem.id);
+
+        let resolvedFaculty = faculty;
+        if (appState.classFacultyMap && appState.classFacultyMap[classItem.id]) {
+          const facId = appState.classFacultyMap[classItem.id];
+          const foundFac = appState.faculties ? appState.faculties.find(f => f.id === facId) : null;
+          resolvedFaculty = foundFac || { id: facId, name: facId };
+        }
+
         recent.unshift({
           id: classItem.id,
           name: classItem.name,
-          faculty: faculty || null,
+          faculty: resolvedFaculty || null,
           course: course || null
         });
         if (recent.length > 5) recent = recent.slice(0, 5);
@@ -528,13 +547,37 @@
         wrap.classList.remove('hidden');
 
         recent.forEach(r => {
+          const isCurrent = appState.selectedClass && appState.selectedClass.id === r.id;
           const chip = document.createElement('button');
-          chip.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:border-sky-500 dark:hover:border-sky-400 hover:bg-sky-50 dark:hover:bg-slate-700/80 active:scale-95 transition shrink-0';
-          chip.textContent = r.name;
+          chip.className = `px-2.5 py-1.5 rounded-lg text-xs font-semibold border transition shrink-0 flex items-center gap-1.5 active:scale-95 ${
+            isCurrent
+              ? 'bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 border-sky-300 dark:border-sky-600 shadow-sm ring-1 ring-sky-400/40'
+              : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-sky-500 dark:hover:border-sky-400 hover:bg-sky-50 dark:hover:bg-slate-700/80'
+          }`;
+
+          const facId = (appState.classFacultyMap && appState.classFacultyMap[r.id]) 
+            || (r.faculty && r.faculty.id) || '';
+
+          chip.innerHTML = `
+            <span class="truncate max-w-[130px]">${r.name}</span>
+            ${facId ? `<span class="px-1.5 py-0.2 rounded text-[10px] font-bold ${isCurrent ? 'bg-sky-200/80 dark:bg-sky-800 text-sky-800 dark:text-sky-200' : 'bg-slate-200/80 dark:bg-slate-700 text-slate-600 dark:text-slate-300'}">${facId}</span>` : ''}
+          `;
+
           chip.onclick = () => {
             appState.selectedClass = { id: r.id, name: r.name };
-            if (r.faculty) appState.selectedFaculty = r.faculty;
-            if (r.course) appState.selectedCourse = r.course;
+
+            // Chuẩn hóa đúng Khoa từ classFacultyMap
+            const trueFacId = (appState.classFacultyMap && appState.classFacultyMap[r.id]) || (r.faculty && r.faculty.id);
+            if (trueFacId) {
+              const foundFac = appState.faculties ? appState.faculties.find(f => f.id === trueFacId) : null;
+              appState.selectedFaculty = foundFac || { id: trueFacId, name: trueFacId };
+            } else if (r.faculty) {
+              appState.selectedFaculty = r.faculty;
+            }
+
+            // Xóa khóa cũ để tránh gửi sai
+            appState.selectedCourse = null;
+
             savePrefs(appState.selectedFaculty, appState.selectedCourse, appState.selectedClass);
             addRecentClass(appState.selectedClass, appState.selectedFaculty, appState.selectedCourse);
             updateHeaderDisplay();
@@ -685,7 +728,7 @@
           if (err.isTimeout) {
             showErrorState(
               'Cổng trường phản hồi quá chậm (Timeout)',
-              'Hệ thống đào tạo trường (DTCC) hiện đang quá tải hoặc phản hồi chậm. Vui lòng bấm "Thử lại ngay" sau vài giây.',
+              'Hệ thống đào tạo trường (DTC) hiện đang quá tải hoặc phản hồi chậm. Vui lòng bấm "Thử lại ngay" sau vài giây.',
               'timeout'
             );
           } else {
@@ -901,7 +944,7 @@
             isTimeoutError = true;
             serverErrorMsg = errJson && errJson.message ? errJson.message : 'Cổng trường phản hồi quá lâu (Timeout).';
           } else if (res.status === 502 || (errJson && errJson.code === 'SCHOOL_UNREACHABLE')) {
-            serverErrorMsg = errJson && errJson.message ? errJson.message : 'Không thể kết nối đến máy chủ cổng trường (DTCC).';
+            serverErrorMsg = errJson && errJson.message ? errJson.message : 'Không thể kết nối đến máy chủ cổng trường (DTC).';
           } else {
             serverErrorMsg = errJson && errJson.message ? errJson.message : `Lỗi máy chủ (HTTP ${res.status})`;
           }
@@ -945,7 +988,7 @@
           if (isTimeoutError) {
             showErrorState(
               'Cổng trường phản hồi quá chậm (Timeout)',
-              'Cổng đào tạo trường (DTCC) hiện đang quá tải hoặc phản hồi quá lâu. Vui lòng bấm "Thử lại ngay" sau giây lát!',
+              'Cổng đào tạo trường (DTC) hiện đang quá tải hoặc phản hồi quá lâu. Vui lòng bấm "Thử lại ngay" sau giây lát!',
               'timeout'
             );
           } else if (appState.isOffline) {
@@ -1084,21 +1127,25 @@
 
       sel.onchange = async (e) => {
         const fId = e.target.value;
+        appState.selectedCourse = null; // Luôn reset khóa cũ khi đổi khoa
+
         if (!fId) {
           appState.selectedFaculty = null;
-          if (appState.selectedCourse) {
-            await loadClassesForCourse('', appState.selectedCourse.id);
-          } else {
-            appState.classes = appState.initialClasses;
-            appState.courses = appState.initialCourses;
-            renderCoursesChips();
-            renderClassOptions();
-          }
+          appState.classes = appState.initialClasses || [];
+          appState.courses = appState.initialCourses || [];
+          renderCoursesChips();
+          renderClassOptions(document.getElementById('classSearchInput')?.value || '');
           return;
         }
+
         const faculty = appState.faculties.find(f => f.id === fId);
         if (faculty) {
           appState.selectedFaculty = faculty;
+          // Phản hồi tức thì 0ms & hỗ trợ offline: lọc danh sách lớp ngay trong bộ nhớ
+          if (appState.classFacultyMap && appState.initialClasses) {
+            appState.classes = appState.initialClasses.filter(c => appState.classFacultyMap[c.id] === faculty.id);
+            renderClassOptions(document.getElementById('classSearchInput')?.value || '');
+          }
           await loadCoursesForFaculty(faculty.id);
         }
       };
@@ -1114,18 +1161,24 @@
 
       try {
         const res = await fetch(`/api/courses?faculty=${encodeURIComponent(facultyId)}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         appState.courses = data.courses || [];
         renderCoursesChips();
 
         if (appState.selectedCourse) {
           await loadClassesForCourse(facultyId, appState.selectedCourse.id);
-        } else {
-          appState.classes = data.classes || [];
-          renderClassOptions();
+        } else if (data.classes && data.classes.length > 0) {
+          appState.classes = data.classes;
+          renderClassOptions(document.getElementById('classSearchInput')?.value || '');
         }
       } catch (e) {
-        coursesWrap.innerHTML = `<span class="text-xs text-rose-500">Lỗi kết nối khi tải khóa</span>`;
+        // Ngoại tuyến hoặc lỗi mạng: dùng danh sách lớp cục bộ theo khoa
+        if (appState.classFacultyMap && appState.initialClasses) {
+          appState.classes = appState.initialClasses.filter(c => appState.classFacultyMap[c.id] === facultyId);
+        }
+        coursesWrap.innerHTML = '<span class="text-xs text-slate-400 italic">Tất cả khóa</span>';
+        renderClassOptions(document.getElementById('classSearchInput')?.value || '');
       }
     }
 
@@ -1146,10 +1199,14 @@
         appState.selectedCourse = null;
         renderCoursesChips();
         if (appState.selectedFaculty) {
+          if (appState.classFacultyMap && appState.initialClasses) {
+            appState.classes = appState.initialClasses.filter(c => appState.classFacultyMap[c.id] === appState.selectedFaculty.id);
+            renderClassOptions(document.getElementById('classSearchInput')?.value || '');
+          }
           await loadCoursesForFaculty(appState.selectedFaculty.id);
         } else {
-          appState.classes = appState.initialClasses;
-          renderClassOptions();
+          appState.classes = appState.initialClasses || [];
+          renderClassOptions(document.getElementById('classSearchInput')?.value || '');
         }
       };
       wrap.appendChild(allBtn);
@@ -1168,10 +1225,14 @@
             appState.selectedCourse = null;
             renderCoursesChips();
             if (appState.selectedFaculty) {
+              if (appState.classFacultyMap && appState.initialClasses) {
+                appState.classes = appState.initialClasses.filter(c => appState.classFacultyMap[c.id] === appState.selectedFaculty.id);
+                renderClassOptions(document.getElementById('classSearchInput')?.value || '');
+              }
               await loadCoursesForFaculty(appState.selectedFaculty.id);
             } else {
-              appState.classes = appState.initialClasses;
-              renderClassOptions();
+              appState.classes = appState.initialClasses || [];
+              renderClassOptions(document.getElementById('classSearchInput')?.value || '');
             }
           } else {
             appState.selectedCourse = k;
@@ -1195,9 +1256,15 @@
           throw new Error(errPayload && errPayload.message ? errPayload.message : `HTTP ${res.status}`);
         }
         appState.classes = await res.json();
-        renderClassOptions();
+        renderClassOptions(document.getElementById('classSearchInput')?.value || '');
       } catch (e) {
-        wrap.innerHTML = `<p class="p-4 text-xs text-center text-rose-500">${e.message || 'Lỗi tải danh sách lớp'}</p>`;
+        // Fallback filtering if offline
+        if (appState.classFacultyMap && appState.initialClasses && facultyId) {
+          appState.classes = appState.initialClasses.filter(c => appState.classFacultyMap[c.id] === facultyId);
+          renderClassOptions(document.getElementById('classSearchInput')?.value || '');
+        } else {
+          wrap.innerHTML = `<p class="p-4 text-xs text-center text-rose-500">${e.message || 'Lỗi tải danh sách lớp'}</p>`;
+        }
       }
     }
 
@@ -1206,7 +1273,13 @@
       wrap.innerHTML = '';
 
       const q = filter.trim().toLowerCase();
-      const filtered = appState.classes.filter(c => 
+      // Nếu có từ khóa tìm kiếm: tìm kiếm thông minh trên TOÀN BỘ 776 lớp (initialClasses)
+      let sourceList = appState.classes;
+      if (q && appState.initialClasses && appState.initialClasses.length > 0) {
+        sourceList = appState.initialClasses;
+      }
+
+      const filtered = sourceList.filter(c => 
         c.name.toLowerCase().includes(q) || c.id.toLowerCase().includes(q)
       );
 
@@ -1215,16 +1288,36 @@
         return;
       }
 
-      filtered.forEach(c => {
+      // Giới hạn hiển thị 80 kết quả để giao diện mượt mà tuyệt đối
+      const displayList = q ? filtered.slice(0, 80) : filtered;
+
+      displayList.forEach(c => {
+        const isCurrent = appState.selectedClass && appState.selectedClass.id === c.id;
+        const facId = (appState.classFacultyMap && appState.classFacultyMap[c.id]) || '';
+        const facObj = facId ? appState.faculties.find(f => f.id === facId) : null;
+        const facName = facObj ? facObj.name : facId;
+
         const item = document.createElement('div');
-        item.className = 'p-3 hover:bg-sky-50 dark:hover:bg-slate-700/60 cursor-pointer active:bg-sky-100 dark:active:bg-slate-700 transition flex items-center justify-between';
+        item.className = `p-3 hover:bg-sky-50 dark:hover:bg-slate-700/60 cursor-pointer active:bg-sky-100 dark:active:bg-slate-700 transition flex items-center justify-between border-b border-slate-100 dark:border-slate-800 last:border-b-0 ${
+          isCurrent ? 'bg-sky-50/70 dark:bg-sky-950/40 font-semibold' : ''
+        }`;
+
         item.onclick = () => {
           appState.selectedClass = c;
-          if (!appState.selectedFaculty && appState.classFacultyMap && appState.classFacultyMap[c.id]) {
-            const facId = appState.classFacultyMap[c.id];
-            const facObj = appState.faculties.find(f => f.id === facId);
-            if (facObj) appState.selectedFaculty = facObj;
+
+          // Chuẩn hóa Khoa chính xác của lớp được chọn
+          if (facId) {
+            appState.selectedFaculty = facObj || { id: facId, name: facId };
           }
+          // Xóa khóa cũ để tránh lỗi xung đột với cổng trường
+          appState.selectedCourse = null;
+
+          // Đồng bộ giá trị trong dropdown Khoa
+          const sel = document.getElementById('facultySelect');
+          if (sel && appState.selectedFaculty) {
+            sel.value = appState.selectedFaculty.id;
+          }
+
           savePrefs(appState.selectedFaculty, appState.selectedCourse, c);
           addRecentClass(c, appState.selectedFaculty, appState.selectedCourse);
           updateHeaderDisplay();
@@ -1233,19 +1326,56 @@
         };
 
         item.innerHTML = `
-          <div>
-            <p class="text-xs font-bold text-slate-800 dark:text-slate-100">${c.name}</p>
-            ${c.id !== c.name ? `<p class="text-[10px] text-slate-400 dark:text-slate-400">Mã: ${c.id}</p>` : ''}
+          <div class="pr-2 min-w-0">
+            <div class="flex items-center gap-2 flex-wrap">
+              <p class="text-xs font-bold text-slate-800 dark:text-slate-100 truncate">${c.name}</p>
+              ${facName ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 shrink-0 border border-slate-200 dark:border-slate-600">${facName}</span>` : ''}
+            </div>
+            ${c.id !== c.name ? `<p class="text-[10px] text-slate-400 dark:text-slate-400 mt-0.5">Mã: ${c.id}</p>` : ''}
           </div>
-          <svg class="w-4 h-4 text-slate-300 dark:text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+          <svg class="w-4 h-4 text-slate-300 dark:text-slate-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
         `;
         wrap.appendChild(item);
       });
+
+      if (q && filtered.length > 80) {
+        const moreNote = document.createElement('div');
+        moreNote.className = 'p-2 text-center text-[11px] text-slate-400 dark:text-slate-500 italic bg-slate-50 dark:bg-slate-800/40';
+        moreNote.textContent = `Còn ${filtered.length - 80} lớp khác... Vui lòng gõ cụ thể hơn để thu hẹp kết quả.`;
+        wrap.appendChild(moreNote);
+      }
     }
 
     function openClassModal() {
+      // Đồng bộ dropdown Khoa với appState.selectedFaculty
+      const sel = document.getElementById('facultySelect');
+      if (sel) {
+        sel.value = (appState.selectedFaculty && appState.selectedFaculty.id) ? appState.selectedFaculty.id : '';
+      }
+
+      // Xóa ô tìm kiếm
+      const searchInput = document.getElementById('classSearchInput');
+      if (searchInput) searchInput.value = '';
+
+      // Hiển thị danh sách lớp gần đây
       renderRecentClasses();
+
+      // Đồng bộ danh sách lớp theo Khoa hiện tại
+      if (appState.selectedFaculty) {
+        if (appState.classFacultyMap && appState.initialClasses) {
+          appState.classes = appState.initialClasses.filter(c => appState.classFacultyMap[c.id] === appState.selectedFaculty.id);
+        }
+      } else {
+        appState.classes = appState.initialClasses || [];
+      }
+      renderCoursesChips();
+      renderClassOptions();
+
       document.getElementById('classModal').classList.remove('hidden');
+
+      setTimeout(() => {
+        if (searchInput) searchInput.focus();
+      }, 100);
     }
     function closeClassModal() {
       if (appState.selectedClass) {

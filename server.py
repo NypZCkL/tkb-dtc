@@ -520,14 +520,14 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
             self.send_error_json(
                 504,
                 "SCHOOL_TIMEOUT",
-                "Cổng đào tạo trường (DTCC) phản hồi quá lâu hoặc đang quá tải. Vui lòng thử lại sau giây lát.",
+                "Cổng đào tạo trường (DTC) phản hồi quá lâu hoặc đang quá tải. Vui lòng thử lại sau giây lát.",
                 detail=str(e)
             )
         elif isinstance(e, requests.exceptions.ConnectionError):
             self.send_error_json(
                 502,
                 "SCHOOL_UNREACHABLE",
-                "Không thể kết nối đến máy chủ cổng đào tạo trường (DTCC). Hệ thống có thể đang bảo trì hoặc mạng gián đoạn.",
+                "Không thể kết nối đến máy chủ cổng đào tạo trường (DTC). Hệ thống có thể đang bảo trì hoặc mạng gián đoạn.",
                 detail=str(e)
             )
         else:
