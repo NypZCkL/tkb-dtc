@@ -32,6 +32,7 @@ def set_to_cache(key, val):
         DATA_CACHE[key] = (time.time(), val)
 
 session = requests.Session()
+session.trust_env = False  # Bỏ qua proxy hệ thống để kết nối trực tiếp đến cổng trường
 session.headers.update({
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 })
@@ -66,8 +67,6 @@ if os.path.exists(backup_file):
         with open(backup_file, "r", encoding="utf-8") as bf:
             b_data = json.load(bf)
             CLASS_FACULTY_MAP = b_data.get("class_faculty_map", {})
-            if "form_fields" in b_data:
-                cached_form_fields.update(b_data["form_fields"])
     except Exception as e:
         pass
 
@@ -217,8 +216,6 @@ def get_initial():
                                     break
                             except:
                                 pass
-                    if "form_fields" in b_data:
-                        cached_form_fields.update(b_data["form_fields"])
                     b_data["classFacultyMap"] = CLASS_FACULTY_MAP
                     set_to_cache("initial", b_data)
                     return b_data
@@ -283,47 +280,68 @@ def get_classes_for_course(faculty_id, course_id):
                 classes.append({"id": v, "name": opt.text.strip()})
     return classes
 
-def get_schedule(faculty_id, course_id, class_id, week_id, is_current_week):
-    cache_key = f"sched_{class_id}_{week_id}"
-    cached = get_from_cache(cache_key, 900)
-    if cached is not None:
-        return cached
+def ensure_fresh_form_fields(force=False):
+    global cached_form_fields
+    if force or not cached_form_fields or "__VIEWSTATE" not in cached_form_fields:
+        try:
+            r = fetch_school_page("GET", BASE_URL, timeout=(5, 10), retries=2)
+            soup = BeautifulSoup(r.text, "html.parser")
+            update_fields(soup)
+            return True
+        except Exception as e:
+            print(f"[WARN] Khong the lay fresh form fields tu cong truong: {e}")
+            return False
+    return True
 
-    if not cached_form_fields:
-        get_initial()
+def get_schedule(faculty_id, course_id, class_id, week_id, is_current_week, force=False):
+    cache_key = f"sched_{class_id}_{week_id}"
+    if not force:
+        cached = get_from_cache(cache_key, 900)
+        if cached is not None:
+            return cached
+
+    ensure_fresh_form_fields(force=force)
         
     # Tự động chuẩn hóa đúng Khoa của lớp (ngăn ngừa lỗi người dùng chọn sai Khoa hoặc lưu nhầm Khoa cũ)
     true_faculty = CLASS_FACULTY_MAP.get(class_id)
     if true_faculty:
-        if faculty_id != true_faculty:
-            faculty_id = true_faculty
-            course_id = ""
+        faculty_id = true_faculty
+        course_id = ""  # Khi đã có mã lớp cụ thể, luôn xóa course_id để tránh ASP.NET ViewState conflict!
 
-    p = dict(cached_form_fields)
-    p["__EVENTTARGET"] = ""
-    p["__EVENTARGUMENT"] = ""
-    if faculty_id:
-        p["ctl00$cphMain$ScheduleOfClass1$uScheduleOfClass1$UClass1$ddlScienceID"] = faculty_id
-    if course_id:
-        p["ctl00$cphMain$ScheduleOfClass1$uScheduleOfClass1$UClass1$ddlCourseID"] = course_id
-    p["ctl00$cphMain$ScheduleOfClass1$uScheduleOfClass1$UClass1$ddlClassID"] = class_id
-    p["ctl00$cphMain$ScheduleOfClass1$uScheduleOfClass1$ddlWeek"] = week_id
-    p["ctl00$cphMain$ScheduleOfClass1$uScheduleOfClass1$UClass1$btnSearch"] = "Tìm kiếm"
-    p.pop("ctl00$MsgBox$btnOk", None)
-    p.pop("ctl00$MsgBox$imgCloseButton", None)
-    
+    def build_post_data():
+        p = dict(cached_form_fields)
+        p["__EVENTTARGET"] = ""
+        p["__EVENTARGUMENT"] = ""
+        if faculty_id:
+            p["ctl00$cphMain$ScheduleOfClass1$uScheduleOfClass1$UClass1$ddlScienceID"] = faculty_id
+        if course_id:
+            p["ctl00$cphMain$ScheduleOfClass1$uScheduleOfClass1$UClass1$ddlCourseID"] = course_id
+        p["ctl00$cphMain$ScheduleOfClass1$uScheduleOfClass1$UClass1$ddlClassID"] = class_id
+        p["ctl00$cphMain$ScheduleOfClass1$uScheduleOfClass1$ddlWeek"] = week_id
+        p["ctl00$cphMain$ScheduleOfClass1$uScheduleOfClass1$UClass1$btnSearch"] = "Tìm kiếm"
+        p.pop("ctl00$MsgBox$btnOk", None)
+        p.pop("ctl00$MsgBox$imgCloseButton", None)
+        return p
+
+    p = build_post_data()
     r = fetch_school_page("POST", BASE_URL, data=p, timeout=(5, 10), retries=1)
     soup = BeautifulSoup(r.text, "html.parser")
     
     lbl = soup.find(id="ctl00_cphMain_ScheduleOfClass1_uScheduleOfClass1_lblContent")
-    if not lbl:
-        return []
-    table = lbl.find("table")
-    if not table:
-        return []
-        
-    rows = table.find_all("tr")
-    if len(rows) <= 2:
+    table = lbl.find("table") if lbl else None
+    rows = table.find_all("tr") if table else []
+
+    # Tự động phục hồi nếu Session ASP.NET bị hết hạn hoặc không trả về bảng lịch học
+    if not lbl or not table or len(rows) <= 2:
+        if ensure_fresh_form_fields(force=True):
+            p = build_post_data()
+            r = fetch_school_page("POST", BASE_URL, data=p, timeout=(5, 10), retries=1)
+            soup = BeautifulSoup(r.text, "html.parser")
+            lbl = soup.find(id="ctl00_cphMain_ScheduleOfClass1_uScheduleOfClass1_lblContent")
+            table = lbl.find("table") if lbl else None
+            rows = table.find_all("tr") if table else []
+
+    if not lbl or not table or len(rows) <= 2:
         return []
 
     # Định vị các dòng thuộc class_id nếu bảng trả về nhiều lớp
@@ -444,7 +462,9 @@ def get_schedule(faculty_id, course_id, class_id, week_id, is_current_week):
             "isToday": bool(is_current_week and (day_idx == today_idx)),
             "lessons": day_lessons
         })
-    set_to_cache(cache_key, day_schedules)
+    total_lessons = sum(len(d["lessons"]) for d in day_schedules)
+    if total_lessons > 0:
+        set_to_cache(cache_key, day_schedules)
     return day_schedules
 
 import gzip
@@ -678,10 +698,12 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
             class_id = qs.get("class", [""])[0]
             week_id = qs.get("week", ["0"])[0]
             is_cur = qs.get("isCurrent", ["true"])[0].lower() == "true"
+            force = qs.get("force", ["false"])[0].lower() in ("true", "1")
             try:
-                schedules = get_schedule(faculty_id, course_id, class_id, week_id, is_cur)
+                schedules = get_schedule(faculty_id, course_id, class_id, week_id, is_cur, force=force)
                 json_bytes = json.dumps(schedules, ensure_ascii=False).encode("utf-8")
-                cache_header = "public, max-age=300" if (schedules and len(schedules) > 0) else "no-cache, no-store"
+                total_lessons = sum(len(d.get("lessons", [])) for d in schedules) if schedules else 0
+                cache_header = "public, max-age=300" if total_lessons > 0 else "no-cache, no-store"
                 self.send_compressed_response(
                     json_bytes,
                     "application/json; charset=utf-8",
